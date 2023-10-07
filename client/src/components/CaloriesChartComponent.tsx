@@ -29,7 +29,18 @@ const CaloriesChartComponent: React.FC = () => {
       }
     }
   }, []); 
-  return <canvas ref={chartRef} width={200} height={200}></canvas>;
+  return (
+    <div>
+      <canvas ref={chartRef} width={200} height={200}></canvas>
+      <div>
+        <p>Calories Intake</p>
+        <input className='calories-intake'/>
+        <p>Calories Burned</p>
+        <input className='calories-burned'/>
+      </div>
+    </div>
+    
+  );
 };
 
 export default CaloriesChartComponent;

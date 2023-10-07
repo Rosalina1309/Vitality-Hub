@@ -1,0 +1,13 @@
+/* mainPage.module.css */
+
+.container {
+  background-image: url('../assets/postcss.config.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-attachment: fixed; /* Set the background to remain fixed */
+}
