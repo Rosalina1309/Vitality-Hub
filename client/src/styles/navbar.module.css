@@ -1,23 +1,59 @@
-/* navbar.module.css */
+.hamburger,
+.close {
+  &::after {
+    content: '';
+    font-family: 'Material Symbols Rounded';
+    font-size: 30px;
+  }
+}
 
-.navbar {
+.hamburger {
+  &::after {
+    content: '\e5d2';
+  }
+}
+
+.close {
+  &::after {
+    content: '\e5cd';
+  }
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 100%;
   display: flex;
   justify-content: flex-end;
-  padding: 10px;
-  margin-top: 20px;
-  background-color: #333;
-  width: 100%; 
+  width: 100%;
+  height: 100%;
+  transition: left .25s ease-out;
+  &.open {
+    left: 0;
+  }
+  ul {
+    width: calc(100% - 100px);
+    max-width: 400px;
+    height: 100%;
+    background: var(--bodyBg);
+    padding: 30px;
+    padding-top: 60px;
+    box-shadow: var(--shadow);
+  }
+  li {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  button {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 24px;
+  }
 }
 
-.navbar button {
-  margin-left: 10px;
-  padding: 8px 16px;
-  background-color: #555;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.navbar button:hover {
-  background-color: #777;
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }

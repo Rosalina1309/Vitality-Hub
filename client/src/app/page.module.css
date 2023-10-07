@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+<<<<<<< HEAD
   padding: 0; /* Remove the padding */
   height: 100vh; /* Set height to 100vh for full screen */
   width: 100%;
@@ -10,3 +11,19 @@
   margin-bottom: 30px;
 }
 
+=======
+  padding: 6rem;
+  min-height: 100vh;
+  padding: 10px;
+  padding-top: 100px;
+}
+
+@media screen and (min-width: 1280px) {
+  .main {
+    max-width: 1280px;
+    margin: auto;
+    padding: 30px;
+    padding-top: 130px;
+  }
+}
+>>>>>>> riccardo
