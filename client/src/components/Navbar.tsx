@@ -1,9 +1,8 @@
-
+import styles from "@/styles/navbar.module.css";
 export default function Navbar () {
   return (
-    <div>
-      <button>Login</button>
-      <button>Register</button>
+    <div className={styles.navbar}>
+      <button>≡</button>
     </div>
   )
 }

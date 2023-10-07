@@ -1,0 +1,23 @@
+/* navbar.module.css */
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: #333;
+  width: 100%; 
+}
+
+.navbar button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  background-color: #555;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  background-color: #777;
+}

@@ -1,14 +1,13 @@
 'use client'
-import HealthNewsList from "./HealthNewsList";
 import Navbar from "./Navbar";
+import QuotesComponent from "./QuotesComponent";
+import styles from "@/styles/mainPage.module.css";
 
 export default function MainPage () {
   return (
-    <div>
-      
+    <div className={styles.container}>
       <Navbar />
-      <h1>News</h1>
-      <HealthNewsList/>
+      <QuotesComponent />
     </div>
   )
 }
