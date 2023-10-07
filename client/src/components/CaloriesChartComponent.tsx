@@ -28,8 +28,7 @@ const CaloriesChartComponent: React.FC = () => {
         });
       }
     }
-  }, []); // Empty dependency array ensures the effect runs once after initial render
-
+  }, []); 
   return <canvas ref={chartRef} width={200} height={200}></canvas>;
 };
 
