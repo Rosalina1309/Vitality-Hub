@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.article {
+  margin-bottom: 20px;
+  padding: 20px; /* Increased padding for better spacing */
+  border: 1px solid #ccc;
+  width: calc(25% - 40px); /* 25% width for each box, considering margin and padding */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  background-color: #fff; /* Set background color for the box */
+}
+
+.article img {
+  max-width: 100%; /* Ensure images don't exceed the width of the box */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove extra space below inline images */
+}
+
+.article h2 {
+  font-size: 1.5em; /* Increase font size for the article title */
+  margin-bottom: 10px;
+}
+
+.article p {
+  font-size: 1.2em; /* Increase font size for the article content */
+}
+
+.article a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold; /* Make the link text bold */
+}
