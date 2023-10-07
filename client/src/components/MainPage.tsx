@@ -1,13 +1,14 @@
-'use client';
+'use client'
+import Navbar from "./Navbar";
+import QuotesComponent from "./QuotesComponent";
+import styles from "@/styles/mainPage.module.css";
 import ChatBot from './ChatBot';
 
 export default function MainPage() {
   return (
-    <>
-      <div>
-        <h1>Quotes</h1>
-      </div>
-      <ChatBot />
-    </>
-  );
+    <div className={styles.container}>
+      <Navbar />
+      <QuotesComponent />
+    </div>
+  )
 }
