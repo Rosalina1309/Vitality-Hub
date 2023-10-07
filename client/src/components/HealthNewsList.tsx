@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchHealthNews } from "@/apiMiddleware/newsApi";
 import { Article } from "@/interfaces/Article";
-import styles from '../styles/healthNewsList.module.css';
+import styles from './healthNewsList.module.css';
 
 const HealthNewsList: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
