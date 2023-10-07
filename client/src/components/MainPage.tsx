@@ -1,11 +1,15 @@
-'use client'
-import HealthNewsList from "./HealthNewsList";
+'use client';
+import ChatBot from './ChatBot';
+import HealthNewsList from './HealthNewsList';
 
-export default function MainPage () {
+export default function MainPage() {
   return (
-    <div>
-      <h1>News</h1>
-      <HealthNewsList/>
-    </div>
-  )
+    <>
+      <div>
+        <h1>News</h1>
+        <HealthNewsList />
+      </div>
+      <ChatBot />
+    </>
+  );
 }
