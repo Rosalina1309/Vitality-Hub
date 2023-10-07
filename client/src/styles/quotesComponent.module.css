@@ -1,11 +1,15 @@
-/* quotesComponent.module.css */
+.quote {
+  max-width: 400px;
+  padding: 30px 10px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
 .blockquote {
@@ -16,7 +20,8 @@
 }
 
 .author {
+  width: 100%;
   font-size: 18px;
-  font-weight: bold;
-  text-align: right;
+  font-weight: 600;
+  text-align: center;
 }
