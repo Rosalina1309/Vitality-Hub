@@ -12,6 +12,11 @@
   border-radius: 12px;
   &.open {
     transform: translateY(0) translateY(-10px);
+    .icon-help {
+      &::after {
+        content: '\e5c9';
+      }
+    }
   }
 }
 
