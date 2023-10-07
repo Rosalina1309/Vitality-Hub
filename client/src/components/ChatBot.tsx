@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import styles from './chatbot.module.css';
+import styles from '../styles/chatbot.module.css';
 
 interface ChatMessage {
   sender: string;

@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import styles from './navbar.module.css';
+import styles from '../styles/navbar.module.css';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
