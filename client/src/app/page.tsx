@@ -1,14 +1,13 @@
 
 
 import MainPage from '../components/MainPage'
-// import styles from '../styles/mainPage.module.css';
+import styles from '../styles/mainPage.module.css';
 
 
 const HomePage: React.FC = () => {
   return (
-    <main >
-        <h1>Vitality Hub</h1>
-      < MainPage />
+    <main className={styles.main}>
+        < MainPage />
     </main>
   )
 }

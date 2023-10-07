@@ -1,8 +1,11 @@
+'use client'
+
 import React, { useEffect, useRef } from 'react';
-import Chart from 'chart.js/auto';
+import Chart, {ChartType} from 'chart.js/auto';
 
 const CaloriesChartComponent: React.FC = () => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
+  const chartInstance = useRef<Chart | null>(null);
 
   useEffect(() => {
     if (chartRef.current) {
@@ -21,26 +24,25 @@ const CaloriesChartComponent: React.FC = () => {
           maintainAspectRatio: false,
         };
 
-        new Chart(ctx, {
-          type: 'pie',
+        if (chartInstance.current) {
+          chartInstance.current.destroy();
+        }
+
+        chartInstance.current = new Chart(ctx, {
+          type: 'pie' as ChartType,
           data: data,
           options: options,
         });
       }
     }
-  }, []); 
-  return (
-    <div>
-      <canvas ref={chartRef} width={200} height={200}></canvas>
-      <div>
-        <p>Calories Intake</p>
-        <input className='calories-intake'/>
-        <p>Calories Burned</p>
-        <input className='calories-burned'/>
-      </div>
-    </div>
-    
-  );
+    return () => {
+      if (chartInstance.current) {
+        chartInstance.current.destroy();
+      }
+    };
+  }, []);
+
+  return <canvas ref={chartRef} width={200} height={200}></canvas>;
 };
 
 export default CaloriesChartComponent;

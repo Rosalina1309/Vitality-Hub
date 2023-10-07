@@ -1,3 +1,5 @@
+'use client'
+
 import { fetchRecipes } from "@/apiServices/fetchRecipes";
 import { Recipe } from "@/interfaces/Recipe";
 import React, { useState, useEffect } from "react";
@@ -16,8 +18,8 @@ const RecipesComponent: React.FC = () => {
       }
     };
 
-    fetchData(); 
-  }, []); 
+    fetchData();
+  }, []);
   return (
     <div className={styles.recipesContainer}>
       <h1>Recipes</h1>
