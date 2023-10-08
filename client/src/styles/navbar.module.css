@@ -1,0 +1,59 @@
+.hamburger,
+.close {
+  &::after {
+    content: '';
+    font-family: 'Material Symbols Rounded';
+    font-size: 30px;
+  }
+}
+
+.hamburger {
+  &::after {
+    content: '\e5d2';
+  }
+}
+
+.close {
+  &::after {
+    content: '\e5cd';
+  }
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  transition: left .25s ease-out;
+  &.open {
+    left: 0;
+  }
+  ul {
+    width: calc(100% - 100px);
+    max-width: 400px;
+    height: 100%;
+    background: var(--bodyBg);
+    padding: 30px;
+    padding-top: 60px;
+    box-shadow: var(--shadow);
+  }
+  li {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  button {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 24px;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
