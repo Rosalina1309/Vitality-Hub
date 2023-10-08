@@ -1,6 +1,6 @@
-import { Quote } from "@/interfaces/Quotes"
+import { Quote } from "../interfaces/Quotes"
 import { useEffect, useState } from "react"
-import styles from "@/styles/quotesComponent.module.css"; 
+import styles from "../styles/quotesComponent.module.css"; 
 
 const quotes: Quote[] = [
   {

@@ -1,5 +1,5 @@
 import { fetchRecipes } from "@/apiServices/fetchRecipes";
-import { Recipe } from "@/interfaces/Recipe";
+import { Recipe } from "../interfaces/Recipe";
 import React, { useState, useEffect } from "react";
 import styles from '../styles/recipesComponent.module.css'
 
