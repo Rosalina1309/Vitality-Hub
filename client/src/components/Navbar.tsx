@@ -1,13 +1,17 @@
 'use client';
-import { useState } from 'react';
 import Link from 'next/link';
-import styles from '../styles/navbar.module.css';
+import styles from '@/styles/navbar.module.css';
+import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
+import { toggle } from '@/slices/menuSlice';
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
+  const isOpen = useAppSelector(state => state.menu.isOpen);
+  const dispatch = useAppDispatch();
 
   function toggleMenu() {
-    setIsOpen(!isOpen);
+    dispatch(toggle());
+    // setIsOpen(!isOpen);
   }
 
   return (
