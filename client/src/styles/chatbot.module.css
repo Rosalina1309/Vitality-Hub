@@ -112,11 +112,17 @@
   }
 }
 
+@media screen and (min-width: 768px) {
+  .chatbot {
+    max-width: 400px;
+    max-height: 60vh;
+  }
+
+}
+
 @media screen and (min-width: 1280px) {
   .chatbot {
     right: 30px;
-    max-width: 400px;
-    max-height: 60vh;
     &.open {
       transform: translateY(0) translateY(-30px);
     }
@@ -124,4 +130,5 @@
   .icon-help {
     bottom: calc(100% + 30px);
   }
+
 }
