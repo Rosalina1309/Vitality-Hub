@@ -33,7 +33,7 @@ const PersonalLog: React.FC = () => {
         exercises: "Gym workout",
       },
     ];
-
+    
     setPersonalLogs(hardcodedData);
   }, []);
 
@@ -42,8 +42,8 @@ const PersonalLog: React.FC = () => {
       <div className={styles.logscontainer}>
         {personalLogs.map((log, index) => (
           <div className={styles.singlelogcontainer} key={index}>
-            <div className={styles.logdate}>
-              <p>{log.date}</p>
+            <div className={styles.logdatecontainer}>
+              <p className={styles.logdate}>{log.date}</p>
             </div>
             <div className={styles.personallog}>
               <div className={styles.food}>
