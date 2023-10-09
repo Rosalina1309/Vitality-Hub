@@ -1,0 +1,59 @@
+
+
+.BMICalculator {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.BMICalculator h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.BMICalculator div {
+  margin-bottom: 15px;
+}
+
+.BMICalculator label {
+  font-weight: bold;
+}
+
+.BMICalculator input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.BMICalculator button {
+  background-color: #4fcd53;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.BMICalculator button:hover {
+  background-color: #38893e;
+}
+
+.BMICalculator p {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.BMICalculator p span {
+  font-weight: bold;
+}
+
+.BMICalculator .errorMessage {
+  color: red;
+  margin-top: 10px;
+}
