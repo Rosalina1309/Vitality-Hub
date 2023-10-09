@@ -17,13 +17,17 @@ export default function Navbar() {
         <button className={styles.close} onClick={toggleMenu}></button>
         <ul>
           <li>
-            <button>Login</button>
+            <a href="/login"> 
+              <button>Login</button>
+            </a>
           </li>
+            <a href="/register"> 
+              <button>Register</button>
+            </a>
           <li>
-            <button>Register</button>
-          </li>
-          <li>
-            <button>Profile</button>
+            <a href="/recipes"> 
+              <button>Profile</button>
+            </a>
           </li>
         </ul>
       </div>
