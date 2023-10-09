@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useEffect, useRef } from 'react';
-import Chart, {ChartType} from 'chart.js/auto';
+import Chart, { ChartType } from 'chart.js/auto';
+import styles from '@/styles/caloriesChart.module.css';
 
 const CaloriesChartComponent: React.FC = () => {
   const chartRef = useRef<HTMLCanvasElement | null>(null);
@@ -42,7 +43,12 @@ const CaloriesChartComponent: React.FC = () => {
     };
   }, []);
 
-  return <canvas ref={chartRef} width={200} height={200}></canvas>;
+  return (
+    <section className={styles['chart-container']}>
+      <h1>Your Calories Chart</h1>
+      <canvas ref={chartRef} width={300} height={300}></canvas>
+    </section>
+  );
 };
 
 export default CaloriesChartComponent;

@@ -5,17 +5,10 @@ import CaloriesChartComponent from '@/components/CaloriesChartComponent';
 
 const RecipesPage = () => {
   return (
-    <>
-      <div>
-        <div className={styles.left}>
-          waaa
-          <Recipes />
-        </div>
-        <div className={styles.right}>
-          <CaloriesChartComponent />
-        </div>
-      </div>
-    </>
+    <main className={styles.main}>
+      <CaloriesChartComponent />
+      <Recipes />
+    </main>
   );
 };
 

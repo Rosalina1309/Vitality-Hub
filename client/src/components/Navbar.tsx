@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Link from 'next/link';
 import styles from '../styles/navbar.module.css';
 
 export default function Navbar() {
@@ -12,18 +13,28 @@ export default function Navbar() {
   return (
     <div>
       <button className={styles.hamburger} onClick={toggleMenu}></button>
-      <div
-        className={`${styles.menu} ${isOpen ? styles.open : ''}`}>
+      <div className={`${styles.menu} ${isOpen ? styles.open : ''}`}>
         <button className={styles.close} onClick={toggleMenu}></button>
         <ul>
           <li>
-            <button>Login</button>
+            <Link href='/login' onClick={toggleMenu}>
+              Login
+            </Link>
           </li>
           <li>
-            <button>Register</button>
+            <Link href='/register' onClick={toggleMenu}>
+              Register
+            </Link>
           </li>
           <li>
-            <button>Profile</button>
+            <Link href='/profile' onClick={toggleMenu}>
+              Profile
+            </Link>
+          </li>
+          <li>
+            <Link href='/recipes' onClick={toggleMenu}>
+              Recipes
+            </Link>
           </li>
         </ul>
       </div>

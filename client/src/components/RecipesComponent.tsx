@@ -21,21 +21,39 @@ const RecipesComponent: React.FC = () => {
     fetchData();
   }, []);
   return (
-    <div className={styles.recipesContainer}>
+    <section className={styles.recipesContainer}>
       <h1>Recipes</h1>
       {recipes &&
-        recipes.map((recipe) => (
+        recipes.map(recipe => (
           <div className={styles.recipeBox} key={recipe.id}>
             <h2>{recipe.title}</h2>
-            <img src={recipe.image} alt={recipe.title} className={styles.recipeImage} />
-            <p>Calories: {recipe.calories}</p>
-            <p>Protein: {recipe.protein}</p>
-            <p>Fat: {recipe.fat}</p>
-            <p>Carbs: {recipe.carbs}</p>
+            <img
+              src={recipe.image}
+              alt={recipe.title}
+              className={styles.recipeImage}
+            />
+            <ul>
+              <li>
+                <span>Calories: </span>
+                {recipe.calories}
+              </li>
+              <li>
+                <span>Protein: </span>
+                {recipe.protein}
+              </li>
+              <li>
+                <span>Fat: </span>
+                {recipe.fat}
+              </li>
+              <li>
+                <span>Carbs: </span>
+                {recipe.carbs}
+              </li>
+            </ul>
             <button>Today's Favourite</button>
           </div>
         ))}
-    </div>
+    </section>
   );
 };
 

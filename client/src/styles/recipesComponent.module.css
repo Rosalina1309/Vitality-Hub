@@ -1,20 +1,63 @@
 /* RecipesComponent.module.css */
-
 .recipesContainer {
-  display: flex-start;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  width: 100%;
+  h1 {
+    grid-column: 1/-1;
+    font-size: 30px;
+    color: var(--accentColor);
+    margin-bottom: 20px;
+  }
 }
 
 .recipeBox {
-  width: 300px;
-  border: 1px solid #ccc;
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 8px;
+  background: var(--bodyBg);
+  box-shadow: var(--shadow);
+  h2 {
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  ul {
+    margin-bottom: 20px;
+  }
+  li {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+  span {
+    color: var(--accentColor);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  button {
+    padding: 10px 20px;
+    align-self: flex-end;
+    background: var(--accentColor);
+    border-radius: 8px;
+    color: var(--secondaryColor);
+    font-size: 18px;
+    font-weight: 600;
+  }
 }
 
 .recipeImage {
-  max-width: 100px;
-  margin-bottom: 10px;
+  display: block;
+  max-width: 100%;
+  margin: auto;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .recipesContainer {
+    grid-column: 1;
+  }
 }
