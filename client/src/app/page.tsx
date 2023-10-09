@@ -1,5 +1,3 @@
-
-
 import MainPage from '../components/MainPage'
 import styles from './page.module.css';
 
