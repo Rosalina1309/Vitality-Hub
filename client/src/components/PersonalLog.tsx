@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "@/styles/personallog.module.css";
+import styles from "@/styles/personalLog.module.css";
 import { PersonalLogData } from "@/interfaces/PersonalLog";
 
 const PersonalLog: React.FC = () => {
@@ -33,8 +33,8 @@ const PersonalLog: React.FC = () => {
         exercises: "Gym workout",
       },
     ];
-    
-    setPersonalLogs(hardcodedData);
+
+    setPersonalLogs(hardcodedData); // TODO: exclude todays 
   }, []);
 
   return (
