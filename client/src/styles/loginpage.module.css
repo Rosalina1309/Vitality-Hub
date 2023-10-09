@@ -1,0 +1,31 @@
+.container {
+	width: 300px;
+	padding: 20px;
+	margin: 0 auto;
+	margin-top: 100px;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.input {
+	width: 90%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.button {
+	background-color: #333;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+}
