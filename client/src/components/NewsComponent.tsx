@@ -10,7 +10,18 @@ const NewsContainer: React.FC = () => {
   useEffect(() => {
     fetch('https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=f0ec287afe52444f923441aa1b71b9fd')
       .then((response) => response.json())
-      .then((data) => setNewsData(data.articles))
+      .then((data) => {
+        // Filter out news articles with the title '[removed]' and null urlToImage
+        const filteredNewsData = data.articles.filter(
+          (article: Article) =>
+            article.urlToImage !== null
+        );
+        
+        // Limit the number of displayed articles to 4
+        const limitedNewsData = filteredNewsData.slice(0, 4);
+  
+        setNewsData(limitedNewsData);
+      })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
@@ -21,6 +32,6 @@ const NewsContainer: React.FC = () => {
       ))}
     </div>
   );
-};
+}
 
 export default NewsContainer;

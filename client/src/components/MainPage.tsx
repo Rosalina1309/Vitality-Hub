@@ -1,5 +1,4 @@
 'use client'
-import Navbar from "./Navbar";
 import QuotesComponent from "./QuotesComponent";
 import styles from "../styles/mainpage.module.css";
 import NewsComponent from "./NewsComponent"; 

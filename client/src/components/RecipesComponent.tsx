@@ -1,13 +1,8 @@
 'use client';
-
-import React, { useEffect } from 'react';
-import styles from '../styles/recipesComponent.module.css';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { fetchRecipesAsync } from '@/slices/recipeSlice';
-import { fetchRecipes } from "@/apiServices/fetchRecipes";
-import { Recipe } from "../interfaces/Recipe";
-import React, { useState, useEffect } from "react";
-import styles from '../styles/recipesComponent.module.css'
+import React, { useEffect } from 'react';
+import styles from '../styles/recipesComponent.module.css';
 
 const RecipesComponent: React.FC = () => {
   const recipes = useAppSelector(state => state.recipes.recipes);
