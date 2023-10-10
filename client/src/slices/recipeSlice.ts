@@ -1,15 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { RootState } from '@/store/store';
 import { Recipe } from '@/interfaces/Recipe';
 import { fetchRecipes } from '@/apiServices/fetchRecipes';
 import { mockRecipes } from '@/mock/recipes.mock';
 
 
-export interface recipeState {
+export interface RecipeState {
   recipes: Recipe[];
 }
 
-const initialState: recipeState = {
+const initialState: RecipeState = {
   recipes: [],
 };
 
@@ -42,7 +41,5 @@ export const recipeSlice = createSlice({
     );
   }
 });
-
-export const selectRecipe = (state: RootState) => state.recipes.recipes;
 
 export default recipeSlice.reducer;

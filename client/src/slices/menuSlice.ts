@@ -1,11 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '@/store/store';
 
-export interface menuState {
+export interface MenuState {
   isOpen: boolean;
 }
 
-const initialState: menuState = {
+const initialState: MenuState = {
   isOpen: false,
 };
 
@@ -19,7 +18,6 @@ export const menuSlice = createSlice({
   },
 });
 
-export const selectMenu = (state: RootState) => state.menu.isOpen;
 export const { toggle } = menuSlice.actions;
 
 export default menuSlice.reducer;

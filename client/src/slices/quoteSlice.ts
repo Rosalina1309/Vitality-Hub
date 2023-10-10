@@ -1,12 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '@/store/store';
 import { Quote } from '@/interfaces/Quotes';
 
-export interface quoteState {
+export interface QuoteState {
   quote: Quote;
 }
 
-const initialState: quoteState = {
+const initialState: QuoteState = {
   quote: {
     id: '',
     quote: '',
@@ -24,7 +23,6 @@ export const quoteSlice = createSlice({
   },
 });
 
-export const selectQuote = (state: RootState) => state.quote.quote;
 export const { setQuote } = quoteSlice.actions;
 
 export default quoteSlice.reducer;

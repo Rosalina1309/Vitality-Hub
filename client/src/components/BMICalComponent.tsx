@@ -2,7 +2,7 @@
 import React from "react";
 import styles from '../styles/bmiCalComponent.module.css'
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
-import { setHeight, setWeight, calculateBmi } from '@/slices/BmiCalcSlice';
+import { setHeight, setWeight, calculateBmi } from '@/slices/bmiSlice';
 
 const MeasurementsCalComponent: React.FC = () => {
   const height = useAppSelector(state => state.bmi.height);

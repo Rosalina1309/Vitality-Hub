@@ -3,7 +3,9 @@ import menuSlice from '@/slices/menuSlice';
 import chatbotSlice from '@/slices/chatbotSlice';
 import quoteSlice from '@/slices/quoteSlice';
 import recipeSlice from '@/slices/recipeSlice';
-import bmiSlice  from '@/slices/BmiCalcSlice';
+import bmiSlice from '@/slices/bmiSlice';
+import calculatorsSlice  from '@/slices/calculatorsSlice';
+
 
 const store = configureStore({
   reducer: {
@@ -12,6 +14,7 @@ const store = configureStore({
     quote: quoteSlice,
     recipes: recipeSlice,
     bmi: bmiSlice,
+    calculators: calculatorsSlice,
   },
 });
 

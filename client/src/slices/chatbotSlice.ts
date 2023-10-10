@@ -1,14 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '@/store/store';
 import { ChatMessage } from '@/interfaces/ChatMessage';
 
-export interface chatbotState {
+export interface ChatbotState {
   isOpen: boolean;
   chatHistory: ChatMessage[];
   inputValue: string;
 }
 
-const initialState: chatbotState = {
+const initialState: ChatbotState = {
   isOpen: false,
   chatHistory: [],
   inputValue: '',
@@ -30,9 +29,6 @@ export const chatbotSlice = createSlice({
   },
 });
 
-
-
-export const selectChatbot = (state: RootState) => state.chatbot.isOpen;
 export const { toggle, addChatMessage, setInputValue } = chatbotSlice.actions;
 
 export default chatbotSlice.reducer;
