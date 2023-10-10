@@ -1,0 +1,66 @@
+/* whrCalComponent.module.css */
+
+.WHRCalculator {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.WHRCalculator h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.WHRCalculator div {
+  margin-bottom: 15px;
+}
+
+.WHRCalculator label {
+  font-weight: bold;
+}
+
+.WHRCalculator input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.WHRCalculator select {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.WHRCalculator button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.WHRCalculator button:hover {
+  background-color: #45a049;
+}
+
+.WHRCalculator p {
+  font-size: 18px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.WHRCalculator .errorMessage {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
