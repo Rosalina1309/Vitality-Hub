@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import menuSlice from '@/slices/menuSlice';
+import chatbotSlice from '@/slices/chatbotSlice';
 
 const store = configureStore({
   reducer: {
     menu: menuSlice,
+    chatbot: chatbotSlice,
   },
 });
 

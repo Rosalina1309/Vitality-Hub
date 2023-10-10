@@ -1,18 +1,15 @@
-'use client';
-
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from '@/styles/chatbot.module.css';
-
-interface ChatMessage {
-  sender: string;
-  text: string;
-}
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { toggle, addChatMessage, setInputValue } from '@/slices/chatbotSlice';
 
 export default function ChatBot() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-  const [inputValue, setInputValue] = useState('');
+  const isOpen = useAppSelector(state => state.chatbot.isOpen);
+  const chatHistory = useAppSelector(state => state.chatbot.chatHistory);
+  const inputValue = useAppSelector(state => state.chatbot.inputValue);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -33,7 +30,7 @@ export default function ChatBot() {
   ];
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setInputValue(e.target.value);
+    dispatch(setInputValue(e.target.value));
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -41,30 +38,23 @@ export default function ChatBot() {
     const message = inputValue;
 
     if (message) {
-      setChatHistory(prevChatHistory => {
-        return [...prevChatHistory, { sender: 'user', text: message }];
-      });
+      dispatch(addChatMessage({sender: 'user', text: message}))
     }
-
     setTimeout(() => {
       getChatResponse();
     }, 500)
-    setInputValue('');
+    dispatch(setInputValue(''));
   }
+
   function toggleChatBot() {
-    setIsOpen(!isOpen);
+    dispatch(toggle());
   }
 
   function getChatResponse() {
     // get a random response from the mock
     // to be changed with actual responses
     const random = Math.floor(Math.random() * responseMessages.length);
-    setChatHistory(prevChatHistory => {
-      return [
-        ...prevChatHistory,
-        { sender: 'bot', text: responseMessages[random] },
-      ];
-    });
+    dispatch(addChatMessage({ sender: 'bot', text: responseMessages[random] }));
   }
 
   return (
