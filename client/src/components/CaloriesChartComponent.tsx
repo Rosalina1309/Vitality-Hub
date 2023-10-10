@@ -3,6 +3,9 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Chart, { ChartType } from 'chart.js/auto';
+import styles from '@/styles/caloriesChart.module.css';
+import React, { useEffect, useRef, useState } from 'react';
+import Chart, { ChartType } from 'chart.js/auto';
 import styles from '../styles/caloriesChartComponent.module.css'; 
 
 const CaloriesChartComponent: React.FC = () => {

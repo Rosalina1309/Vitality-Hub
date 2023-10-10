@@ -1,33 +1,41 @@
-'use client';
-import { useState } from 'react';
-import styles from '../styles/navbar.module.css';
+import Link from 'next/link';
+import styles from '@/styles/navbar.module.css';
+import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
+import { toggle } from '@/slices/menuSlice';
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const isOpen = useAppSelector(state => state.menu.isOpen);
+  const dispatch = useAppDispatch();
 
   function toggleMenu() {
-    setIsOpen(!isOpen);
+    dispatch(toggle());
   }
 
   return (
     <div>
       <button className={styles.hamburger} onClick={toggleMenu}></button>
-      <div
-        className={`${styles.menu} ${isOpen ? styles.open : ''}`}>
+      <div className={`${styles.menu} ${isOpen ? styles.open : ''}`}>
         <button className={styles.close} onClick={toggleMenu}></button>
         <ul>
           <li>
-            <a href="/login"> 
-              <button>Login</button>
-            </a>
+            <Link href='/login' onClick={toggleMenu}>
+              Login
+            </Link>
           </li>
-            <a href="/register"> 
-              <button>Register</button>
-            </a>
           <li>
-            <a href="/recipes"> 
-              <button>Profile</button>
-            </a>
+            <Link href='/register' onClick={toggleMenu}>
+              Register
+            </Link>
+          </li>
+          <li>
+            <Link href='/profile' onClick={toggleMenu}>
+              Profile
+            </Link>
+          </li>
+          <li>
+            <Link href='/recipes' onClick={toggleMenu}>
+              Recipes
+            </Link>
           </li>
         </ul>
       </div>

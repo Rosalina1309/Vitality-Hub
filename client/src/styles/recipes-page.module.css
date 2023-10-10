@@ -1,20 +1,21 @@
-/* recipes-page.module.css */
-
-/* Style for the container div */
-.container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  height: 100vh;
-  padding: 20px;
-  box-sizing: border-box;
+.main {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 50px;
+  min-height: auto;
 }
 
-/* Style for the left and right divs inside the container */
-.left {
-  width: 50%;
+@media screen and (min-width: 768px){
+  .main {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: dense;
+    height: 100vh;
+    overflow-y: auto;
+  }
 }
-
-.right {
-  width: 50%;
+@media screen and (min-width: 1024px){
+  .main {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
