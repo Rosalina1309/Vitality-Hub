@@ -1,5 +1,4 @@
-require 'jwt'
-
+require_relative '../../lib/helpers/jwt_token_generator'
 module Mutations
   class RegisterUserMutation < GraphQL::Schema::Mutation
     field :token, String, null: false
@@ -23,24 +22,12 @@ module Mutations
 
 
         if user.save
-          token = generate_jwt_token(user)
+          token = JwtTokenGenerator.generate_token(user)
           { token: token }
         else
           raise GraphQL::ExecutionError, user.errors.full_messages.join(", ")
         end
       end
-    end
-
-    def generate_jwt_token(user)
-      secret_key = 'YOUR_SECRET_KEY'
-
-      payload = {
-        user_id: user.id,
-        username: user.username,
-      }
-
-      token = JWT.encode(payload, secret_key, 'HS256')
-      token
     end
   end
 end
