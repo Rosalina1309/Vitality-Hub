@@ -1,23 +1,27 @@
-/* quotesComponent.module.css */
+.quote {
+  max-width: 400px;
+  padding: 30px 10px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  margin:  20px 20px 0 ; /* Adjust left and right margins as needed */
 }
 
 .blockquote {
   font-size: 24px;
   font-style: italic;
   margin-bottom: 20px;
-  text-align: center; /* Center the text */
+  text-align: center;
 }
 
 .author {
+  width: 100%;
   font-size: 18px;
-  font-weight: bold;
-  text-align: center; /* Center the text */
+  font-weight: 600;
+  text-align: center;
 }

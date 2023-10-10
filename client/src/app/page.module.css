@@ -1,13 +1,22 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 0; /* Remove the padding */
-  height: 100vh; /* Set height to 100vh for full screen */
-  width: 100%;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  padding: 6rem;
+  min-height: calc(100vh - 100px);
+  padding: 10px;
+  padding-top: 100px;
+}
+.motto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 200px;
+}
+.motto h3 {
+  font-size: 2rem;
 }
 
 @media screen and (min-width: 1280px) {

@@ -66,13 +66,13 @@ const quotes: Quote[] = [
   return (
   <div className={styles.container}>
     {quote && (
-        <>
+        <div className={styles.quote}>
           <blockquote className={styles.blockquote}>"{quote.quote}"</blockquote>
           <p className={styles.author}>- {quote.author} -</p>
-        </>
+        </div>
       )}
   </div>
   )
 };
- 
+
 export default QuotesComponent;

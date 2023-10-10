@@ -1,0 +1,47 @@
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.inputwrapper {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.exercise-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.exercise-card h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.exercise-card p {
+  margin: 5px 0;
+}
+
+/* Updated styles for the button */
+.exercise-card button {
+  font-size: inherit; /* Inherits font size from parent */
+  background-color: #a3e4d7; /* Pastel green color */
+  color: #333; /* Text color */
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.exercise-card button:hover {
+  background-color: #78c2ad; /* Darker shade of pastel green on hover */
+}
+
+.error-message {
+  color: #50b368;
+  font-weight: bold;
+}
