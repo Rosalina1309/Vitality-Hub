@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '@/store/store';
 import { Quote } from '@/interfaces/Quotes';
 
-export interface menuState {
+export interface quoteState {
   quote: Quote;
 }
 
-const initialState: menuState = {
+const initialState: quoteState = {
   quote: {
     id: '',
     quote: '',
