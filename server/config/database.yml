@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: Vitality Hub
+  pool: 5
+  username: postgres
+  password: admin
+  host: localhost
+  port: 5432
