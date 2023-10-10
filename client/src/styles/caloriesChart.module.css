@@ -20,3 +20,8 @@
     grid-column: 2;
   }
 }
+@media screen and (min-width: 1024px) {
+  .chart-container {
+    grid-column: 3;
+  }
+}

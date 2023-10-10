@@ -14,3 +14,8 @@
     overflow-y: auto;
   }
 }
+@media screen and (min-width: 1024px){
+  .main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
