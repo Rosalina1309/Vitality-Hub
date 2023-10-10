@@ -37,6 +37,11 @@ export default function Navbar() {
               Recipes
             </Link>
           </li>
+          <li>
+            <Link href='/exercises' onClick={toggleMenu}>
+              Exercises
+            </Link>
+          </li>
         </ul>
       </div>
     </div>

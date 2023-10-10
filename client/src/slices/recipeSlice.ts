@@ -3,7 +3,6 @@ import { Recipe } from '@/interfaces/Recipe';
 import { fetchRecipes } from '@/apiServices/fetchRecipes';
 import { mockRecipes } from '@/mock/recipes.mock';
 
-
 export interface RecipeState {
   recipes: Recipe[];
 }
