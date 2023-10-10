@@ -4,6 +4,7 @@ import styles from '@/styles/recipes-page.module.css';
 import CaloriesChartComponent from '@/components/CaloriesChartComponent';
 import CalculatorsComponent from '@/components/CalculatorsComponent';
 import ExercisesComponent from '@/components/ExercisesComponent';
+import NutritionComponent from '@/components/NutritionComponent';
 
 const RecipesPage = () => {
   return (
@@ -17,6 +18,7 @@ const RecipesPage = () => {
         </div>
         <CalculatorsComponent />
         <ExercisesComponent />
+        <NutritionComponent />
       </div>
     </>
   );

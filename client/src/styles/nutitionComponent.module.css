@@ -1,0 +1,49 @@
+
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.input-wrapper {
+  margin-bottom: 20px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.button {
+  background-color: #90EE90; /* Pastel green */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background-color: #77DD77; /* Lighter pastel green on hover */
+}
+
+.nutrition-info {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.nutrition-info h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.nutrition-info p {
+  margin: 5px 0;
+}
