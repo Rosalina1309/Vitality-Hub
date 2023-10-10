@@ -1,5 +1,4 @@
 require 'jwt'
-require 'bcrypt'
 
 module Mutations
   class RegisterUserMutation < GraphQL::Schema::Mutation
@@ -19,9 +18,9 @@ module Mutations
           email: input[:email],
           password: input[:password],
           birthdate: input[:birthdate],
-          gender: input[:gender]
+          gender: input[:gender],
         )
-        puts "PASSWORD: #{user.password}"
+
 
         if user.save
           token = generate_jwt_token(user)

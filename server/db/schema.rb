@@ -14,8 +14,41 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_09_213118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "schema_info", id: false, force: :cascade do |t|
-    t.integer "version", default: 0, null: false
+  create_table "user_goals", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "personal_goal", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "start_date"], name: "index_user_goals_on_user_id_and_start_date"
+    t.index ["user_id"], name: "index_user_goals_on_user_id"
   end
 
+  create_table "user_measurements", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.float "height"
+    t.float "weight"
+    t.string "measurement_unit"
+    t.float "bmi"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_user_measurements_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_user_measurements_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username", null: false
+    t.string "email", null: false
+    t.date "birthdate"
+    t.string "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  add_foreign_key "user_goals", "users"
+  add_foreign_key "user_measurements", "users"
 end
