@@ -1,6 +1,7 @@
 # require 'dotenv/rails-now'
 require 'active_storage/engine'
 require 'action_mailer/railtie'
+require 'bundler/setup'
 
 
 module Server

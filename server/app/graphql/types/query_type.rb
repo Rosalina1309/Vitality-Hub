@@ -7,8 +7,15 @@ module Types
     def user
       user_id = JwtHelper.verify_jwt_token(context[:jwt_token])
       user = User.find_by(id: user_id)
-      puts "#{user}"
       user
+    end
+
+    field :recipes, [Types::RecipeType], null: true, description: "Get all recipes"
+
+    def recipes
+      allRecipes = Recipe.all
+      puts "#{allRecipes}"
+      allRecipes
     end
   end
 end
