@@ -1,55 +1,67 @@
-// 'use client'
-// import React from 'react';
-// const LoginComponent : React.FC = () => {
-//   return (
-//     <div>
-//       <label htmlFor='username'>Username</label>
-//       <input type="text"></input>
-//       <label htmlFor='password'>Password</label>
-//       <input type="text"></input>
-
-//     </div>
-//   )
-// }
-
-// export default LoginComponent
-// LoginComponent.jsx
 
 'use client'
-import React, { useEffect, useState } from 'react';
-import { getCSRFToken } from '../apiServices/getCSRFToken'; // Adjust the import path according to your file structure
 
-const LoginComponent: React.FC = () => {
-  const [csrfToken, setCsrfToken] = useState<string>('');
+import React, { useState } from 'react';
+import Link from 'next/link';
+import styles from '../styles/loginComponent.module.css';
 
-  useEffect(() => {
-    async function fetchCsrfToken() {
-      try {
-        const token = await getCSRFToken();
-        if (token) {
-          setCsrfToken(token);
-        } else {
-          console.error('Failed to fetch CSRF token.');
-        }
-      } catch (error) {
-        console.error('Error fetching CSRF Token:', error);
+const LoginComponent = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: 'mutation ($input: LoginMutationInput!) { login(input: $input) { token } }',
+          variables: {
+            input: {
+              usernameOrEmail: username,
+              password: password,
+            },
+          },
+        }),
+      });
+
+      const responseBody = await response.json(); 
+
+      if (responseBody.data && responseBody.data.login && responseBody.data.login.token) {
+        setIsLoggedIn(true); 
+      } else {
+        console.error('Login failed.');
       }
+    } catch (error) {
+      console.error('Login failed:', error);
     }
-
-    // Call the function to fetch CSRF token when the component mounts
-    fetchCsrfToken();
-  }, []); // Empty dependency array ensures this effect runs once after the initial render
+  };
 
   return (
-    <div>
-      <label htmlFor='username'>Username</label>
-      <input type='text'></input>
-      <label htmlFor='password'>Password</label>
-      <input type='text'></input>
+    <div className={styles.loginComponent}>  
+       {isLoggedIn ? (
+         <p>Logged In</p>
+       ) : (
+         <>
+           <label htmlFor='username'>Username</label>
+           <input type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
+           <label htmlFor='password'>Password</label>
+           <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
 
-      {/* You can now use the CSRF token in your component */}
-      <p>CSRF Token: {csrfToken}</p>
-    </div>
+           <button onClick={handleLogin}>Login</button>
+         </>
+       )}
+       {isLoggedIn && (
+         <div>
+           <Link href='/user-profile'legacyBehavior>
+             <a>Go to User Profile</a>
+           </Link>
+         </div>
+       )}
+     </div>
   );
 };
 
