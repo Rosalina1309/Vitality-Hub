@@ -98,3 +98,13 @@
     max-height: 70vh;
   }
 }
+
+@media screen and (min-width: 1280px) {
+  .container {
+    right: 30px;
+  }
+  .icon-nutritions {
+    bottom: calc(100% + 30px);
+  }
+
+}
