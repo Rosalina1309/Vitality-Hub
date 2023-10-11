@@ -1,0 +1,34 @@
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.19/ext/mri
+/Users/quinten/.rvm/rubies/ruby-3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.19/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-5k55by sitelibdir\=./.gem.20231010-86013-5k55by clean
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.19/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-5k55by sitelibdir\=./.gem.20231010-86013-5k55by
+compiling bcrypt_ext.c
+bcrypt_ext.c:41:38: warning: implicit conversion loses integer precision: 'long' to 'int' [-Wshorten-64-to-32]
+    args.size   = NIL_P(input) ? 0 : RSTRING_LEN(input);
+                ~                    ^~~~~~~~~~~~~~~~~~
+/Users/quinten/.rvm/rubies/ruby-3.2.2/include/ruby-3.2.0/ruby/internal/core/rstring.h:52:27: note: expanded from macro 'RSTRING_LEN'
+#define RSTRING_LEN       RSTRING_LEN
+                          ^
+1 warning generated.
+compiling crypt_blowfish.c
+gcc  -D__SKIP_GNU -I/usr/local/opt/openssl@1.1/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -c -o x86.o x86.S
+compiling crypt_gensalt.c
+compiling wrapper.c
+wrapper.c:182:60: warning: declaration of 'struct crypt_data' will not be visible outside of this function [-Wvisibility]
+char *crypt_r(const char *key, const char *setting, struct crypt_data *data)
+                                                           ^
+1 warning generated.
+linking shared-object bcrypt_ext.bundle
+ld: warning: -undefined dynamic_lookup may not work with chained fixups
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.19/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-5k55by sitelibdir\=./.gem.20231010-86013-5k55by install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 bcrypt_ext.bundle ./.gem.20231010-86013-5k55by
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.19/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-5k55by sitelibdir\=./.gem.20231010-86013-5k55by clean

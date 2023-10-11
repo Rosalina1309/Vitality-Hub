@@ -1,0 +1,19 @@
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+/Users/quinten/.rvm/rubies/ruby-3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-3srsr7 sitelibdir\=./.gem.20231010-86013-3srsr7 clean
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-3srsr7 sitelibdir\=./.gem.20231010-86013-3srsr7
+compiling websocket_mask.c
+linking shared-object websocket_mask.bundle
+ld: warning: -undefined dynamic_lookup may not work with chained fixups
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-3srsr7 sitelibdir\=./.gem.20231010-86013-3srsr7 install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 websocket_mask.bundle ./.gem.20231010-86013-3srsr7
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/websocket-driver-0.7.6/ext/websocket-driver
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-3srsr7 sitelibdir\=./.gem.20231010-86013-3srsr7 clean

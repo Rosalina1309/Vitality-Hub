@@ -1,0 +1,19 @@
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.16.0/ext/bootsnap
+/Users/quinten/.rvm/rubies/ruby-3.2.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-g3ye7g sitelibdir\=./.gem.20231010-86013-g3ye7g clean
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-g3ye7g sitelibdir\=./.gem.20231010-86013-g3ye7g
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+ld: warning: -undefined dynamic_lookup may not work with chained fixups
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-g3ye7g sitelibdir\=./.gem.20231010-86013-g3ye7g install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 bootsnap.bundle ./.gem.20231010-86013-g3ye7g/bootsnap
+
+current directory: /Users/quinten/Documents/Vitality-Hub/server/vendor/bundle/ruby/3.2.0/gems/bootsnap-1.16.0/ext/bootsnap
+make DESTDIR\= sitearchdir\=./.gem.20231010-86013-g3ye7g sitelibdir\=./.gem.20231010-86013-g3ye7g clean

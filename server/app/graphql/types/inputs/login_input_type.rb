@@ -1,10 +1,11 @@
 module Types
   module Inputs
-    class LoginUserInputType < BaseInputObject
-      graphql_name "LoginUserInput"
+    class LoginMutationInputType < BaseInputObject
+      graphql_name "LoginMutationInput"
 
-      argument :username, String, required: true
+      argument :usernameOrEmail, String, required: true
       argument :password, String, required: true
     end
   end
 end
+

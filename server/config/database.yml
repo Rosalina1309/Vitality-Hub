@@ -3,7 +3,7 @@ development:
   encoding: unicode
   database: Vitality Hub
   pool: 5
-  username: postgres
-  password: admin
+  username: quinten
+  password: password
   host: localhost
   port: 5432
