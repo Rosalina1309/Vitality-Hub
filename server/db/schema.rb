@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_09_094326) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_11_153131) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "title"
+    t.string "image"
+    t.integer "calories"
+    t.integer "protein"
+    t.integer "fat"
+    t.integer "carbs"
+  end
 
   create_table "user_goals", force: :cascade do |t|
     t.uuid "user_id", null: false
@@ -30,8 +39,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_09_094326) do
     t.uuid "user_id", null: false
     t.float "height"
     t.float "weight"
-    t.string "measurement_unit"
     t.float "bmi"
+    t.float "hips"
+    t.float "waist"
+    t.float "whr"
+    t.string "measurement_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_user_measurements_on_user_id_and_created_at"
