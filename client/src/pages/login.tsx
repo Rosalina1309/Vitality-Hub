@@ -1,11 +1,11 @@
 import LoginComponent from '@/components/LoginComponent';
 
 const LoginPage = () => {
-  return(
+  return (
     <>
       <LoginComponent />
     </>
-  )   
-}
+  );
+};
 
 export default LoginPage;
