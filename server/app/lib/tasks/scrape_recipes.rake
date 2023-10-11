@@ -10,7 +10,7 @@ namespace :recipes do
     recipes_count = 0
 
     while true
-      url = "https://api.spoonacular.com/recipes/findByNutrients?apiKey=48162264bce24f528c7ff4e640ca08cd&minCarbs=10&maxCarbs=50&number=100&page=#{page}"
+      url = "https://api.spoonacular.com/recipes/findByNutrients?apiKey=1e6c1a1e5da149f1ad41176431766b94&minCarbs=10&maxCarbs=50&number=100&page=#{page}"
       response = RestClient.get(url)
       data = JSON.parse(response)
 
