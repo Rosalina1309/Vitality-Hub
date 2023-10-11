@@ -1,5 +1,5 @@
 
-.loginComponent {
+.registerComponent {
   max-width: 300px;
   margin: 100px auto 0;
   padding: 20px;
@@ -8,20 +8,20 @@
   background-color: #f9f9f9;
 }
 
-.loginComponent label,
-.loginComponent input,
-.loginComponent button {
+.registerComponent label,
+.registerComponent input,
+.registerComponent button {
   display: block;
   margin-bottom: 10px;
 }
 
-.loginComponent input {
+.registerComponent input {
   width: 100%;
   padding: 8px;
   font-size: 14px;
 }
 
-.loginComponent button {
+.registerComponent button {
   background-color: #4caf50;
   color: white;
   border: none;
@@ -30,6 +30,6 @@
   font-size: 16px;
 }
 
-.loginComponent button:hover {
+.registerComponent button:hover {
   background-color: #45a049;
 }
