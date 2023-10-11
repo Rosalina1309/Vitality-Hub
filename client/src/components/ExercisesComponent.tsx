@@ -39,31 +39,6 @@ const ExercisesComponent: React.FC = () => {
           onChange={(e) => setMuscle(e.target.value)}
         />
       </div>
-
-      {/* <div>
-        {exercises !== undefined && exercises.length > 0 ? (
-          exercises.map((exercise) => (
-            <div key={exercise.name} className={styles['exercise-card']}>
-              <h3>{exercise.name}</h3>
-              <p><strong>Type:</strong> {exercise.type}</p>
-              <p><strong>Muscle:</strong> {exercise.muscle}</p>
-              <p><strong>Equipment:</strong> {exercise.equipment}</p>
-              <p><strong>Difficulty:</strong> {exercise.difficulty}</p>
-              <button onClick={() => handleExerciseClick(exercise.name)}>
-                {selectedExercise === exercise.name ? "Hide Instructions" : "Show Instructions"}
-              </button>
-              {selectedExercise === exercise.name && (
-                <>
-                  <h4><strong>Instructions:</strong></h4>
-                  <p>{exercise.instructions}</p>
-                </>
-              )}
-            </div>
-          ))
-        ) : (
-          <p className={styles['error-message']}>Loading...</p>
-        )}
-      </div> */}
       <div>
   {exercises !== undefined && exercises.length > 0 ? (
     exercises.map((exercise) => (
