@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-
-require_relative '../../lib/helpers/jwt_token_generator'
-=======
 require_relative '../../lib/helpers/jwt_helper'
->>>>>>> patricia
 module Mutations
   class RegisterUserMutation < GraphQL::Schema::Mutation
     field :token, String, null: false
@@ -26,11 +21,7 @@ module Mutations
 
 
         if user.save
-<<<<<<< HEAD
-          token = JwtTokenGenerator.generate_token(user)
-=======
           token = JwtHelper.generate_token(user)
->>>>>>> patricia
           { token: token }
         else
           raise GraphQL::ExecutionError, user.errors.full_messages.join(", ")
