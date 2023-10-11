@@ -1,5 +1,4 @@
 'use client';
-
 import React from 'react';
 import styles from '../styles/nutitionComponent.module.css';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
