@@ -10,10 +10,13 @@ class GraphqlController < ApplicationController
     variables = prepare_variables(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
+
+    jwt_token = request.headers['Authorization']&.split('Bearer ')&.last
+
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      jwt_token: jwt_token
     }
+
     result = ServerSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   rescue StandardError => e

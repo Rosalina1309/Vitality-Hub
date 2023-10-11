@@ -1,4 +1,4 @@
-require_relative '../../lib/helpers/jwt_token_generator'
+require_relative '../../lib/helpers/jwt_helper'
 module Mutations
   class LoginMutation < GraphQL::Schema::Mutation
     field :token, String, null: false
@@ -9,7 +9,7 @@ module Mutations
       user = User.find_by(username: input[:usernameOrEmail]) || User.find_by(email: input[:usernameOrEmail])
 
       if user&.authenticate(input[:password])
-        jwt = JwtTokenGenerator.generate_token(user)
+        jwt = JwtHelper.generate_token(user)
         { token: jwt }
       else
         raise GraphQL::ExecutionError, "Invalid credentials"
