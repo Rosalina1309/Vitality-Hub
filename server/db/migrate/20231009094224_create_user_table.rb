@@ -1,16 +1,19 @@
 class CreateUserTable < ActiveRecord::Migration[7.1]
   def change
-    create_table :users do |t|
+    enable_extension 'pgcrypto'
+
+    create_table :users, id: :uuid, default: -> { 'gen_random_uuid()' }, force: :cascade do |t|
       t.string :username, null: false
       t.string :email, null: false
-      # t.string :password, null: false
       t.date :birthdate
       t.string :gender
+      t.string :password_digest, null: false
 
       t.timestamps
-    end
 
-    add_index :users, :username, unique: true
-    add_index :users, :email, unique: true
+      t.index :id, unique: true
+      t.index :username, unique: true
+      t.index :email, unique: true
+    end
   end
 end
