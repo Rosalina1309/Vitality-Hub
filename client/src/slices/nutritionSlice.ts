@@ -7,6 +7,7 @@ export interface NutritionState {
   nutritionData: NutritionsOfFood | null;
   loading: boolean;
   error: string;
+  isOpen: boolean;
 }
 
 const initialState: NutritionState = {
@@ -14,6 +15,7 @@ const initialState: NutritionState = {
   nutritionData: null,
   loading: false,
   error: '',
+  isOpen: false,
 };
 
 export const fetchNutritionsAsync = createAsyncThunk(
@@ -36,6 +38,9 @@ export const nutritionSlice = createSlice({
     setFoodQuery: (state, action) => {
       state.foodQuery = action.payload;
     },
+    toggle: (state) => {
+      state.isOpen = !state.isOpen;
+    }
   },
   extraReducers: builder => {
     builder
@@ -62,6 +67,6 @@ export const nutritionSlice = createSlice({
   },
 });
 
-export const { setFoodQuery } = nutritionSlice.actions;
+export const { setFoodQuery, toggle } = nutritionSlice.actions;
 
 export default nutritionSlice.reducer;

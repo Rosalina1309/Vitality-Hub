@@ -1,17 +1,53 @@
+.calories-chart-container {
+  margin-bottom: 30px;
+}
 .chartContainer {
-
-  width: 500px; /* Set the desired width */
-  height: 500px; /* Set the desired height */
-  margin: 0 auto; /* Center the container */
-  margin-top: 300px; /* Add some top margin for spacing */
-  margin-bottom: 100px;
-  padding-top: 50px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  height: 300px;
+  margin-bottom: 30px;
+}
+.item-form {
+  margin-bottom: 15px;
+  label {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accentColor);
+  }
+  input {
+    display: block;
+    width: 100%;
+    height: 45px;
+  }
+}
+.caloriesInfo {
+  p {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accentColor);
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+    span {
+      font-weight: 400;
+      color: var(--mainColor);
+    }
+  }
 }
 
-.canvasContainer {
-  max-width: 400px; /* Set the desired maximum width */
-  max-height: 400px; /* Set the desired maximum height */
-  margin: 0 auto; /* Center the container horizontally */
-  margin-top: 20px; /* Add some top margin for spacing */
-  margin-bottom: 100px;
+@media screen and (min-width: 768px) {
+  .calories-chart-container {
+    position: sticky;
+    top: 0;
+    left: 0;
+    grid-column: 2;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .calories-chart-container {
+    grid-column: 3;
+  }
 }
