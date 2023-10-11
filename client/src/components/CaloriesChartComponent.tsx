@@ -1,12 +1,22 @@
-'use client'
 
+'use client'
 import React, { useEffect, useRef } from 'react';
-import Chart, {ChartType} from 'chart.js/auto';
+import Chart, { ChartType } from 'chart.js/auto';
+import styles from '../styles/caloriesChartComponent.module.css';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { setConsumedCalories } from '@/slices/caloriesChartSlice';
 
 const CaloriesChartComponent: React.FC = () => {
+  const consumedCalories = useAppSelector(state => state.caloriesChart.consumedCalories);
+  const totalCalories = 2000;
+  const numericConsumedCalories = consumedCalories !== "" ? parseInt(consumedCalories, 10) : 0;
+  const remainingCalories = totalCalories - numericConsumedCalories;
   const chartRef = useRef<HTMLCanvasElement | null>(null);
   const chartInstance = useRef<Chart | null>(null);
 
+  const dispatch = useAppDispatch();
+
+  // Update the chart when consumedCalories changes
   useEffect(() => {
     if (chartRef.current) {
       const ctx = chartRef.current.getContext('2d');
@@ -14,8 +24,8 @@ const CaloriesChartComponent: React.FC = () => {
         const data = {
           labels: ['Consumed Calories', 'Remaining Calories'],
           datasets: [{
-            data: [150, 1850], // Consumed and remaining calories
-            backgroundColor: ['#FF5733', '#3498DB'],
+            data: [numericConsumedCalories, totalCalories - numericConsumedCalories],
+            backgroundColor: ['#90EE90', '#77DD77'],
           }]
         };
 
@@ -35,14 +45,40 @@ const CaloriesChartComponent: React.FC = () => {
         });
       }
     }
+
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy();
       }
     };
-  }, []);
+  }, [numericConsumedCalories]);
 
-  return <canvas ref={chartRef} width={200} height={200}></canvas>;
+
+  const handleConsumedCaloriesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (Number(e.target.value) && Number(e.target.value) < 2000) {
+      dispatch(setConsumedCalories(e.target.value));
+    }
+  };
+
+  return (
+    <div className={`${styles.chartContainer} ${styles.canvasContainer}`}>
+
+      <canvas ref={chartRef}></canvas>
+      <div>
+        <label>Consumed Calories:</label>
+        <input
+          type="number"
+          value={consumedCalories}
+          onChange={handleConsumedCaloriesChange}
+        />
+      </div>
+      <div className={styles.caloriesInfo}>
+        <p>Total calories for today: 2000 kcal</p>
+        {numericConsumedCalories > 0 && <p>Calories you consumed: {numericConsumedCalories} kcal</p>}
+        <p>Calories remain: {remainingCalories} kcal</p>
+      </div>
+    </div>
+  );
 };
 
 export default CaloriesChartComponent;

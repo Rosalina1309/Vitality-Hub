@@ -1,0 +1,17 @@
+.chartContainer {
+
+  width: 500px; /* Set the desired width */
+  height: 500px; /* Set the desired height */
+  margin: 0 auto; /* Center the container */
+  margin-top: 300px; /* Add some top margin for spacing */
+  margin-bottom: 100px;
+  padding-top: 50px;
+}
+
+.canvasContainer {
+  max-width: 400px; /* Set the desired maximum width */
+  max-height: 400px; /* Set the desired maximum height */
+  margin: 0 auto; /* Center the container horizontally */
+  margin-top: 20px; /* Add some top margin for spacing */
+  margin-bottom: 100px;
+}

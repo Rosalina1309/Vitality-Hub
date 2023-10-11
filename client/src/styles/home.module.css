@@ -8,16 +8,6 @@
   padding: 10px;
   padding-top: 100px;
 }
-.motto {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 200px;
-}
-.motto h3 {
-  font-size: 2rem;
-}
 
 @media screen and (min-width: 1280px) {
   .main {

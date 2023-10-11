@@ -1,41 +1,59 @@
-'use client'
+'use client';
 
-import { fetchRecipes } from "@/apiServices/fetchRecipes";
-import { Recipe } from "@/interfaces/Recipe";
-import React, { useState, useEffect } from "react";
-import styles from '../styles/recipesComponent.module.css'
+import React, { useEffect } from 'react';
+import styles from '../styles/recipesComponent.module.css';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { fetchRecipesAsync } from '@/slices/recipeSlice';
 
 const RecipesComponent: React.FC = () => {
-  const [recipes, setRecipes] = useState<Recipe[]>();
+  const recipes = useAppSelector(state => state.recipes.recipes);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchRecipes();
-        setRecipes(data);
+        await dispatch(fetchRecipesAsync());
       } catch (error) {
-        console.error("Error fetching recipes:", error);
+        console.error('Error fetching recipes:', error);
       }
     };
-
     fetchData();
   }, []);
+
   return (
-    <div className={styles.recipesContainer}>
+    <section className={styles.recipesContainer}>
       <h1>Recipes</h1>
       {recipes &&
-        recipes.map((recipe) => (
+        recipes.map(recipe => (
           <div className={styles.recipeBox} key={recipe.id}>
             <h2>{recipe.title}</h2>
-            <img src={recipe.image} alt={recipe.title} className={styles.recipeImage} />
-            <p>Calories: {recipe.calories}</p>
-            <p>Protein: {recipe.protein}</p>
-            <p>Fat: {recipe.fat}</p>
-            <p>Carbs: {recipe.carbs}</p>
+            <img
+              src={recipe.image}
+              alt={recipe.title}
+              className={styles.recipeImage}
+            />
+            <ul>
+              <li>
+                <span>Calories: </span>
+                {recipe.calories}
+              </li>
+              <li>
+                <span>Protein: </span>
+                {recipe.protein}
+              </li>
+              <li>
+                <span>Fat: </span>
+                {recipe.fat}
+              </li>
+              <li>
+                <span>Carbs: </span>
+                {recipe.carbs}
+              </li>
+            </ul>
             <button>Today's Favourite</button>
           </div>
         ))}
-    </div>
+    </section>
   );
 };
 
