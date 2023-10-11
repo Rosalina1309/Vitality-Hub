@@ -8,7 +8,7 @@ const initialState: CaloriesChartState = {
   consumedCalories: '',
 };
 
-export const caloriesSlice = createSlice({
+export const caloriesChartSlice = createSlice({
   name: 'caloriesChart',
   initialState,
   reducers: {
@@ -18,6 +18,6 @@ export const caloriesSlice = createSlice({
   },
 });
 
-export const { setConsumedCalories } = caloriesSlice.actions;
+export const { setConsumedCalories } = caloriesChartSlice.actions;
 
-export default caloriesSlice.reducer;
+export default caloriesChartSlice.reducer;

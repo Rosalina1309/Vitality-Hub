@@ -7,7 +7,7 @@ export const fetchExercises = async (muscle: string) => {
         muscle: muscle,
       },
       headers: {
-        'X-Api-Key': 'u1MqE9OcSe2ROpt0Tl+7HQ==domWx22TnqrwssW3', 
+        'X-Api-Key': 'u1MqE9OcSe2ROpt0Tl+7HQ==domWx22TnqrwssW3',
       },
     });
     return response.data;
