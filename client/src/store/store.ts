@@ -7,6 +7,7 @@ import bmiSlice from '@/slices/bmiSlice';
 import calculatorsSlice from '@/slices/calculatorsSlice';
 import caloriesChartSlice from '@/slices/caloriesChartSlice';
 import exercisesSlice from '@/slices/exercisesSlice';
+import nutritionSlice from '@/slices/nutritionSlice';
 
 
 const store = configureStore({
@@ -19,6 +20,7 @@ const store = configureStore({
     calculators: calculatorsSlice,
     caloriesChart: caloriesChartSlice,
     exercises: exercisesSlice,
+    nutrition: nutritionSlice,
   },
 });
 
