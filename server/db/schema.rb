@@ -30,8 +30,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_09_094326) do
     t.uuid "user_id", null: false
     t.float "height"
     t.float "weight"
-    t.string "measurement_unit"
     t.float "bmi"
+    t.float "hips"
+    t.float "waist"
+    t.float "whr"
+    t.string "measurement_unit"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id", "created_at"], name: "index_user_measurements_on_user_id_and_created_at"
