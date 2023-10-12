@@ -2,6 +2,7 @@
 .recipesContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column: 1/-1;
   gap: 1rem;
   width: 100%;
   h1 {
@@ -54,15 +55,4 @@
   margin: auto;
   border-radius: 12px;
   margin-bottom: 20px;
-}
-
-@media screen and (min-width: 768px) {
-  .recipesContainer {
-    grid-column: 1;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .recipesContainer {
-    grid-column: 1/3;
-  }
 }

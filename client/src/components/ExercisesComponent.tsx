@@ -2,16 +2,22 @@
 import React, { useEffect } from 'react';
 import styles from '../styles/exercisesComponent.module.css';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
-import { fetchExercisesAsync, setMuscle, setSelectedExercise } from '@/slices/exercisesSlice';
+import {
+  fetchExercisesAsync,
+  setMuscle,
+  setSelectedExercise,
+} from '@/slices/exercisesSlice';
 
 const ExercisesComponent: React.FC = () => {
   const muscle = useAppSelector(state => state.exercises.muscle);
   const exercises = useAppSelector(state => state.exercises.exercises);
-  const selectedExercise = useAppSelector(state => state.exercises.selectedExercise);
+  const selectedExercise = useAppSelector(
+    state => state.exercises.selectedExercise
+  );
 
   const dispatch = useAppDispatch();
 
-  useEffect (() => {
+  useEffect(() => {
     const fetchData = async () => {
       try {
         await dispatch(fetchExercisesAsync(''));
@@ -35,16 +41,16 @@ const ExercisesComponent: React.FC = () => {
 
     dispatch(setMuscle(value));
     try {
-      await dispatch(fetchExercisesAsync(value))
+      await dispatch(fetchExercisesAsync(value));
     } catch (error) {
       console.error(error);
     }
     dispatch(setMuscle(''));
-  }
+  };
 
   const handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
     dispatch(setMuscle(e.currentTarget.value));
-  }
+  };
 
   return (
     <div className={styles.container}>
@@ -57,7 +63,7 @@ const ExercisesComponent: React.FC = () => {
           onChange={handleChange}
         />
       </form>
-      <div>
+      <div className={styles.exercises}>
         {exercises !== null && exercises.length > 0 ? (
           exercises.map(exercise => (
             <div key={exercise.name} className={styles['exercise-card']}>
@@ -79,12 +85,12 @@ const ExercisesComponent: React.FC = () => {
                 Instructions
               </button>
               {selectedExercise === exercise.name && (
-                <>
+                <div className={styles.instructions}>
                   <h4>
                     <strong>Instructions:</strong>
                   </h4>
                   <p>{exercise.instructions}</p>
-                </>
+                </div>
               )}
             </div>
           ))
