@@ -1,3 +1,7 @@
+.calculators {
+  width: 100%;
+  max-width: 500px;
+}
 .tabs {
   display: flex;
   gap: 5px;

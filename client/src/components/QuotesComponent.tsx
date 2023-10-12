@@ -19,6 +19,7 @@ const QuotesComponent: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <h2 className={styles.quoteClaim}>Get some inspiration</h2>
       {quote && (
         <div className={styles.quote}>
           <blockquote className={styles.blockquote}>"{quote.quote}"</blockquote>

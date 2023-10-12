@@ -25,8 +25,8 @@ const MeasurementsCalComponent: React.FC = () => {
   return (
     <div className={styles.WHRCalculator}>
       <h2>Waist-Hip Ratio Calculator</h2>
-      <div className={styles['item-select']}>
         <label>Gender:</label>
+      <div className={styles['item-select']}>
         <select value={gender} onChange={handleGenderChange}>
           <option value='male'>Male</option>
           <option value='female'>Female</option>
@@ -49,7 +49,7 @@ const MeasurementsCalComponent: React.FC = () => {
         />
       </div>
       <button onClick={whrCalculator}>Calculate WHR</button>
-      {errMessage && <p style={{ color: 'red' }}>{errMessage}</p>}
+      {errMessage && <p className={styles.error}>{errMessage}</p>}
       {whr !== null && !errMessage && <p>{getAdviceForWHR(gender, whr)}</p>}
     </div>
   );

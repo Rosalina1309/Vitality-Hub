@@ -20,7 +20,7 @@ const CalculatorsComponent: React.FC = () => {
     dispatch(setShowWHR());
   }
   return (
-    <div>
+    <div className={styles.calculators}>
       <ul className={styles.tabs}>
         <li>
           <button
@@ -37,7 +37,7 @@ const CalculatorsComponent: React.FC = () => {
           </button>
         </li>
       </ul>
-      <div className={styles.calculators}>
+      <div>
         {showBMI && <BMICalculator />}
         {showWHR && <WHRCalculator />}
       </div>

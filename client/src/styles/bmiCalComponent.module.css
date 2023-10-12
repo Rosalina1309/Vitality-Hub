@@ -1,11 +1,9 @@
-
-
 .BMICalculator {
   width: 100%;
   padding: 20px 15px;
-  border-radius: 5px;
   background: var(--secondaryColor);
   border-radius: 0 8px 8px 8px;
+  margin-bottom: 80px;
   h2 {
     font-size: 24px;
     color: var(--accentColor);
@@ -37,6 +35,7 @@
   p {
     font-size: 18px;
     font-weight: 600;
+    line-height: 1.5;
     span {
       font-weight: 400;
     }
@@ -44,4 +43,10 @@
 }
 .errMessage {
   color: var(--errorColor);
+}
+
+@media screen and (min-width: 1024px) {
+  .BMICalculator {
+    padding: 30px 40px;
+  }
 }

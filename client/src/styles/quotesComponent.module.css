@@ -5,11 +5,18 @@
   background: var(--secondaryColor);
 }
 
+.quoteClaim {
+  margin-bottom: 12px;
+  color: var(--accentColor);
+  font-size: 28px;
+}
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 40px;
 }
 
 .blockquote {
@@ -24,4 +31,10 @@
   font-size: 18px;
   font-weight: 600;
   text-align: center;
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    margin-left: 30px;
+  }
 }

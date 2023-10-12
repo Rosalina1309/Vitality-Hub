@@ -1,4 +1,5 @@
 import QuotesComponent from './QuotesComponent';
+import CalculatorsComponent from './CalculatorsComponent';
 import ChatBot from './ChatBot';
 import styles from '@/styles/home.module.css';
 
@@ -16,7 +17,10 @@ export default function MainPage() {
         <p>Your BMI, Your Rhythm, Your Journey</p>
         <p>Nourishing Body and Soul</p>
       </section>
-      <QuotesComponent />
+      <section className={styles.content}>
+        <QuotesComponent />
+        <CalculatorsComponent />
+      </section>
       <ChatBot />
     </>
   );
