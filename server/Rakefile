@@ -5,3 +5,4 @@ require_relative "config/application"
 
 Rails.application.load_tasks
 import '.\app\lib\tasks\scrape_recipes.rake'
+import '.\app\lib\tasks\scrape_exercises.rake'
