@@ -21,7 +21,6 @@ import '../app/globals.css';
          <form id="loginForm" onSubmit={handleSubmit}>
          <label className={styles.label} htmlFor="username">Username:</label>
            <input className={styles.input} type="text" id="username" name="username" required />
-           
            <label className={styles.label} htmlFor="password">Password:</label>
            <input className={styles.input} type="password" id="password" name="password" required />
            <button className={styles.button} type="submit">Login</button>

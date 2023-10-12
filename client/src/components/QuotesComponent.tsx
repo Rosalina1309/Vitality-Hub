@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import styles from '@/styles/quotesComponent.module.css';
 import { setQuote } from '@/slices/quoteSlice';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { Provider } from 'react-redux';
 
 const quotes: Quote[] = [
   {
@@ -74,6 +75,7 @@ const QuotesComponent: React.FC = () => {
   }, []);
 
   return (
+    
     <div className={styles.container}>
       {quote && (
         <div className={styles.quote}>
@@ -82,6 +84,7 @@ const QuotesComponent: React.FC = () => {
         </div>
       )}
     </div>
+   
   );
 };
 

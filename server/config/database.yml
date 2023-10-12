@@ -1,9 +1,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: Vitality Hub
+  database: VitalityHub
   pool: 5
-  username: postgres
-  password: admin
+  username: ducknows
+  password: sourcery123
   host: localhost
   port: 5432

@@ -1,10 +1,37 @@
 .card {
-  background-color: #f7f7f7;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
   padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
+  border-radius: 8px;
+  background: var(--bodyBg);
+  box-shadow: var(--shadow);
+  h2 {
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  ul {
+    margin-bottom: 20px;
+  }
+  li {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+  span {
+    color: var(--accentColor);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  button {
+    padding: 10px 20px;
+    align-self: flex-end;
+    background: var(--accentColor);
+    border-radius: 8px;
+    color: var(--secondaryColor);
+    font-size: 18px;
+    font-weight: 600;
+  }
 }
 
 .card:hover {
@@ -12,8 +39,11 @@
 }
 
 .image {
+  display: block;
   max-width: 100%;
-  height: auto;
+  margin: auto;
+  border-radius: 12px;
+  margin-bottom: 20px;
 }
 
 .title {
