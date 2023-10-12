@@ -22,5 +22,14 @@ module Types
       allExercises = Exercise.all
       allExercises
     end
+
+    field :exercises_by_muscle, [Types::ExerciseType], null: true, description: "Get exercises by muscle" do
+      argument :muscle, String, required: true, description: "The muscle name to filter exercises"
+    end
+
+    def exercises_by_muscle(muscle:)
+      result = Exercise.where(muscle: muscle.downcase)
+      result
+    end
   end
 end
