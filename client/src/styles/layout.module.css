@@ -8,8 +8,7 @@
   align-items: center;
   padding: 20px 10px;
   background: var(--accentColor);
-  box-shadow: var(--shadow);
-  z-index: 10;
+  z-index: 20;
   .logo {
     font-size: 27px;
     color: var(--secondaryColor);

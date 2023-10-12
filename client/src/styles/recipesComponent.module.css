@@ -3,19 +3,19 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-column: 1/-1;
-  gap: 1rem;
+  gap: 40px;
   width: 100%;
   h1 {
     grid-column: 1/-1;
     font-size: 30px;
     color: var(--accentColor);
-    margin-bottom: 20px;
   }
 }
 
 .recipeBox {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 20px;
   border-radius: 8px;
   background: var(--secondaryColor);
@@ -51,7 +51,10 @@
 .recipeImage {
   display: block;
   max-width: 100%;
-  margin: auto;
   border-radius: 12px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
+}
+
+.loading {
+  font-size: 21px;
 }

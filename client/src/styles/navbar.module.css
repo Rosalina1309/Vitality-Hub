@@ -26,11 +26,11 @@
   right: 0;
   display: flex;
   justify-content: flex-end;
-  width: calc(100% - 100px);
+  width: calc(100% - 50px);
   max-width: 400px;
   height: 100%;
   transition: 0.25s ease-out;
-  z-index: 10;
+  z-index: 20;
   transform: translateX(100%);
   &.open {
     transform: translateX(0);
@@ -56,11 +56,20 @@
     font-size: 24px;
   }
 
-  a {
+  a,
+  a:link {
+    display: inline-flex;
+    align-items: center;
     position: relative;
     z-index: 1;
     transition: color .3s ease-in-out;
     &::before {
+      content: '';
+      font-family: 'Material Symbols Rounded';
+      font-size: 24px;
+      margin-right: 10px;
+    }
+    &::after {
       content: '';
       position: absolute;
       width: 100%;
@@ -76,13 +85,39 @@
     }
     &:hover {
       color: var(--secondaryColor);
-      &::before {
+      &::after {
         transform-origin: left;
         transform: scaleX(1);
       }
     }
+    &.home {
+      &::before {
+        content: '\f201';
+      }
+    }
+    &.login {
+      &::before {
+        content: '\e898';
+      }
+    }
+    &.profile {
+      &::before {
+        content: '\e853';
+      }
+    }
+    &.recipes {
+      &::before {
+        content: '\e561';
+      }
+    }
+    &.exercises {
+      &::before {
+        content: '\eb43';
+      }
+    }
   }
 }
+
 
 .close {
   position: absolute;

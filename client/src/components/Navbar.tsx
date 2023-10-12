@@ -18,27 +18,36 @@ export default function Navbar() {
         <button className={styles.close} onClick={toggleMenu}></button>
         <ul>
           <li>
-            <Link href='/' onClick={toggleMenu}>
+            <Link href='/' onClick={toggleMenu} className={styles.home}>
               Home
             </Link>
           </li>
           <li>
-            <Link href='/login' onClick={toggleMenu}>
+            <Link href='/login' onClick={toggleMenu} className={styles.login}>
               Login / Register
             </Link>
           </li>
           <li>
-            <Link href='/profile' onClick={toggleMenu}>
+            <Link
+              href='/profile'
+              onClick={toggleMenu}
+              className={styles.profile}>
               Profile
             </Link>
           </li>
           <li>
-            <Link href='/recipes' onClick={toggleMenu}>
+            <Link
+              href='/recipes'
+              onClick={toggleMenu}
+              className={styles.recipes}>
               Recipes
             </Link>
           </li>
           <li>
-            <Link href='/exercises' onClick={toggleMenu}>
+            <Link
+              href='/exercises'
+              onClick={toggleMenu}
+              className={styles.exercises}>
               Exercises
             </Link>
           </li>

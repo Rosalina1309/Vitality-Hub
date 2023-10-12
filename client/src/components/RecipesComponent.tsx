@@ -7,6 +7,8 @@ import { fetchRecipesAsync } from '@/slices/recipeSlice';
 
 const RecipesComponent: React.FC = () => {
   const recipes = useAppSelector(state => state.recipes.recipes);
+  const loadingMessage = useAppSelector(state => state.recipes.loadingMessage);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -26,12 +28,12 @@ const RecipesComponent: React.FC = () => {
       {recipes &&
         recipes.map(recipe => (
           <div className={styles.recipeBox} key={recipe.id}>
-            <h2>{recipe.title}</h2>
             <img
               src={recipe.image}
               alt={recipe.title}
               className={styles.recipeImage}
             />
+            <h2>{recipe.title}</h2>
             <ul>
               <li>
                 <span>Calories: </span>
@@ -53,6 +55,9 @@ const RecipesComponent: React.FC = () => {
             <button>Today's Favourite</button>
           </div>
         ))}
+      {loadingMessage && (
+        <p className={styles.loading}>{loadingMessage}</p>
+      )}
     </section>
   );
 };
