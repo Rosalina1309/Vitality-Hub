@@ -3,6 +3,7 @@
   padding: 30px 10px;
   border-radius: 8px;
   box-shadow: var(--shadow);
+  background: var(--secondaryColor);
 }
 
 .container {

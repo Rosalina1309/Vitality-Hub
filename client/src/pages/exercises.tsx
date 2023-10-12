@@ -7,8 +7,8 @@ const ExercisesPage = () => {
   return (
     <>
       <main className={styles.main}>
-        <ExercisesComponent />
         <BurnedCaloriesComponent />
+        <ExercisesComponent />
       </main>
     </>
   );

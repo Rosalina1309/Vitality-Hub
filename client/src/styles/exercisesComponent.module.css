@@ -30,7 +30,7 @@
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
-  border: 1px solid var(--border);
+  background: var(--secondaryColor);
   font-size: 18px;
   max-height: 320px;
   &:has(.instructions) {
@@ -75,4 +75,19 @@
 
 .error-message {
   font-size: 21px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    grid-column: 1/2;
+  }
+  .exercise-card {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    grid-column: 1/3;
+  }
 }

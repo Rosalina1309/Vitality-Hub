@@ -6,7 +6,7 @@
   max-width: 450px;
   height: 100%;
   max-height: calc(100vh - 160px);
-  background: var(--bodyBg);
+  background: var(--secondaryColor);
   transition: 0.25s ease-out;
   transform: translateY(100%);
   box-shadow: var(--shadow);

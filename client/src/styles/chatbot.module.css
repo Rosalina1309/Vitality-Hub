@@ -5,7 +5,7 @@
   width: calc(100% - 20px);
   height: 100%;
   max-height: 70vh;
-  background: var(--bodyBg);
+  background: var(--secondaryColor);
   transition: 0.25s ease-out;
   transform: translateY(100%);
   box-shadow: var(--shadow);
