@@ -2,9 +2,11 @@ import Link from 'next/link';
 import styles from '@/styles/navbar.module.css';
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import { toggle } from '@/slices/menuSlice';
+import { logout } from '@/slices/authSlice';
 
 export default function Navbar() {
   const isOpen = useAppSelector(state => state.menu.isOpen);
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
   const dispatch = useAppDispatch();
 
   function toggleMenu() {
@@ -17,11 +19,19 @@ export default function Navbar() {
       <div className={`${styles.menu} ${isOpen ? styles.open : ''}`}>
         <button className={styles.close} onClick={toggleMenu}></button>
         <ul>
-          <li>
-            <Link href='/login' onClick={toggleMenu}>
+          {isAuthenticated ? (
+            <li>
+              <Link href='/' onClick={() => { dispatch(logout()); toggleMenu(); }}>
+                Logout
+              </Link>
+            </li>
+          ): (
+            <li>
+            <Link href = '/login' onClick = { toggleMenu }>
               Login / Register
             </Link>
           </li>
+          )}
           <li>
             <Link href='/profile' onClick={toggleMenu}>
               Profile
