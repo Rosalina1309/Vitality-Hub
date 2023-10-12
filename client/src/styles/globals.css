@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Onest:wght@100;400;600;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0');
+
 
 @font-face {
   font-family: 'Material Symbols Rounded';
   src: url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0');
+}
+@font-face {
+  font-family: 'Material Symbols Rounded Fill';
+  src: url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0');
 }
 
 :root {
@@ -22,6 +28,7 @@
   --secondaryBg: #01A21C;
   --inputBg: #fff;
   --errorColor: #c1121f;
+  --favorite: #ffb703;
 }
 
 

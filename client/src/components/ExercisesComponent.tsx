@@ -13,7 +13,7 @@ const ExercisesComponent: React.FC = () => {
   const selectedExercise = useAppSelector(
     state => state.exercises.selectedExercise
   );
-    const [favoriteExercises, setFavoriteExercises] = useState<string[]>([]);
+  const [favoriteExercises, setFavoriteExercises] = useState<string[]>([]);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const ExercisesComponent: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           query: `mutation ToggleFavoriteExercise {
@@ -75,16 +75,22 @@ const ExercisesComponent: React.FC = () => {
                 }
               }
             }
-          }`
-        })
+          }`,
+        }),
       });
 
       const responseData = await response.json();
-      const updatedFavorites = responseData.data.toggleFavorite.user.favoriteExercises.map((fav: { exerciseId: string }) => fav.exerciseId);
+      const updatedFavorites =
+        responseData.data.toggleFavorite.user.favoriteExercises.map(
+          (fav: { exerciseId: string }) => fav.exerciseId
+        );
       setFavoriteExercises(updatedFavorites);
-      localStorage.setItem('favoriteExercises', JSON.stringify(updatedFavorites));
+      localStorage.setItem(
+        'favoriteExercises',
+        JSON.stringify(updatedFavorites)
+      );
     } catch (error) {
-      console.error("Error toggling favorite:", error);
+      console.error('Error toggling favorite:', error);
     }
   };
 
@@ -103,7 +109,17 @@ const ExercisesComponent: React.FC = () => {
         {exercises !== null && exercises.length > 0 ? (
           exercises.map(exercise => (
             <div key={exercise.name} className={styles['exercise-card']}>
-              <h3>{exercise.name}</h3>
+              <h3>
+                {exercise.name}{' '}
+                <button
+                  onClick={() => handleToggleFavorite(exercise.id)}
+                  className={`
+                ${
+                  favoriteExercises.includes(exercise.id)
+                    ? styles.favorite
+                    : ''
+                }`}></button>
+              </h3>
               <p>
                 <strong>Type:</strong> {exercise.type}
               </p>
@@ -120,9 +136,7 @@ const ExercisesComponent: React.FC = () => {
                 {selectedExercise === exercise.name ? 'Hide' : 'Show'}{' '}
                 Instructions
               </button>
-              <button onClick={() => handleToggleFavorite(exercise.id)}>
-              {favoriteExercises.includes(exercise.id) ? "Remove from Favorites" : "Add to Favorites"}
-            </button>
+
               {selectedExercise === exercise.name && (
                 <div className={styles.instructions}>
                   <h4>
