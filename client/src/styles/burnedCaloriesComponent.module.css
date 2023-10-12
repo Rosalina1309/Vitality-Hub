@@ -19,12 +19,19 @@
   }
   .select-item {
     position: relative;
+    background: var(--secondaryColor);
+    z-index: 2;
+    border-radius: 5px;
+    select {
+      background: transparent;
+    }
     &::after {
       content: '\e5cf';
       position: absolute;
       top: 50%;
       right: 10px;
       transform: translateY(-50%);
+      color: var(--mainColor);
       font-family: 'Material Symbols Rounded';
       font-size: 25px;
       z-index: -1;

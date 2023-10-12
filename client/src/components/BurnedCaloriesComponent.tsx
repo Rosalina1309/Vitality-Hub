@@ -68,16 +68,18 @@ const BurnedCaloriesComponent: React.FC = () => {
         onChange={e => dispatch(setDuration(e.target.value))}
       />
       <h3>Choose an activity: </h3>
-      <select
-        value={selectedActivity}
-        onChange={e => dispatch(setSelectedActivity(e.target.value))}>
-        <option value=''>Select an activity</option>
-        {metValue.map((activity, index) => (
-          <option key={index} value={Object.keys(activity)[0]}>
-            {Object.keys(activity)[0]}
-          </option>
-        ))}
-      </select>
+      <div className={styles['select-item']}>
+        <select
+          value={selectedActivity}
+          onChange={e => dispatch(setSelectedActivity(e.target.value))}>
+          <option value=''>Select an activity</option>
+          {metValue.map((activity, index) => (
+            <option key={index} value={Object.keys(activity)[0]}>
+              {Object.keys(activity)[0]}
+            </option>
+          ))}
+        </select>
+      </div>
       <h3>Enter your weight in kg:</h3>
       <input
         type='number'

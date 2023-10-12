@@ -80,7 +80,7 @@ select,
 input {
   -webkit-appearance: none;
   outline: none;
-  border: 1px solid var(--border);
+  border: none;
   border-radius: 5px;
   font-size: 17px;
   padding: 5px 15px;
