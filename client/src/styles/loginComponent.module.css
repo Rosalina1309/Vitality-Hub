@@ -33,3 +33,12 @@
 .loginComponent button:hover {
   background-color: #45a049;
 }
+
+.goToRegisterBox {
+  max-width: 300px;
+  margin: 10px auto 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}

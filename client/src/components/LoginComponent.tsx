@@ -45,27 +45,37 @@ const LoginComponent = () => {
   };
 
   return (
-    <div className={styles.loginComponent}>  
-       {isAuthenticated ? (
-         <p>Logged In</p>
-       ) : (
-         <>
-           <label htmlFor='username'>Username</label>
-           <input type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
-           <label htmlFor='password'>Password</label>
-           <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+    <>
+      <div className={styles.loginComponent}>
+        {isAuthenticated ? (
+          <p>Logged In</p>
+        ) : (
+          <>
+            <label htmlFor='username'>Username</label>
+            <input type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
+            <label htmlFor='password'>Password</label>
+            <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
 
-           <button onClick={handleLogin}>Login</button>
-         </>
-       )}
-       {isAuthenticated && (
-         <div>
-           <Link href='/user-profile'legacyBehavior>
-             <a>Go to User Profile</a>
-           </Link>
-         </div>
-       )}
-     </div>
+            <button onClick={handleLogin}>Login</button>
+          </>
+        )}
+        {isAuthenticated && (
+          <div>
+            <Link href='/user-profile' legacyBehavior>
+              <a>Go to User Profile</a>
+            </Link>
+          </div>
+        )}
+      </div>
+      {!isAuthenticated && (
+        <div className={styles.goToRegisterBox}>
+          <p>New to Vitality Hub?</p>
+          <Link href='/register' style={{ color: 'blue' }}>
+            Create an account
+          </Link>
+        </div>
+      )}
+    </>
   );
 };
 

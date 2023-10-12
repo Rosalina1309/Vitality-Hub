@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import styles from '../styles/registrationComponent.module.css'
 import { registerSuccess } from '@/slices/authSlice';
+import Link from 'next/link';
 
 const RegistrationComponent = () => {
   const isRegistered = useAppSelector(state => state.auth.isRegistered);
@@ -52,29 +53,38 @@ const RegistrationComponent = () => {
     }
   }
   return (
-    <div className={styles.registerComponent}>
+    <>
+      <div className={styles.registerComponent}>
 
-    <label htmlFor='username'>Username</label>
-    <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} />
+        <label htmlFor='username'>Username</label>
+        <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} />
 
-    <label htmlFor='email'>Email</label>
-    <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label htmlFor='email'>Email</label>
+        <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
 
-    <label htmlFor='password'>Password</label>
-    <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+        <label htmlFor='password'>Password</label>
+        <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
 
-    <label htmlFor='gender'>Gender</label>      
-    <select value={gender} onChange={(e) => setGender(e.target.value)}>
-      <option value="">Select Gender</option>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-    </select>
+        <label htmlFor='gender'>Gender</label>
+        <select value={gender} onChange={(e) => setGender(e.target.value)}>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
 
-    <button className={styles.registerButton} onClick={handleRegistration}>
-      Register
-    </button>
-    {isRegistered && <p>Registration successful! Please login</p>}
-  </div>
+        <button className={styles.registerButton} onClick={handleRegistration}>
+          Register
+        </button>
+        {isRegistered && <p>Registration successful! Please login</p>}
+      </div>
+      <div className={styles.goToLoginBox}>
+        <p>Already have an account?</p>
+        <Link href='/login' style={{ color: 'blue' }}>
+          Login here
+        </Link>
+      </div>
+    </>
+    
   );
 }
 
