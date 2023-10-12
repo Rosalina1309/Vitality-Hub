@@ -7,6 +7,8 @@ module Types
     field :gender, String, null: true
     field :user_measurements, [UserMeasurementType], null: true
     field :user_goals, [UserGoalType], null: true
+    field :favorite_recipes, [UserFavoriteRecipeType], null: true
+    field :favorite_exercises, [UserFavoriteExerciseType], null: true
   end
 
   def user_measurements
@@ -15,5 +17,13 @@ module Types
 
   def user_goals
     object.user_goals
+  end
+
+  def favorite_recipes
+    object.user_favorite_recipes
+  end
+
+  def favorite_exercises
+    object.user_favorite_exercises
   end
 end
