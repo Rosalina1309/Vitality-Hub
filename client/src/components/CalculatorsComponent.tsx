@@ -3,8 +3,8 @@ import React from 'react';
 import WHRCalculator from './WHRCalComponent';
 import BMICalculator from './BMICalComponent';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
-import { setShowBMI, setShowWHR} from '@/slices/calculatorsSlice';
-
+import { setShowBMI, setShowWHR } from '@/slices/calculatorsSlice';
+import styles from '@/styles/calculators.module.css';
 
 const CalculatorsComponent: React.FC = () => {
   const showBMI = useAppSelector(state => state.calculators.showBMI);
@@ -21,13 +21,26 @@ const CalculatorsComponent: React.FC = () => {
   }
   return (
     <div>
-      <div>
-        <button onClick={handleShowWHR}>WHR Calculator</button>
-        <button onClick={handleShowBMI}>BMI Calculator</button>
+      <ul className={styles.tabs}>
+        <li>
+          <button
+            onClick={handleShowBMI}
+            className={`${showBMI ? styles.active : ''}`}>
+            BMI Calculator
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={handleShowWHR}
+            className={`${showWHR ? styles.active : ''}`}>
+            WHR Calculator
+          </button>
+        </li>
+      </ul>
+      <div className={styles.calculators}>
+        {showBMI && <BMICalculator />}
+        {showWHR && <WHRCalculator />}
       </div>
-
-      {showWHR && <WHRCalculator />}
-      {showBMI && <BMICalculator />}
     </div>
   );
 };
