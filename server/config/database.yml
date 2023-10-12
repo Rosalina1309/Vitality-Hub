@@ -1,9 +1,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: VitalityHub
+  database: <%= ENV['DATABASE'] %>
   pool: 5
-  username: ducknows
-  password: sourcery123
-  host: localhost
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
   port: 5432

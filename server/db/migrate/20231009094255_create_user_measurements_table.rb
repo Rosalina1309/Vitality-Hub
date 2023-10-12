@@ -1,11 +1,14 @@
 class CreateUserMeasurementsTable < ActiveRecord::Migration[7.1]
   def change
     create_table :user_measurements do |t|
-      t.belongs_to :user, null: false, foreign_key: true
+      t.belongs_to :user, null: false, foreign_key: true, type: :uuid
       t.float :height
       t.float :weight
-      t.string :measurement_unit
       t.float :bmi
+      t.float :hips
+      t.float :waist
+      t.float :whr
+      t.string :measurement_unit
       t.timestamps
     end
 

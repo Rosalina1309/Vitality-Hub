@@ -1,4 +1,4 @@
-require_relative '../../lib/helpers/jwt_token_generator'
+require_relative '../../lib/helpers/jwt_helper'
 module Mutations
   class RegisterUserMutation < GraphQL::Schema::Mutation
     field :token, String, null: false
@@ -6,7 +6,6 @@ module Mutations
     argument :input, Types::Inputs::RegisterUserMutationInputType, required: true
 
     def resolve(input:)
-      puts "Received input: #{input.inspect}"
       existing_user = User.find_by(email: input[:email]) || User.find_by(username: input[:username])
 
       if existing_user
@@ -22,7 +21,7 @@ module Mutations
 
 
         if user.save
-          token = JwtTokenGenerator.generate_token(user)
+          token = JwtHelper.generate_token(user)
           { token: token }
         else
           raise GraphQL::ExecutionError, user.errors.full_messages.join(", ")

@@ -3,6 +3,12 @@ import menuSlice from '@/slices/menuSlice';
 import chatbotSlice from '@/slices/chatbotSlice';
 import quoteSlice from '@/slices/quoteSlice';
 import recipeSlice from '@/slices/recipeSlice';
+import bmiSlice from '@/slices/bmiSlice';
+import calculatorsSlice from '@/slices/calculatorsSlice';
+import caloriesChartSlice from '@/slices/caloriesChartSlice';
+import exercisesSlice from '@/slices/exercisesSlice';
+import nutritionSlice from '@/slices/nutritionSlice';
+import whrSlice from '@/slices/whrSlice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +16,12 @@ const store = configureStore({
     chatbot: chatbotSlice,
     quote: quoteSlice,
     recipes: recipeSlice,
+    bmi: bmiSlice,
+    calculators: calculatorsSlice,
+    caloriesChart: caloriesChartSlice,
+    exercises: exercisesSlice,
+    nutrition: nutritionSlice,
+    whr: whrSlice,
   },
 });
 

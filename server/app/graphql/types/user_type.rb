@@ -5,9 +5,15 @@ module Types
     field :email, String, null: false
     field :birthdate, GraphQL::Types::ISO8601Date, null: true
     field :gender, String, null: true
-    field :height, Float, null: true
-    field :weight, Float, null: true
     field :user_measurements, [UserMeasurementType], null: true
     field :user_goals, [UserGoalType], null: true
+  end
+
+  def user_measurements
+    object.user_measurements
+  end
+
+  def user_goals
+    object.user_goals
   end
 end

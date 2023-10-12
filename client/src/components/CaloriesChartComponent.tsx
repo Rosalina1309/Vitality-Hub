@@ -1,17 +1,22 @@
-
-'use client'
-import React, { useEffect, useRef, useState } from 'react';
+'use client';
+import React, { useEffect, useRef } from 'react';
 import Chart, { ChartType } from 'chart.js/auto';
-import styles from '../styles/caloriesChartComponent.module.css'; 
+import styles from '../styles/caloriesChartComponent.module.css';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { setConsumedCalories } from '@/slices/caloriesChartSlice';
 
 const CaloriesChartComponent: React.FC = () => {
-  const [consumedCalories, setConsumedCalories] = useState<string>("");
+  const consumedCalories = useAppSelector(
+    state => state.caloriesChart.consumedCalories
+  );
   const totalCalories = 2000;
-  const numericConsumedCalories = consumedCalories !== "" ? parseInt(consumedCalories, 10) : 0;
+  const numericConsumedCalories =
+    consumedCalories !== '' ? parseInt(consumedCalories, 10) : 0;
   const remainingCalories = totalCalories - numericConsumedCalories;
   const chartRef = useRef<HTMLCanvasElement | null>(null);
   const chartInstance = useRef<Chart | null>(null);
-  const [errMessage, setErrMessage] = useState<string |null>(null)
+
+  const dispatch = useAppDispatch();
 
   // Update the chart when consumedCalories changes
   useEffect(() => {
@@ -20,10 +25,15 @@ const CaloriesChartComponent: React.FC = () => {
       if (ctx) {
         const data = {
           labels: ['Consumed Calories', 'Remaining Calories'],
-          datasets: [{
-            data: [numericConsumedCalories, totalCalories - numericConsumedCalories], 
-            backgroundColor: ['#90EE90', '#77DD77'],
-          }]
+          datasets: [
+            {
+              data: [
+                numericConsumedCalories,
+                totalCalories - numericConsumedCalories,
+              ],
+              backgroundColor: ['#90EE90', '#77DD77'],
+            },
+          ],
         };
 
         const options = {
@@ -48,32 +58,45 @@ const CaloriesChartComponent: React.FC = () => {
         chartInstance.current.destroy();
       }
     };
-  }, [numericConsumedCalories]); 
+  }, [numericConsumedCalories]);
 
-  const handleConsumedCaloriesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleConsumedCaloriesChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     if (Number(e.target.value) && Number(e.target.value) < 2000) {
-      setConsumedCalories(e.target.value);
+      dispatch(setConsumedCalories(e.target.value));
     }
   };
 
   return (
-    <div className={`${styles.chartContainer} ${styles.canvasContainer}`}>
-     
-      <canvas ref={chartRef}></canvas>
-      <div>
-        <label>Consumed Calories:</label>
-        <input
-          type="number"
-          value={consumedCalories}
-          onChange={handleConsumedCaloriesChange}
-        />
+    <>
+      <div className={styles['calories-chart-container']}>
+        <div className={`${styles.chartContainer} ${styles.canvasContainer}`}>
+          <canvas ref={chartRef}></canvas>
+        </div>
+        <div className={styles['item-form']}>
+          <label>Consumed Calories:</label>
+          <input
+            type='number'
+            value={consumedCalories}
+            onChange={handleConsumedCaloriesChange}
+          />
+        </div>
+        <div className={styles.caloriesInfo}>
+          <p>
+            Total calories for today: <span>2000 kcal</span>
+          </p>
+          {numericConsumedCalories > 0 && (
+            <p>
+              Calories you consumed: <span>{numericConsumedCalories} kcal</span>
+            </p>
+          )}
+          <p>
+            Calories remaining: <span>{remainingCalories} kcal</span>
+          </p>
+        </div>
       </div>
-      <div className={styles.caloriesInfo}>
-        <p>Total calories for today: 2000 kcal</p>
-        {numericConsumedCalories > 0 && <p>Calories you consumed: {numericConsumedCalories} kcal</p>}
-        <p>Calories remain: {remainingCalories} kcal</p>
-      </div>
-    </div>
+    </>
   );
 };
 
