@@ -17,6 +17,6 @@ export default function MainPage() {
       </section>
       <QuotesComponent />
       <ChatBot />
-    </div>
+    </>
   );
 }
