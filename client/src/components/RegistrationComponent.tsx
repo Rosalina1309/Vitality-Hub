@@ -40,7 +40,9 @@ const RegistrationComponent = () => {
           }, 
         })
       })
+
       const responseBody = await response.json();
+      console.log(responseBody);
 
       if (responseBody.data && responseBody.data.registerUser && responseBody.data.registerUser.token) {
         dispatch(registerSuccess(true));
@@ -67,9 +69,9 @@ const RegistrationComponent = () => {
 
         <label htmlFor='gender'>Gender</label>
         <select value={gender} onChange={(e) => setGender(e.target.value)}>
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
+          <option value=''>Select Gender</option>
+          <option value='male'>Male</option>
+          <option value='female'>Female</option>
         </select>
 
         <button className={styles.registerButton} onClick={handleRegistration}>
