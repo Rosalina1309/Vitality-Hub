@@ -63,8 +63,12 @@ const RegistrationComponent = () => {
     <label htmlFor='password'>Password</label>
     <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
 
-    <label htmlFor='gender'>Gender</label>
-    <input type='text' value={gender} onChange={(e) => setGender(e.target.value)} />
+    <label htmlFor='gender'>Gender</label>      
+    <select value={gender} onChange={(e) => setGender(e.target.value)}>
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
 
     <button className={styles.registerButton} onClick={handleRegistration}>
       Register
