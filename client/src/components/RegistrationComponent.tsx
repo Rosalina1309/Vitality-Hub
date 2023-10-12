@@ -5,10 +5,12 @@ import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import styles from '../styles/registrationComponent.module.css'
 import { registerSuccess } from '@/slices/authSlice';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const RegistrationComponent = () => {
   const isRegistered = useAppSelector(state => state.auth.isRegistered);
   const dispatch = useAppDispatch();
+  const router = useRouter(); 
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -46,6 +48,7 @@ const RegistrationComponent = () => {
 
       if (responseBody.data && responseBody.data.registerUser && responseBody.data.registerUser.token) {
         dispatch(registerSuccess(true));
+        router.push('/login');
       } else {
         console.error('Registration failed.');
       }
@@ -77,7 +80,6 @@ const RegistrationComponent = () => {
         <button className={styles.registerButton} onClick={handleRegistration}>
           Register
         </button>
-        {isRegistered && <p>Registration successful! Please login</p>}
       </div>
       <div className={styles.goToLoginBox}>
         <p>Already have an account?</p>
