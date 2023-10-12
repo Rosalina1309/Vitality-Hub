@@ -9,7 +9,6 @@ export async function fetchRecipes(): Promise<Recipe[]> {
       query: query,
     });
     const recipesData = response.data.data.recipes;
-    console.log(recipesData)
     return recipesData;
   } catch (error) {
     throw error;

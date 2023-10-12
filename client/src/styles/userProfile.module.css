@@ -1,0 +1,26 @@
+/* ../styles/UserProfile.module.css */
+
+.userProfile {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.userInfo,
+.favoriteExercises,
+.favoriteRecipes {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.loadingMessage {
+  font-weight: bold;
+  color: #333;
+}

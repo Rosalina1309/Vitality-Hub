@@ -31,6 +31,8 @@ const LoginComponent = () => {
       const responseBody = await response.json(); 
 
       if (responseBody.data && responseBody.data.login && responseBody.data.login.token) {
+        localStorage.setItem('token', responseBody.data.login.token);
+        console.log(localStorage)
         setIsLoggedIn(true); 
       } else {
         console.error('Login failed.');
@@ -56,7 +58,7 @@ const LoginComponent = () => {
        )}
        {isLoggedIn && (
          <div>
-           <Link href='/user-profile'legacyBehavior>
+           <Link href='/profile'legacyBehavior>
              <a>Go to User Profile</a>
            </Link>
          </div>

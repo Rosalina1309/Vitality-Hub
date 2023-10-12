@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_11_153131) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_12_090529) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "exercises", force: :cascade do |t|
+    t.string "name"
+    t.string "type"
+    t.string "muscle"
+    t.string "equipment"
+    t.string "difficulty"
+    t.text "instructions"
+  end
 
   create_table "recipes", force: :cascade do |t|
     t.string "title"
@@ -22,6 +31,24 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_153131) do
     t.integer "protein"
     t.integer "fat"
     t.integer "carbs"
+  end
+
+  create_table "user_favorite_exercises", force: :cascade do |t|
+    t.uuid "user_id"
+    t.integer "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_user_favorite_exercises_on_exercise_id"
+    t.index ["user_id"], name: "index_user_favorite_exercises_on_user_id"
+  end
+
+  create_table "user_favorite_recipes", force: :cascade do |t|
+    t.uuid "user_id"
+    t.bigint "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_user_favorite_recipes_on_recipe_id"
+    t.index ["user_id"], name: "index_user_favorite_recipes_on_user_id"
   end
 
   create_table "user_goals", force: :cascade do |t|
@@ -63,6 +90,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_11_153131) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "user_favorite_exercises", "exercises"
+  add_foreign_key "user_favorite_exercises", "users"
+  add_foreign_key "user_favorite_recipes", "recipes"
+  add_foreign_key "user_favorite_recipes", "users"
   add_foreign_key "user_goals", "users"
   add_foreign_key "user_measurements", "users"
 end

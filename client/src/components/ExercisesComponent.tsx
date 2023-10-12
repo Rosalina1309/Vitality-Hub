@@ -92,8 +92,8 @@ const ExercisesComponent: React.FC = () => {
 
     const fetchData = async () => {
       try {
-        const data = await fetchExercises(muscle);
-        setExercises(data.slice(0, 5));
+        const data = await fetchExercises();
+        setExercises(data);
       } catch (err) {
         console.error("Error fetching exercises:", err);
       }

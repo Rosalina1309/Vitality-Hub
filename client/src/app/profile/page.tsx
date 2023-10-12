@@ -1,8 +1,12 @@
-import ProfilePageComponent from "@/components/ProfilePageComponent"
+import CaloriesChartComponent from "@/components/CaloriesChartComponent"
+import ProfileInfosComponent from "@/components/ProfileInfosComponent"
+
+
 const UserProfilePage = () => {
   return(
     <div>
-    <ProfilePageComponent />
+    <CaloriesChartComponent />
+    <ProfileInfosComponent />
     </div>
   )   
 }
