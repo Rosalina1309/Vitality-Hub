@@ -1,14 +1,18 @@
 'use client'
 
 import React, { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import styles from '../styles/registrationComponent.module.css'
+import { registerSuccess } from '@/slices/authSlice';
 
 const RegistrationComponent = () => {
+  const isRegistered = useAppSelector(state => state.auth.isRegistered);
+  const dispatch = useAppDispatch();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
-  const [isRegistered, setIsRegistered] = useState(false); 
 
   const handleRegistration = async () => {
     try {
@@ -38,7 +42,7 @@ const RegistrationComponent = () => {
       const responseBody = await response.json();
 
       if (responseBody.data && responseBody.data.registerUser && responseBody.data.registerUser.token) {
-        setIsRegistered(true); 
+        dispatch(registerSuccess(true));
       } else {
         console.error('Registration failed.');
       }
