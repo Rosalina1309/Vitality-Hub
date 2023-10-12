@@ -1,8 +1,13 @@
 'use client'
 
-import { useState } from "react";
 import styles from '../styles/burnedCaloriesComponent.module.css'
-
+import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
+import {
+  setDuration,
+  setSelectedActivity,
+  setWeight,
+  setTotalCalories,
+} from '@/slices/burnedCaloriesSlice';
 
 const metValue = [
   {'Sleeping': 0.9},
@@ -29,20 +34,21 @@ const metValue = [
   {'Rope jumping': 10}
 ]
 
-const BurnedCaloriesComponent: React.FC = () =>{
-  const [duration, setDuration] = useState<string>('');
-  const [selectedActivity, setSelectedActivity] = useState<string>('');
-  const [weight, setWeight] = useState<string>('');
-  const [totalCalories, setTotalCalories] = useState<number | null>(null);
+const BurnedCaloriesComponent: React.FC = () => {
+  const duration = useAppSelector(state => state.burnedCalories.duration);
+  const selectedActivity = useAppSelector(state => state.burnedCalories.selectedActivity);
+  const weight = useAppSelector(state => state.burnedCalories.weight);
+  const totalCalories = useAppSelector(state => state.burnedCalories.totalCalories);
+  const dispatch = useAppDispatch();
 
   const handleCalculateClick = () => {
     const selectedMet = metValue.find((activity) => Object.keys(activity)[0] === selectedActivity);
     if (selectedMet && duration && weight) {
       const met = Object.values(selectedMet)[0];
       const caloriesBurned = (parseFloat(duration) * (met * 3.5 * parseFloat(weight))) / 200;
-      setTotalCalories(caloriesBurned);
+      dispatch(setTotalCalories(caloriesBurned));
     } else {
-      setTotalCalories(null);
+      dispatch(setTotalCalories(null));
     }
   };
 
@@ -52,12 +58,12 @@ const BurnedCaloriesComponent: React.FC = () =>{
       <input
         type='number'
         value={duration}
-        onChange={(e) => setDuration(e.target.value)}
+        onChange={(e) => dispatch(setDuration(e.target.value))}
        />
       <h3>Choose an activity: </h3>
       <select
         value={selectedActivity}
-        onChange={(e) => setSelectedActivity(e.target.value)}
+        onChange={(e) => dispatch(setSelectedActivity(e.target.value))}
       >
         <option value="">Select an activity</option>
         {metValue.map((activity, index) => (
@@ -70,7 +76,7 @@ const BurnedCaloriesComponent: React.FC = () =>{
       <input
         type='number'
         value={weight}
-        onChange={(e) => setWeight(e.target.value)}
+        onChange={(e) => dispatch(setWeight(e.target.value))}
        />
       <button onClick={handleCalculateClick}>Calculate</button>
       {totalCalories !== null && (
