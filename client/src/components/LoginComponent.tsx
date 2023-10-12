@@ -2,13 +2,17 @@
 'use client'
 
 import React, { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
+import { loginSuccess } from '@/slices/authSlice';
 import Link from 'next/link';
 import styles from '../styles/loginComponent.module.css';
 
 const LoginComponent = () => {
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+  const dispatch = useAppDispatch();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
   const handleLogin = async () => {
     try {
@@ -31,7 +35,7 @@ const LoginComponent = () => {
       const responseBody = await response.json(); 
 
       if (responseBody.data && responseBody.data.login && responseBody.data.login.token) {
-        setIsLoggedIn(true); 
+        dispatch(loginSuccess(true)); 
       } else {
         console.error('Login failed.');
       }
@@ -42,7 +46,7 @@ const LoginComponent = () => {
 
   return (
     <div className={styles.loginComponent}>  
-       {isLoggedIn ? (
+       {isAuthenticated ? (
          <p>Logged In</p>
        ) : (
          <>
@@ -54,7 +58,7 @@ const LoginComponent = () => {
            <button onClick={handleLogin}>Login</button>
          </>
        )}
-       {isLoggedIn && (
+       {isAuthenticated && (
          <div>
            <Link href='/user-profile'legacyBehavior>
              <a>Go to User Profile</a>
