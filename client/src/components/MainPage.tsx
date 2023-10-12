@@ -7,7 +7,9 @@ export default function MainPage() {
   return (
     <>
       <section className={styles.hero}>
-        <h1>Welcome to Vitality Hub</h1>
+        <h1>
+          Welcome to <span>Vitality Hub</span>
+        </h1>
         <p>
           Unlock Your Vitality, Transform Your Life: Where Numbers Meet
           Wellness.

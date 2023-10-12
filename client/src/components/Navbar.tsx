@@ -18,6 +18,11 @@ export default function Navbar() {
         <button className={styles.close} onClick={toggleMenu}></button>
         <ul>
           <li>
+            <Link href='/' onClick={toggleMenu}>
+              Home
+            </Link>
+          </li>
+          <li>
             <Link href='/login' onClick={toggleMenu}>
               Login / Register
             </Link>
