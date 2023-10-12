@@ -99,7 +99,7 @@ const UserProfile = () => {
           const allRecipes = await fetchRecipes();
           setRecipes(allRecipes);
 
-          
+          const allExercises = await fetchExercises();
 
         } else {
           console.error('Token not found');
