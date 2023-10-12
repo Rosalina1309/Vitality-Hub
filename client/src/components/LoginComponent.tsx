@@ -1,13 +1,12 @@
 'use client'
 import React, { useState } from 'react';
-import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
+import { useAppDispatch } from '@/hooks/hooks';
 import { loginSuccess } from '@/slices/authSlice';
 import Link from 'next/link';
 import styles from '../styles/loginComponent.module.css';
 import { useRouter } from 'next/router';
 
 const LoginComponent = () => {
-  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
   const dispatch = useAppDispatch();
   const router = useRouter(); 
 
