@@ -1,4 +1,3 @@
-'use client';
 import QuotesComponent from './QuotesComponent';
 import ChatBot from './ChatBot';
 import styles from '@/styles/home.module.css';

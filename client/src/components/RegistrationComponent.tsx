@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import styles from '../styles/registrationComponent.module.css';
@@ -17,7 +15,7 @@ const RegistrationComponent = () => {
 
   const handleRegistration = async () => {
     try {
-      const response = await fetch('http://localhost:4000/graphql', {
+      const response = await fetch('http://localhost:3001/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -93,7 +91,12 @@ const RegistrationComponent = () => {
         <button className={styles.registerButton} onClick={handleRegistration}>
           Register
         </button>
-        {isRegistered && <p>Registration successful! Please login</p>}
+        {isRegistered && (
+          <p>
+            Registration successful! Please
+            <Link href='/login'> login</Link>
+          </p>
+        )}
       </div>
       <div className={styles.goToLoginBox}>
         <p>Already have an account?</p>

@@ -2,11 +2,10 @@
 .goToRegisterBox,
 .loginComponent {
   width: 100%;
-  max-width: 350px;
-  padding: 20px;
-  background: var(--secondaryBg);
+  max-width: 400px;
+  padding: 40px 30px;
+  background: var(--secondaryColor);
   border-radius: 8px;
-  color: var(--secondaryColor);
   label {
     display: inline-block;
     margin-bottom: 5px;
@@ -16,6 +15,7 @@
     width: 100%;
     margin-bottom: 20px;
     height: 45px;
+    border: 1px solid var(--border);
   }
   button {
     background: var(--accentColor);
@@ -73,4 +73,11 @@
       }
     }
   }
+}
+
+@media screen and (min-width: 768px) {
+  .goToRegisterBox,
+.loginComponent {
+  padding: 40px;
+}
 }

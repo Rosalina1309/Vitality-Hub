@@ -17,7 +17,7 @@ const LoginComponent = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:4000/graphql', {
+      const response = await fetch('http://localhost:3001/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
