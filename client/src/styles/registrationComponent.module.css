@@ -10,15 +10,21 @@
 
 .registerComponent label,
 .registerComponent input,
-.registerComponent button {
+.registerComponent button
+.registerComponent select {
   display: block;
   margin-bottom: 10px;
 }
 
-.registerComponent input {
+.registerComponent input,
+.registerComponent select {
   width: 100%;
   padding: 8px;
   font-size: 14px;
+}
+
+.registerComponent select {
+  margin-bottom: 18px;
 }
 
 .registerComponent button {
@@ -32,4 +38,13 @@
 
 .registerComponent button:hover {
   background-color: #45a049;
+}
+
+.goToLoginBox {
+  max-width: 300px;
+  margin: 10px auto 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
 }

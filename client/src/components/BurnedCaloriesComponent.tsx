@@ -1,7 +1,13 @@
 'use client';
 
-import { useState } from 'react';
 import styles from '../styles/burnedCaloriesComponent.module.css';
+import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
+import {
+  setDuration,
+  setSelectedActivity,
+  setWeight,
+  setTotalCalories,
+} from '@/slices/burnedCaloriesSlice';
 
 const metValue = [
   { Sleeping: 0.9 },
@@ -29,10 +35,15 @@ const metValue = [
 ];
 
 const BurnedCaloriesComponent: React.FC = () => {
-  const [duration, setDuration] = useState<string>('');
-  const [selectedActivity, setSelectedActivity] = useState<string>('');
-  const [weight, setWeight] = useState<string>('');
-  const [totalCalories, setTotalCalories] = useState<number | null>(null);
+  const duration = useAppSelector(state => state.burnedCalories.duration);
+  const selectedActivity = useAppSelector(
+    state => state.burnedCalories.selectedActivity
+  );
+  const weight = useAppSelector(state => state.burnedCalories.weight);
+  const totalCalories = useAppSelector(
+    state => state.burnedCalories.totalCalories
+  );
+  const dispatch = useAppDispatch();
 
   const handleCalculateClick = () => {
     const selectedMet = metValue.find(
@@ -42,9 +53,9 @@ const BurnedCaloriesComponent: React.FC = () => {
       const met = Object.values(selectedMet)[0];
       const caloriesBurned =
         (parseFloat(duration) * (met * 3.5 * parseFloat(weight))) / 200;
-      setTotalCalories(caloriesBurned);
+      dispatch(setTotalCalories(caloriesBurned));
     } else {
-      setTotalCalories(null);
+      dispatch(setTotalCalories(null));
     }
   };
 
@@ -54,26 +65,24 @@ const BurnedCaloriesComponent: React.FC = () => {
       <input
         type='number'
         value={duration}
-        onChange={e => setDuration(e.target.value)}
+        onChange={e => dispatch(setDuration(e.target.value))}
       />
       <h3>Choose an activity: </h3>
-      <div className={styles['select-item']}>
-        <select
-          value={selectedActivity}
-          onChange={e => setSelectedActivity(e.target.value)}>
-          <option value=''>Select an activity</option>
-          {metValue.map((activity, index) => (
-            <option key={index} value={Object.keys(activity)[0]}>
-              {Object.keys(activity)[0]}
-            </option>
-          ))}
-        </select>
-      </div>
+      <select
+        value={selectedActivity}
+        onChange={e => dispatch(setSelectedActivity(e.target.value))}>
+        <option value=''>Select an activity</option>
+        {metValue.map((activity, index) => (
+          <option key={index} value={Object.keys(activity)[0]}>
+            {Object.keys(activity)[0]}
+          </option>
+        ))}
+      </select>
       <h3>Enter your weight in kg:</h3>
       <input
         type='number'
         value={weight}
-        onChange={e => setWeight(e.target.value)}
+        onChange={e => dispatch(setWeight(e.target.value))}
       />
       <button onClick={handleCalculateClick}>Calculate</button>
       {totalCalories !== null && (

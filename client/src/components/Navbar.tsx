@@ -19,12 +19,7 @@ export default function Navbar() {
         <ul>
           <li>
             <Link href='/login' onClick={toggleMenu}>
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link href='/register' onClick={toggleMenu}>
-              Register
+              Login / Register
             </Link>
           </li>
           <li>

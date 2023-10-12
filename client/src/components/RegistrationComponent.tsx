@@ -1,14 +1,19 @@
 'use client'
 
 import React, { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import styles from '../styles/registrationComponent.module.css'
+import { registerSuccess } from '@/slices/authSlice';
+import Link from 'next/link';
 
 const RegistrationComponent = () => {
+  const isRegistered = useAppSelector(state => state.auth.isRegistered);
+  const dispatch = useAppDispatch();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
-  const [isRegistered, setIsRegistered] = useState(false); 
 
   const handleRegistration = async () => {
     try {
@@ -35,10 +40,12 @@ const RegistrationComponent = () => {
           }, 
         })
       })
+
       const responseBody = await response.json();
+      console.log(responseBody);
 
       if (responseBody.data && responseBody.data.registerUser && responseBody.data.registerUser.token) {
-        setIsRegistered(true); 
+        dispatch(registerSuccess(true));
       } else {
         console.error('Registration failed.');
       }
@@ -48,25 +55,38 @@ const RegistrationComponent = () => {
     }
   }
   return (
-    <div className={styles.registerComponent}>
+    <>
+      <div className={styles.registerComponent}>
 
-    <label htmlFor='username'>Username</label>
-    <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} />
+        <label htmlFor='username'>Username</label>
+        <input type='text' value={username} onChange={(e) => setUsername(e.target.value)} />
 
-    <label htmlFor='email'>Email</label>
-    <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label htmlFor='email'>Email</label>
+        <input type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
 
-    <label htmlFor='password'>Password</label>
-    <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
+        <label htmlFor='password'>Password</label>
+        <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
 
-    <label htmlFor='gender'>Gender</label>
-    <input type='text' value={gender} onChange={(e) => setGender(e.target.value)} />
+        <label htmlFor='gender'>Gender</label>
+        <select value={gender} onChange={(e) => setGender(e.target.value)}>
+          <option value=''>Select Gender</option>
+          <option value='male'>Male</option>
+          <option value='female'>Female</option>
+        </select>
 
-    <button className={styles.registerButton} onClick={handleRegistration}>
-      Register
-    </button>
-    {isRegistered && <p>Registration successful! Please login</p>}
-  </div>
+        <button className={styles.registerButton} onClick={handleRegistration}>
+          Register
+        </button>
+        {isRegistered && <p>Registration successful! Please login</p>}
+      </div>
+      <div className={styles.goToLoginBox}>
+        <p>Already have an account?</p>
+        <Link href='/login' style={{ color: 'blue' }}>
+          Login here
+        </Link>
+      </div>
+    </>
+    
   );
 }
 
