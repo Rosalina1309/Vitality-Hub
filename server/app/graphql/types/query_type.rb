@@ -19,7 +19,7 @@ module Types
 
     field :exercises, [Types::ExerciseType], null: true, description: "Get all exercises"
     def exercises
-      allExercises = Exrcise.all
+      allExercises = Exercise.all
       allExercises
     end
   end
