@@ -1,0 +1,39 @@
+
+
+.userProfile {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.userInfo {
+  margin-top: 20px;
+}
+
+.favoriteExercises,
+.favoriteRecipes {
+  margin-top: 20px;
+}
+
+.favoriteExercises ul,
+.favoriteRecipes ul {
+  list-style: none;
+  padding: 0;
+}
+
+.favoriteExercises li,
+.favoriteRecipes li {
+  margin-bottom: 10px;
+}
+
+.recipeImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 4px;
+}

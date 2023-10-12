@@ -19,11 +19,17 @@ module Types
     object.user_goals
   end
 
-  def favorite_recipes
-    object.user_favorite_recipes
+  def favorite_exercises
+    user_id = object.id
+    favorite_exercises = FavoriteExercise.where(user_id: user_id).pluck(:exercise_id)
+    exercises = Exercise.where(id: favorite_exercises)
+    exercises
   end
 
-  def favorite_exercises
-    object.user_favorite_exercises
+  def favorite_recipes
+    user_id = object.id
+    favorite_recipes = FavoriteRecipe.where(user_id: user_id).pluck(:recipe_id)
+    recipes = Recipe.where(id: favorite_recipes)
+    recipes
   end
 end

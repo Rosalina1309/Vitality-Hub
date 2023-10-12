@@ -1,5 +1,4 @@
-'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/exercisesComponent.module.css';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import {
@@ -14,10 +13,16 @@ const ExercisesComponent: React.FC = () => {
   const selectedExercise = useAppSelector(
     state => state.exercises.selectedExercise
   );
-
+    const [favoriteExercises, setFavoriteExercises] = useState<string[]>([]);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    const savedFavorites = localStorage.getItem('favoriteExercises');
+    if (savedFavorites) {
+      setFavoriteExercises(JSON.parse(savedFavorites));
+    }
+
     const fetchData = async () => {
       try {
         await dispatch(fetchExercisesAsync(''));
@@ -52,6 +57,37 @@ const ExercisesComponent: React.FC = () => {
     dispatch(setMuscle(e.currentTarget.value));
   };
 
+  const handleToggleFavorite = async (exerciseId: string) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('http://localhost:3001/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          query: `mutation ToggleFavoriteExercise {
+            toggleFavorite(type: "exercise", itemId: "${exerciseId}") {
+              user {
+                favoriteExercises {
+                  exerciseId
+                }
+              }
+            }
+          }`
+        })
+      });
+
+      const responseData = await response.json();
+      const updatedFavorites = responseData.data.toggleFavorite.user.favoriteExercises.map((fav: { exerciseId: string }) => fav.exerciseId);
+      setFavoriteExercises(updatedFavorites);
+      localStorage.setItem('favoriteExercises', JSON.stringify(updatedFavorites));
+    } catch (error) {
+      console.error("Error toggling favorite:", error);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <h2>Enter Muscle:</h2>
@@ -84,6 +120,9 @@ const ExercisesComponent: React.FC = () => {
                 {selectedExercise === exercise.name ? 'Hide' : 'Show'}{' '}
                 Instructions
               </button>
+              <button onClick={() => handleToggleFavorite(exercise.id)}>
+              {favoriteExercises.includes(exercise.id) ? "Remove from Favorites" : "Add to Favorites"}
+            </button>
               {selectedExercise === exercise.name && (
                 <div className={styles.instructions}>
                   <h4>
