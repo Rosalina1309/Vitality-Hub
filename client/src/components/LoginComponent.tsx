@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import { loginSuccess } from '@/slices/authSlice';
@@ -36,7 +35,9 @@ const LoginComponent = () => {
       const responseBody = await response.json(); 
 
       if (responseBody.data && responseBody.data.login && responseBody.data.login.token) {
-        dispatch(loginSuccess(true)); 
+        const token = responseBody.data.login.token;
+        const userInfo = JSON.parse(atob(token.split('.')[1]));
+        dispatch(loginSuccess(userInfo)); 
         router.push('/profile');
       } else {
         console.error('Login failed.');
@@ -59,14 +60,12 @@ const LoginComponent = () => {
           </>
 
       </div>
-      {!isAuthenticated && (
         <div className={styles.goToRegisterBox}>
           <p>New to Vitality Hub?</p>
           <Link href='/register' style={{ color: 'blue' }}>
             Create an account
           </Link>
         </div>
-      )}
     </>
   );
 };
