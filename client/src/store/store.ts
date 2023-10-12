@@ -7,7 +7,8 @@ import bmiSlice from '@/slices/bmiSlice';
 import calculatorsSlice from '@/slices/calculatorsSlice';
 import caloriesChartSlice from '@/slices/caloriesChartSlice';
 import exercisesSlice from '@/slices/exercisesSlice';
-
+import nutritionSlice from '@/slices/nutritionSlice';
+import whrSlice from '@/slices/whrSlice';
 
 const store = configureStore({
   reducer: {
@@ -19,6 +20,8 @@ const store = configureStore({
     calculators: calculatorsSlice,
     caloriesChart: caloriesChartSlice,
     exercises: exercisesSlice,
+    nutrition: nutritionSlice,
+    whr: whrSlice,
   },
 });
 

@@ -1,0 +1,35 @@
+
+.registerComponent {
+  max-width: 300px;
+  margin: 100px auto 0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.registerComponent label,
+.registerComponent input,
+.registerComponent button {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.registerComponent input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.registerComponent button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.registerComponent button:hover {
+  background-color: #45a049;
+}

@@ -1,9 +1,53 @@
-
-
 .container {
-  max-width: 600px;
-  margin: 0 auto;
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  width: calc(100% - 20px);
+  max-width: 450px;
+  height: 100%;
+  max-height: calc(100vh - 160px);
+  background: var(--bodyBg);
+  transition: 0.25s ease-out;
+  transform: translateY(100%);
+  box-shadow: var(--shadow);
+  border-radius: 12px;
   padding: 20px;
+  z-index: 10;
+  &.open {
+    transform: translateY(0) translateY(-10px);
+    .icon-nutritions {
+      &::after {
+        content: '\e5c9';
+      }
+    }
+  }
+  h2 {
+    font-size: 24px;
+    font-weight: 100;
+  }
+  input {
+    height: 45px;
+  }
+  .nutrition-info {
+    overflow-y: auto;
+    max-height: calc(100% - 170px);
+  }
+}
+
+.icon-nutritions {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  padding: 5px 10px;
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+  background: var(--accentColor);
+  &::after {
+    content: '\e561';
+    font-family: 'Material Symbols Rounded';
+    font-size: 35px;
+    color: var(--secondaryColor);
+  }
 }
 
 .input-wrapper {
@@ -18,32 +62,49 @@
 }
 
 .button {
-  background-color: #90EE90; /* Pastel green */
-  color: #fff;
+  background: var(--accentColor); /* Pastel green */
+  color: var(--secondaryColor);
+  border-radius: 8px;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  text-transform: uppercase;
   margin-top: 20px;
-}
-
-.button:hover {
-  background-color: #77DD77; /* Lighter pastel green on hover */
 }
 
 .nutrition-info {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  background: var(--accentColor);
+  border-radius: 8px;
+  color: var(--secondaryColor);
   padding: 15px;
   margin-top: 20px;
+  p {
+    margin-bottom: 10px;
+  }
+  strong {
+    font-weight: 600;
+  }
 }
 
 .nutrition-info h3 {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--lightBorder);
+  padding-bottom: 10px;
 }
 
-.nutrition-info p {
-  margin: 5px 0;
+@media screen and (min-width: 768px) {
+  .container {
+    max-height: 70vh;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    right: 30px;
+  }
+  .icon-nutritions {
+    bottom: calc(100% + 30px);
+  }
+
 }

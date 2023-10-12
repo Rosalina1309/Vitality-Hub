@@ -1,6 +1,7 @@
 # require 'dotenv/rails-now'
 require 'active_storage/engine'
 require 'action_mailer/railtie'
+require 'bundler/setup'
 
 
 module Server
@@ -13,9 +14,11 @@ module Server
       g.layout "application" # Set to the name of your custom layout file without the .html.erb extension
     end
 
-    # To load the env file
     Bundler.require(*Rails.groups)
-    # Dotenv::Railtie.load
+    if ['development', 'test'].include? ENV['RAILS_ENV']
+      Dotenv::Railtie.load
+    end
+
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.

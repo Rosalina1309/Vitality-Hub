@@ -1,47 +1,25 @@
-
 'use client'
-import React, { useState } from "react";
+import React from "react";
 import styles from "../styles/whrCalComponent.module.css";
+import getAdviceForWHR from "@/helpers/getAdviceForWHR";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import { calculateWhr, setGender, setHip, setWaist } from "@/slices/whrSlice";
 
 const MeasurementsCalComponent: React.FC = () => {
-  const [gender, setGender] = useState<string>("male");
-  const [waist, setWaist] = useState<string>("");
-  const [hip, setHip] = useState<string>("");
-  const [whr, setWHR] = useState<number | null>(null);
-  const [errMessage, setErrMessage] = useState<string | null>("");
+  const gender = useAppSelector(state => state.whr.gender);
+  const waist = useAppSelector(state => state.whr.waist);
+  const hip = useAppSelector(state => state.whr.hip);
+  const whr = useAppSelector(state => state.whr.whr);
+  const errMessage = useAppSelector(state => state.whr.errMessage);
+
+  const dispatch = useAppDispatch();
 
   function whrCalculator() {
-    const waistValue = parseFloat(waist);
-    const hipValue = parseFloat(hip);
-
-    if (!isNaN(waistValue) && !isNaN(hipValue) && waistValue > 0 && hipValue > 0) {
-      const calculatedWHR = waistValue / hipValue;
-      setWHR(calculatedWHR);
-      setErrMessage(null);
-    } else {
-      setWHR(null);
-      setErrMessage("Please enter valid waist and hip values.");
-    }
-  }
-
-  function getAdviceForWHR(gender: string, whr: number): string {
-    if (gender === "male") {
-      if (whr < 0.9) {
-        return "Your WHR is within the healthy range for males.";
-      } else {
-        return "Your WHR is higher than the healthy range for males. Consider lifestyle changes.";
-      }
-    } else {
-      if (whr < 0.8) {
-        return "Your WHR is within the healthy range for females.";
-      } else {
-        return "Your WHR is higher than the healthy range for females. Consider lifestyle changes.";
-      }
-    }
+    dispatch(calculateWhr());
   }
 
   function handleGenderChange(e: React.ChangeEvent<HTMLSelectElement>) {
-    setGender(e.target.value);
+    dispatch(setGender(e.currentTarget.value));
   }
 
   return (
@@ -56,11 +34,11 @@ const MeasurementsCalComponent: React.FC = () => {
       </div>
       <div>
         <label>Waist Circumference (in cm):</label>
-        <input type="text" value={waist} onChange={(e) => setWaist(e.target.value)} />
+        <input type="text" value={waist} onChange={(e) => dispatch(setWaist(e.target.value))} />
       </div>
       <div>
         <label>Hip Circumference (in cm):</label>
-        <input type="text" value={hip} onChange={(e) => setHip(e.target.value)} />
+        <input type="text" value={hip} onChange={(e) => dispatch(setHip(e.target.value))} />
       </div>
       <button onClick={whrCalculator}>Calculate WHR</button>
       {errMessage && <p style={{ color: "red" }}>{errMessage}</p>}

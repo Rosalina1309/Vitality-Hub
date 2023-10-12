@@ -22,8 +22,6 @@ export const fetchExercisesAsync = createAsyncThunk(
   async (muscle: string): Promise<Exercise[]> => {
     try {
       const response = await fetchExercises(muscle);
-      console.log(response);
-
       return response;
     } catch (error) {
       throw error;
