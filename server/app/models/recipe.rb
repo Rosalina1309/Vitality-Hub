@@ -6,4 +6,7 @@ class Recipe < ApplicationRecord
   validates :protein, presence: true
   validates :fat, presence: true
   validates :carbs, presence: true
+
+  has_many :user_favorite_recipes
+  has_many :favorited_by, through: :user_favorite_recipes, source: :user
 end

@@ -14,8 +14,13 @@ module Types
 
     def recipes
       allRecipes = Recipe.all
-      puts "#{allRecipes}"
       allRecipes
+    end
+
+    field :exercises, [Types::ExerciseType], null: true, description: "Get all exercises"
+    def exercises
+      allExercises = Exrcise.all
+      allExercises
     end
   end
 end

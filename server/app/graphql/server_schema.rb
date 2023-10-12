@@ -13,12 +13,13 @@ class ServerSchema < GraphQL::Schema
     nil # You can choose to return nil or handle the error differently
   end
 
-  # Implement resolve_type to specify how to resolve abstract types (interfaces and unions).
   def self.resolve_type(abstract_type, obj, ctx)
-    # Return the correct GraphQL object type for `obj` based on `abstract_type`.
-    # This is used when querying fields that return interface or union types.
-    # You need to implement this method based on your schema's needs.
-    raise(GraphQL::RequiredImplementationMissingError)
+    case obj
+    when Exercise
+      Types::ExerciseType
+    else
+      nil # Return nil for unknown types
+    end
   end
 
   # Define the maximum number of validation errors before stopping execution.

@@ -14,4 +14,10 @@ class User < ApplicationRecord
 
   has_many :user_measurements
   has_many :user_goals
+
+  has_many :user_favorite_recipes
+  has_many :favorite_recipes, through: :user_favorite_recipes, source: :recipe
+
+  has_many :user_favorite_exercises
+  has_many :favorite_exercises, through: :user_favorite_exercises, source: :exercise
 end
