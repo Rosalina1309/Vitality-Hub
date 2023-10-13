@@ -17,7 +17,6 @@ const ExercisesComponent: React.FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
     const savedFavorites = localStorage.getItem('favoriteExercises');
     if (savedFavorites) {
       setFavoriteExercises(JSON.parse(savedFavorites));
@@ -84,12 +83,13 @@ const ExercisesComponent: React.FC = () => {
         responseData.data.toggleFavorite.user.favoriteExercises.map(
           (fav: { exerciseId: string }) => fav.exerciseId
         );
-
       setFavoriteExercises(updatedFavorites);
       localStorage.setItem(
         'favoriteExercises',
         JSON.stringify(updatedFavorites)
       );
+      console.log(localStorage);
+
 
     } catch (error) {
       console.error('Error toggling favorite:', error);

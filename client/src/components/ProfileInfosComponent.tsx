@@ -11,7 +11,6 @@ const ProfileInfosComponent: React.FC = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        console.log(user);
         if (token) {
           const userData = await fetchUserInfos(token);
           setUser(userData);
@@ -22,7 +21,6 @@ const ProfileInfosComponent: React.FC = () => {
         console.error('Error fetching user data:', error);
       }
     };
-
     fetchData();
   }, []);
 
@@ -41,12 +39,13 @@ const ProfileInfosComponent: React.FC = () => {
               <h3>Favorite Exercises</h3>
               {user.favoriteExercises.length ? (
                 <ul>
-                  {user.favoriteExercises && user.favoriteExercises.map((favExercise: any) => (
-                    <li key={favExercise.exercise.id}>
-                      <strong>{favExercise.exercise.name}</strong> -{' '}
-                      {favExercise.exercise.instructions}
-                    </li>
-                  ))}
+                  {user.favoriteExercises &&
+                    user.favoriteExercises.map((favExercise: any) => (
+                      <li key={favExercise.exercise.id}>
+                        <strong>{favExercise.exercise.name}</strong>{' '}
+                        {favExercise.exercise.instructions}
+                      </li>
+                    ))}
                 </ul>
               ) : (
                 <p>
@@ -57,21 +56,22 @@ const ProfileInfosComponent: React.FC = () => {
             </div>
             <div className={styles.favoriteRecipes}>
               <h3>Favorite Recipes</h3>
-              {user.favoriteExercises.length ? (
+              {user.favoriteRecipes.length ? (
                 <ul>
-                  { user.favoriteRecipes && user.favoriteRecipes.map((favRecipe: any) => (
-                    <li key={favRecipe.recipe.id}>
-                      <img
-                        src={favRecipe.recipe.image}
-                        alt={favRecipe.recipe.title}
-                        className={styles.recipeImage}
-                      />
-                      <div>
-                        <p>{favRecipe.recipe.title}</p>
-                        <p>Calories: {favRecipe.recipe.calories}</p>
-                      </div>
-                    </li>
-                  ))}
+                  {user.favoriteRecipes &&
+                    user.favoriteRecipes.map((favRecipe: any) => (
+                      <li key={favRecipe.recipe.id}>
+                        <p className={styles.title}>{favRecipe.recipe.title}</p>
+                        <div className={styles.recipeImg}>
+                          <img
+                            src={favRecipe.recipe.image}
+                            alt={favRecipe.recipe.title}
+                            className={styles.recipeImage}
+                          />
+                          <p>Calories: {favRecipe.recipe.calories}</p>
+                        </div>
+                      </li>
+                    ))}
                 </ul>
               ) : (
                 <p>

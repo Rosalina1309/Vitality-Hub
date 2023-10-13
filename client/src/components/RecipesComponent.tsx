@@ -8,7 +8,11 @@ import { fetchRecipesAsync } from '@/slices/recipeSlice';
 const RecipesComponent: React.FC = () => {
   const recipes = useAppSelector(state => state.recipes.recipes);
   const loadingMessage = useAppSelector(state => state.recipes.loadingMessage);
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<string[]>(
+    localStorage.getItem('favorites')
+      ? JSON.parse(localStorage.getItem('favorites')!)
+      : []
+  );
   const [token, setToken] = useState<string | null>(localStorage.getItem('token') || null);
 
   const dispatch = useAppDispatch();
