@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export async function fetchUserInfos(token: string) {
   try {
-    const graphqlEndpoint = 'http://localhost:3001/graphql';
+    const graphqlEndpoint = process.env.NEXT_PUBLIC_BACKEND_API_URL as string;
     const query = `
     {user {id username email birthdate gender favoriteExercises{ exercise {id name type muscle equipment difficulty instructions}}favoriteRecipes{recipe{id title image calories protein fat carbs}}}}
     `;

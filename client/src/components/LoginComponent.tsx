@@ -17,22 +17,25 @@ const LoginComponent = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:3001/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          query:
-            'mutation ($input: LoginMutationInput!) { login(input: $input) { token } }',
-          variables: {
-            input: {
-              usernameOrEmail: username,
-              password: password,
-            },
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_BACKEND_API_URL as string,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-        }),
-      });
+          body: JSON.stringify({
+            query:
+              'mutation ($input: LoginMutationInput!) { login(input: $input) { token } }',
+            variables: {
+              input: {
+                usernameOrEmail: username,
+                password: password,
+              },
+            },
+          }),
+        }
+      );
 
       const responseBody = await response.json();
 

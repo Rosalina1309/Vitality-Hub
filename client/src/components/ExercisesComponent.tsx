@@ -59,14 +59,16 @@ const ExercisesComponent: React.FC = () => {
   const handleToggleFavorite = async (exerciseId: string) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          query: `mutation ToggleFavoriteExercise {
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_BACKEND_API_URL as string,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            query: `mutation ToggleFavoriteExercise {
             toggleFavorite(type: "exercise", itemId: "${exerciseId}") {
               user {
                 favoriteExercises {
@@ -75,8 +77,9 @@ const ExercisesComponent: React.FC = () => {
               }
             }
           }`,
-        }),
-      });
+          }),
+        }
+      );
 
       const responseData = await response.json();
       const updatedFavorites =

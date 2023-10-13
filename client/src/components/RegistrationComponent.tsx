@@ -15,29 +15,32 @@ const RegistrationComponent = () => {
 
   const handleRegistration = async () => {
     try {
-      const response = await fetch('http://localhost:3001/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          query: `
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_BACKEND_API_URL as string,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: `
             mutation ($input: RegisterUserMutationInput!) {
               registerUser(input: $input) {
                 token
               }
             }
           `,
-          variables: {
-            input: {
-              username: username,
-              email: email,
-              password: password,
-              gender: gender,
+            variables: {
+              input: {
+                username: username,
+                email: email,
+                password: password,
+                gender: gender,
+              },
             },
-          },
-        }),
-      });
+          }),
+        }
+      );
 
       const responseBody = await response.json();
       console.log(responseBody);

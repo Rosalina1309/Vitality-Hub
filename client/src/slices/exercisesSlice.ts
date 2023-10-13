@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchExercises } from '@/apiServices/fetchExercises';
+import { fetchExercises, fetchExercisesByMuscle } from '@/apiServices/fetchExercises';
 import { Exercise } from '@/interfaces/Exercise';
 
 export interface ExercisesState {
@@ -21,7 +21,9 @@ export const fetchExercisesAsync = createAsyncThunk(
   'exercises/fetchExercises',
   async (muscle: string): Promise<Exercise[]> => {
     try {
-      const response = await fetchExercises(muscle);
+      const response = await fetchExercises();
+      console.log(response);
+
       return response;
     } catch (error) {
       throw error;

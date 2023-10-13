@@ -8,12 +8,21 @@ import { fetchRecipesAsync } from '@/slices/recipeSlice';
 const RecipesComponent: React.FC = () => {
   const recipes = useAppSelector(state => state.recipes.recipes);
   const loadingMessage = useAppSelector(state => state.recipes.loadingMessage);
-  const [favorites, setFavorites] = useState<string[]>(
-    localStorage.getItem('favorites')
-      ? JSON.parse(localStorage.getItem('favorites')!)
-      : []
-  );
-  const [token, setToken] = useState<string | null>(localStorage.getItem('token') || null);
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+  const [token, setToken] = useState<string | null>(null);
+
+  const [favorites, setFavorites] = useState<string[]>([]);
+  useEffect(() => {
+    if (isAuthenticated) {
+      setToken(localStorage.getItem('token'));
+      setFavorites(
+        localStorage.getItem('favorites')
+          ? JSON.parse(localStorage.getItem('favorites')!)
+          : []
+      );
+      console.log(isAuthenticated);
+    }
+  }, [])
 
   const dispatch = useAppDispatch();
 
@@ -30,31 +39,37 @@ const RecipesComponent: React.FC = () => {
 
   const toggleFavorite = async (recipeId: string) => {
     try {
-      const response = await fetch('http://localhost:3001/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          query: `mutation ToggleFavoriteRecipe {
-            toggleFavorite(type: "recipe", itemId: "${recipeId}") {
-              user {
-                favoriteRecipes {
-                  recipeId
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_BACKEND_API_URL as string,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            query: `mutation ToggleFavoriteRecipe {
+              toggleFavorite(type: "recipe", itemId: "${recipeId}") {
+                user {
+                  favoriteRecipes {
+                    recipeId
+                  }
                 }
               }
-            }
-          }`
-        })
-      });
+            }`,
+          }),
+        }
+      );
 
       const responseData = await response.json();
-      const updatedFavorites = responseData.data.toggleFavorite.user.favoriteRecipes.map((fav: { recipeId: string }) => fav.recipeId);
+      const updatedFavorites =
+        responseData.data.toggleFavorite.user.favoriteRecipes.map(
+          (fav: { recipeId: string }) => fav.recipeId
+        );
       setFavorites(updatedFavorites);
       localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     } catch (error) {
-      console.error("Error toggling favorite:", error);
+      console.error('Error toggling favorite:', error);
     }
   };
 
@@ -89,13 +104,13 @@ const RecipesComponent: React.FC = () => {
               </li>
             </ul>
             <button onClick={() => toggleFavorite(recipe.id)}>
-              {favorites.includes(recipe.id) ? 'Remove from Favorites' : 'Today\'s Favorite'}
+              {favorites.includes(recipe.id)
+                ? 'Remove from Favorites'
+                : "Today's Favorite"}
             </button>
           </div>
         ))}
-      {loadingMessage && (
-        <p className={styles.loading}>{loadingMessage}</p>
-      )}
+      {loadingMessage && <p className={styles.loading}>{loadingMessage}</p>}
     </section>
   );
 };
