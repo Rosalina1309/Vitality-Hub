@@ -41,6 +41,7 @@ const LoginComponent = () => {
         responseBody.data.login &&
         responseBody.data.login.token
       ) {
+        localStorage.setItem('token', responseBody.data.login.token);
         dispatch(loginSuccess(true));
         router.push('/profile');
       } else {

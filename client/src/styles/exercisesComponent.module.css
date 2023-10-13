@@ -52,12 +52,19 @@
       &::after {
         content: '\e838';
         font-family: 'Material Symbols Rounded';
-        color: var(--accentColor);
+        color: var(--notFavorite);
         font-size: 40px;
         transition: color .25s ease-out;
       }
       &.favorite {
-        color: var(--favorite);
+        &::after {
+          color: var(--favorite);
+        }
+      }
+      &:hover {
+        &::after {
+          color: var(--favorite);
+        }
       }
     }
   }

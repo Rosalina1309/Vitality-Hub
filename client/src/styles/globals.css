@@ -29,6 +29,7 @@
   --inputBg: #fff;
   --errorColor: #c1121f;
   --favorite: #ffb703;
+  --notFavorite: rgba(255, 183, 3, .3);
 }
 
 

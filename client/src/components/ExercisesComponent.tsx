@@ -84,11 +84,13 @@ const ExercisesComponent: React.FC = () => {
         responseData.data.toggleFavorite.user.favoriteExercises.map(
           (fav: { exerciseId: string }) => fav.exerciseId
         );
+
       setFavoriteExercises(updatedFavorites);
       localStorage.setItem(
         'favoriteExercises',
         JSON.stringify(updatedFavorites)
       );
+
     } catch (error) {
       console.error('Error toggling favorite:', error);
     }
@@ -113,12 +115,7 @@ const ExercisesComponent: React.FC = () => {
                 {exercise.name}{' '}
                 <button
                   onClick={() => handleToggleFavorite(exercise.id)}
-                  className={`
-                ${
-                  favoriteExercises.includes(exercise.id)
-                    ? styles.favorite
-                    : ''
-                }`}></button>
+                  className={`${favoriteExercises.includes(exercise.id) ? styles.favorite : ''}`}></button>
               </h3>
               <p>
                 <strong>Type:</strong> {exercise.type}

@@ -5,8 +5,8 @@ import styles from '@/styles/profilePage.module.css'
 const UserProfilePage = () => {
   return (
     <main className={styles.main}>
-      <CaloriesChartComponent />
       <ProfileInfosComponent />
+      <CaloriesChartComponent />
     </main>
   );
 };
