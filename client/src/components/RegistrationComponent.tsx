@@ -1,6 +1,7 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { clearError } from '@/slices/authSlice';
 import styles from '../styles/registrationComponent.module.css'
 import { registerAsync } from '@/apiServices/authApi';
 import Link from 'next/link';
@@ -9,12 +10,18 @@ import { useRouter } from 'next/router';
 const RegistrationComponent = () => {
   const dispatch = useAppDispatch();
   const router = useRouter(); 
-  const error = useAppSelector(state => state.auth.error);
+  const error = useAppSelector(state => state.auth.registrationError);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearError());
+    };
+  }, []);
 
   const handleRegistration = async () => {
     try {

@@ -1,7 +1,8 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { loginAsync } from '@/apiServices/authApi';
+import { clearError } from '@/slices/authSlice';
 import Link from 'next/link';
 import styles from '../styles/loginComponent.module.css';
 import { useRouter } from 'next/router';
@@ -9,11 +10,17 @@ import { useRouter } from 'next/router';
 const LoginComponent = () => {
   const dispatch = useAppDispatch();
   const router = useRouter(); 
-  const error = useAppSelector(state => state.auth.error);
+  const error = useAppSelector(state => state.auth.loginError);
   const isRegistered = useAppSelector(state => state.auth.isRegistered);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearError());
+    };
+  }, []);
 
   const handleLogin = async () => {
     try {
@@ -26,7 +33,6 @@ const LoginComponent = () => {
       console.error('Login failed: ', e);
     }
   };
-
 
   return (
     <>
