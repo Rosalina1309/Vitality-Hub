@@ -1,16 +1,15 @@
 'use client'
-
 import React, { useState } from 'react';
-import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import styles from '../styles/registrationComponent.module.css'
-import { registerSuccess } from '@/slices/authSlice';
+import { registerAsync } from '@/slices/authSlice';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const RegistrationComponent = () => {
-  const isRegistered = useAppSelector(state => state.auth.isRegistered);
   const dispatch = useAppDispatch();
   const router = useRouter(); 
+  const error = useAppSelector(state => state.auth.error);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -19,44 +18,23 @@ const RegistrationComponent = () => {
 
   const handleRegistration = async () => {
     try {
-      const response = await fetch('http://localhost:3001/graphql', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          query: `
-            mutation ($input: RegisterUserMutationInput!) {
-              registerUser(input: $input) {
-                token
-              }
-            }
-          `,
-          variables: {
-            input: {
-              username: username,
-              email: email,
-              password: password,
-              gender: gender,
-            },
-          }, 
-        })
-      })
+      const registrationData = {
+        username,
+        email,
+        password,
+        gender,
+      };
 
-      const responseBody = await response.json();
-      console.log(responseBody);
+      const result = await dispatch(registerAsync(registrationData));
 
-      if (responseBody.data && responseBody.data.registerUser && responseBody.data.registerUser.token) {
-        dispatch(registerSuccess(true));
+      if (registerAsync.fulfilled.match(result)) {
         router.push('/login');
-      } else {
-        console.error('Registration failed.');
       }
-
-    } catch (err) {
-      console.error('Registration failed: ', err)
+    } catch (e) {
+      console.error('Registration failed: ', e);
     }
-  }
+  };
+
   return (
     <>
       <div className={styles.registerComponent}>
@@ -80,6 +58,7 @@ const RegistrationComponent = () => {
         <button className={styles.registerButton} onClick={handleRegistration}>
           Register
         </button>
+        {error && <p>{error}</p>}
       </div>
       <div className={styles.goToLoginBox}>
         <p>Already have an account?</p>
