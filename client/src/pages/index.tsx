@@ -4,7 +4,6 @@ import styles from '@/styles/home.module.css';
 
 const HomePage: React.FC = () => {
   return (
-<<<<<<< HEAD
     <>
       <div className={styles.motto}>
         <p>
@@ -19,11 +18,6 @@ const HomePage: React.FC = () => {
         <MainPage />
       </main>
     </>
-=======
-    <main className={styles.main}>
-      <MainPage />
-    </main>
->>>>>>> 550e6be0d72d634dc796830b286d2b737848aa35
   );
 };
 
