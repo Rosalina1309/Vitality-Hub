@@ -8,7 +8,7 @@ import styles from '../styles/recipesComponent.module.css';
 
 const RecipesComponent: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [favorites, setFavorites] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<string[]>(localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')!) : []);
   const [token, setToken] = useState<string | null>(localStorage.getItem('token') || null);
 
   useEffect(() => {
@@ -16,7 +16,6 @@ const RecipesComponent: React.FC = () => {
       try {
         const data = await fetchRecipes();
         setRecipes(data);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching recipes:", error);
       }

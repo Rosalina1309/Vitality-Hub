@@ -10,7 +10,6 @@ export async function fetchExercises(): Promise<Exercise[]> {
       query: query,
     });
     const exercisesData = response.data.data.exercises;
-    console.log(exercisesData)
     return exercisesData;
   } catch (error) {
     throw error;

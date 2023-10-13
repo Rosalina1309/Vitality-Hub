@@ -32,7 +32,6 @@ const LoginComponent = () => {
 
       if (responseBody.data && responseBody.data.login && responseBody.data.login.token) {
         localStorage.setItem('token', responseBody.data.login.token);
-        console.log(localStorage)
         setIsLoggedIn(true); 
       } else {
         console.error('Login failed.');
