@@ -1,0 +1,19 @@
+.calculators {
+  width: 100%;
+  max-width: 500px;
+}
+.tabs {
+  display: flex;
+  gap: 5px;
+  button {
+    text-transform: uppercase;
+    background: var(--border);
+    padding: 15px;
+    border-radius: 8px 8px 0 0;
+    transition: .25s ease-out;
+    &.active {
+      background: var(--secondaryColor);
+      color: var(--accentColor);
+    }
+  }
+}

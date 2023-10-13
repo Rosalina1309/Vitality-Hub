@@ -6,7 +6,8 @@ namespace :recipes do
     require 'json'
     require_relative '../../models/Recipe'
 
-    url = "https://api.spoonacular.com/recipes/findByNutrients?apiKey=48162264bce24f528c7ff4e640ca08cd&minCarbs=10&maxCarbs=50&number=100"
+    # API only works once
+    url = "https://api.spoonacular.com/recipes/findByNutrients?apiKey=75ff96cf2cae4ebf8759e2d62cedcc05&minCarbs=10&maxCarbs=50&number=100"
     response = RestClient.get(url)
     data = JSON.parse(response)
 

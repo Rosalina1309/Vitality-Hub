@@ -1,0 +1,22 @@
+.main {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 20px;
+  min-height: auto;
+}
+
+@media screen and (min-width: 768px){
+  .main {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: dense;
+    height: 100vh;
+    overflow-y: auto;
+    gap: 50px;
+  }
+}
+@media screen and (min-width: 1024px){
+  .main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

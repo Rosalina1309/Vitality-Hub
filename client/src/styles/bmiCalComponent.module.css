@@ -1,0 +1,52 @@
+.BMICalculator {
+  width: 100%;
+  padding: 20px 15px;
+  background: var(--secondaryColor);
+  border-radius: 0 8px 8px 8px;
+  margin-bottom: 80px;
+  h2 {
+    font-size: 24px;
+    color: var(--accentColor);
+    margin-bottom: 20px;
+  }
+  label {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+  input {
+    width: 100%;
+    height: 45px;
+    border: 1px solid var(--border);
+  }
+  .item-form {
+    margin-bottom: 20px;
+  }
+  button {
+    margin: 40px auto;
+    padding: 10px 20px;
+    background: var(--accentColor);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--secondaryColor);
+    border-radius: 8px;
+  }
+  p {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.5;
+    span {
+      font-weight: 400;
+    }
+  }
+}
+.errMessage {
+  color: var(--errorColor);
+}
+
+@media screen and (min-width: 1024px) {
+  .BMICalculator {
+    padding: 30px 40px;
+  }
+}

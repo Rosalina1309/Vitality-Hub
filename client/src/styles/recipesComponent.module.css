@@ -1,0 +1,60 @@
+/* RecipesComponent.module.css */
+.recipesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column: 1/-1;
+  gap: 40px;
+  width: 100%;
+  h1 {
+    grid-column: 1/-1;
+    font-size: 30px;
+    color: var(--accentColor);
+  }
+}
+
+.recipeBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 8px;
+  background: var(--secondaryColor);
+  h2 {
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  ul {
+    margin-bottom: 20px;
+  }
+  li {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+  span {
+    color: var(--accentColor);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  button {
+    padding: 10px 20px;
+    align-self: flex-end;
+    background: var(--accentColor);
+    border-radius: 8px;
+    color: var(--secondaryColor);
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+
+.recipeImage {
+  display: block;
+  max-width: 100%;
+  border-radius: 12px;
+  margin: 0 auto 20px auto;
+}
+
+.loading {
+  font-size: 21px;
+}

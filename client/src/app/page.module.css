@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem;
+  min-height: calc(100vh - 100px);
+  padding: 10px;
+  padding-top: 100px;
+}
+.motto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 200px;
+}
+.motto h3 {
+  font-size: 2rem;
+}
+
+@media screen and (min-width: 1280px) {
+  .main {
+    max-width: 1280px;
+    margin: auto;
+    padding: 30px;
+    padding-top: 130px;
+  }
+}
