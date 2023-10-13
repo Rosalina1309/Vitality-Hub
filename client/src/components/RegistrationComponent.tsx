@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import styles from '../styles/registrationComponent.module.css'
-import { registerAsync } from '@/slices/authSlice';
+import { registerAsync } from '@/apiServices/authApi';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 

@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
-import {loginAsync } from '@/slices/authSlice';
+import { loginAsync } from '@/apiServices/authApi';
 import Link from 'next/link';
 import styles from '../styles/loginComponent.module.css';
 import { useRouter } from 'next/router';
