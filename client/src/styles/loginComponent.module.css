@@ -27,6 +27,11 @@
     font-size: 18px;
     margin: 20px auto 0 auto;
   }
+  .error {
+    font-size: 18px;
+    margin-top: 20px;
+    color: var(--errorColor);
+  }
 }
 
 .goToRegisterBox {

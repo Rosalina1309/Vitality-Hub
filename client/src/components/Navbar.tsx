@@ -31,13 +31,13 @@ export default function Navbar() {
                 onClick={() => {
                   dispatch(logout());
                   toggleMenu();
-                }}>
+                }} className={styles.logout}>
                 Logout
               </Link>
             </li>
           ) : (
             <li>
-              <Link href='/login' onClick={toggleMenu}>
+              <Link href='/login' onClick={toggleMenu} className={styles.login}>
                 Login / Register
               </Link>
             </li>

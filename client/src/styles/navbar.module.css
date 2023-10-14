@@ -95,6 +95,11 @@
         content: '\f201';
       }
     }
+    &.logout {
+      &::before {
+        content: '\e9ba';
+      }
+    }
     &.login {
       &::before {
         content: '\e898';

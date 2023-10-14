@@ -54,11 +54,11 @@ const LoginComponent = () => {
 
         <button onClick={handleLogin}>Login</button>
 
-        {error && <p>{error}</p>}
+        {error && <p className={styles.error}>{error}</p>}
       </div>
       <div className={styles.goToRegisterBox}>
         <p>New to Vitality Hub?</p>
-        <Link href='/register' style={{ color: 'blue' }}>
+        <Link href='/register'>
           Create an account
         </Link>
       </div>

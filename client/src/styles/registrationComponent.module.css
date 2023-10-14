@@ -51,6 +51,9 @@
       z-index: -1;
     }
   }
+  .error {
+    color: var(--errorColor);
+  }
 
 }
 
