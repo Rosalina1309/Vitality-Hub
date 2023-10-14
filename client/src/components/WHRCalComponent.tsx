@@ -25,24 +25,26 @@ const MeasurementsCalComponent: React.FC = () => {
   return (
     <div className={styles.WHRCalculator}>
       <h2>Waist-Hip Ratio Calculator</h2>
-        <label>Gender:</label>
+        <label htmlFor='gender'>Gender:</label>
       <div className={styles['item-select']}>
-        <select value={gender} onChange={handleGenderChange}>
+        <select id='gender' value={gender} onChange={handleGenderChange}>
           <option value='male'>Male</option>
           <option value='female'>Female</option>
         </select>
       </div>
       <div className={styles['item-form']}>
-        <label>Waist Circumference (in cm):</label>
+        <label htmlFor='waist'>Waist Circumference (in cm):</label>
         <input
+          id='waist'
           type='text'
           value={waist}
           onChange={e => dispatch(setWaist(e.target.value))}
         />
       </div>
       <div className={styles['item-form']}>
-        <label>Hip Circumference (in cm):</label>
+        <label htmlFor='hip'>Hip Circumference (in cm):</label>
         <input
+          id='hip'
           type='text'
           value={hip}
           onChange={e => dispatch(setHip(e.target.value))}
