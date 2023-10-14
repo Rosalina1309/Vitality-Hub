@@ -11,12 +11,15 @@ This is the back end of Vitality Hub.
   7.1
 
 - Configuration
+
   Remember to run bundle install on start
 
 - Database creation
+
   Make sure to create a .env file with the necessary db, user, etc. and then run 'rails db:create'.
 
 - Database initialization
+
   rails db:migrate
 
 - Get data for recipes and exercises tables
