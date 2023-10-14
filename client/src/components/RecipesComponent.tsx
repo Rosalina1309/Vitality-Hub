@@ -8,8 +8,8 @@ import styles from '../styles/recipesComponent.module.css';
 
 const RecipesComponent: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [favorites, setFavorites] = useState<string[]>(localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')!) : []);
-  const [token, setToken] = useState<string | null>(localStorage.getItem('token') || null);
+  const [favorites, setFavorites] = useState<string[]>(typeof window !== 'undefined' ? (localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')!) : []) : []);
+  const [token, setToken] = useState<string | null>(typeof window !== 'undefined' ? localStorage.getItem('token') || null : null);
 
   useEffect(() => {
     const fetchData = async () => {
