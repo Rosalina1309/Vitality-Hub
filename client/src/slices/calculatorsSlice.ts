@@ -6,7 +6,7 @@ export interface CalculatorsState {
 }
 
 const initialState: CalculatorsState = {
-  showBMI: false,
+  showBMI: true,
   showWHR: false,
 };
 

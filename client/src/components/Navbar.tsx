@@ -33,17 +33,26 @@ export default function Navbar() {
           </li>
           )}
           <li>
-            <Link href='/profile' onClick={toggleMenu}>
+            <Link
+              href='/profile'
+              onClick={toggleMenu}
+              className={styles.profile}>
               Profile
             </Link>
           </li>
           <li>
-            <Link href='/recipes' onClick={toggleMenu}>
+            <Link
+              href='/recipes'
+              onClick={toggleMenu}
+              className={styles.recipes}>
               Recipes
             </Link>
           </li>
           <li>
-            <Link href='/exercises' onClick={toggleMenu}>
+            <Link
+              href='/exercises'
+              onClick={toggleMenu}
+              className={styles.exercises}>
               Exercises
             </Link>
           </li>

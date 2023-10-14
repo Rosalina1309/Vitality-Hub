@@ -1,4 +1,3 @@
-'use client';
 import MainPage from '@/components/MainPage';
 import styles from '@/styles/home.module.css';
 

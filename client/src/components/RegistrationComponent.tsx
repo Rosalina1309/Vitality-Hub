@@ -76,6 +76,6 @@ const RegistrationComponent = () => {
     </>
     
   );
-}
+};
 
 export default RegistrationComponent;

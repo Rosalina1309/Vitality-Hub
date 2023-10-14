@@ -5,13 +5,15 @@ import { mockRecipes } from '@/mock/recipes.mock';
 
 export interface RecipeState {
   recipes: Recipe[];
+  loadingMessage: string;
 }
 
 const initialState: RecipeState = {
   recipes: [],
+  loadingMessage: '',
 };
 
-export const fetchRecipesAsync = createAsyncThunk<Recipe[]> (
+export const fetchRecipesAsync = createAsyncThunk<Recipe[]>(
   'recipes/fetchRecipes',
   async () => {
     try {
@@ -26,19 +28,21 @@ export const fetchRecipesAsync = createAsyncThunk<Recipe[]> (
 export const recipeSlice = createSlice({
   name: 'recipes',
   initialState,
-  reducers: {
-  },
+  reducers: {},
   extraReducers: builder => {
-    builder.addCase(
-      fetchRecipesAsync.fulfilled, (state, action) => {
+    builder
+      .addCase(fetchRecipesAsync.pending, (state) => {
+        state.loadingMessage = 'Loading recipes...';
+      })
+      .addCase(fetchRecipesAsync.fulfilled, (state, action) => {
+        state.loadingMessage = '';
         state.recipes = action.payload;
-      }
-    ).addCase(
-      fetchRecipesAsync.rejected, (state) => {
+      })
+      .addCase(fetchRecipesAsync.rejected, state => {
+        state.loadingMessage = '';
         state.recipes = mockRecipes;
-      }
-    );
-  }
+      });
+  },
 });
 
 export default recipeSlice.reducer;

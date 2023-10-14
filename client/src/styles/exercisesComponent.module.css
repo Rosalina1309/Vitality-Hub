@@ -1,48 +1,118 @@
-
 .container {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column: 1/-1;
+  h2 {
+    grid-column: 1/-1;
+    color: var(--accentColor);
+  }
 }
 
 .inputwrapper {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   margin-top: 20px;
+  input {
+    height: 45px;
+    width: 100%;
+  }
 }
-
+.exercises {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column: 1/-1;
+  grid-auto-flow: dense;
+  gap: 1rem;
+}
 .exercise-card {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 15px;
-}
-
-.exercise-card h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.exercise-card p {
-  margin: 5px 0;
-}
-
-/* Updated styles for the button */
-.exercise-card button {
-  font-size: inherit; /* Inherits font size from parent */
-  background-color: #a3e4d7; /* Pastel green color */
-  color: #333; /* Text color */
-  border-radius: 3px;
-  padding: 5px 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.exercise-card button:hover {
-  background-color: #78c2ad; /* Darker shade of pastel green on hover */
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: var(--secondaryColor);
+  font-size: 18px;
+  max-height: 330px;
+  &:has(.instructions) {
+    max-height: 100%;
+  }
+  h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+    color: var(--accentColor);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+    button {
+      margin: 0;
+      background: transparent;
+      padding: 0;
+      line-height: 1;
+      &::after {
+        content: '\e838';
+        font-family: 'Material Symbols Rounded';
+        color: var(--notFavorite);
+        font-size: 40px;
+        transition: color .25s ease-out;
+      }
+      &.favorite {
+        &::after {
+          color: var(--favorite);
+        }
+      }
+      &:hover {
+        &::after {
+          color: var(--favorite);
+        }
+      }
+    }
+  }
+  p {
+    margin-bottom: 10px;
+  }
+  strong {
+    font-weight: 600;
+    color: var(--accentColor);
+  }
+  button {
+    margin-top: 30px;
+    padding: 15px 20px;
+    background: var(--accentColor);
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--secondaryColor);
+    font-size: 16px;
+    align-self: center;
+  }
+  .instructions {
+    margin-top: 30px;
+    h4 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    p {
+      line-height: 1.5;
+    }
+  }
 }
 
 .error-message {
-  color: #50b368;
-  font-weight: bold;
+  font-size: 21px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    grid-column: 1/2;
+  }
+  .exercise-card {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .container {
+    grid-column: 1/3;
+  }
 }

@@ -1,9 +1,9 @@
-'use client'
-import React from "react";
-import styles from "../styles/whrCalComponent.module.css";
-import getAdviceForWHR from "@/helpers/getAdviceForWHR";
-import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
-import { calculateWhr, setGender, setHip, setWaist } from "@/slices/whrSlice";
+'use client';
+import React from 'react';
+import styles from '../styles/whrCalComponent.module.css';
+import getAdviceForWHR from '@/helpers/getAdviceForWHR';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { calculateWhr, setGender, setHip, setWaist } from '@/slices/whrSlice';
 
 const MeasurementsCalComponent: React.FC = () => {
   const gender = useAppSelector(state => state.whr.gender);
@@ -25,23 +25,31 @@ const MeasurementsCalComponent: React.FC = () => {
   return (
     <div className={styles.WHRCalculator}>
       <h2>Waist-Hip Ratio Calculator</h2>
-      <div>
         <label>Gender:</label>
+      <div className={styles['item-select']}>
         <select value={gender} onChange={handleGenderChange}>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
+          <option value='male'>Male</option>
+          <option value='female'>Female</option>
         </select>
       </div>
-      <div>
+      <div className={styles['item-form']}>
         <label>Waist Circumference (in cm):</label>
-        <input type="text" value={waist} onChange={(e) => dispatch(setWaist(e.target.value))} />
+        <input
+          type='text'
+          value={waist}
+          onChange={e => dispatch(setWaist(e.target.value))}
+        />
       </div>
-      <div>
+      <div className={styles['item-form']}>
         <label>Hip Circumference (in cm):</label>
-        <input type="text" value={hip} onChange={(e) => dispatch(setHip(e.target.value))} />
+        <input
+          type='text'
+          value={hip}
+          onChange={e => dispatch(setHip(e.target.value))}
+        />
       </div>
       <button onClick={whrCalculator}>Calculate WHR</button>
-      {errMessage && <p style={{ color: "red" }}>{errMessage}</p>}
+      {errMessage && <p className={styles.error}>{errMessage}</p>}
       {whr !== null && !errMessage && <p>{getAdviceForWHR(gender, whr)}</p>}
     </div>
   );
