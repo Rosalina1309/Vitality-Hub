@@ -22,22 +22,24 @@ const MeasurementsCalComponent: React.FC = () => {
     <div className={styles.BMICalculator}>
       <h2>BMI Calculator</h2>
       <div className={styles['item-form']}>
-        <label>Height (in cm):</label>
+        <label htmlFor='height'>Height (in cm):</label>
         <input
+          id='height'
           type='text'
           value={height}
           onChange={e => dispatch(setHeight(e.target.value))}
         />
       </div>
       <div className={styles['item-form']}>
-        <label>Weight (in kg):</label>
+        <label htmlFor='weight'>Weight (in kg):</label>
         <input
+          id='weight'
           type='text'
           value={weight}
           onChange={e => dispatch(setWeight(e.target.value))}
         />
       </div>
-      <button onClick={bmiCalculator}>Calculate BMI</button>
+      <button id='calculateBMI' onClick={bmiCalculator}>Calculate BMI</button>
       {errMessage && <p className={styles.errMessage}>{errMessage}</p>}
       {bmi !== null && !errMessage && (
         <p>

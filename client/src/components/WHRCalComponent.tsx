@@ -50,8 +50,8 @@ const MeasurementsCalComponent: React.FC = () => {
           onChange={e => dispatch(setHip(e.target.value))}
         />
       </div>
-      <button onClick={whrCalculator}>Calculate WHR</button>
-      {errMessage && <p className={styles.error}>{errMessage}</p>}
+      <button id='calculateWHR' onClick={whrCalculator}>Calculate WHR</button>
+      {errMessage && <p id='error' className={styles.error}>{errMessage}</p>}
       {whr !== null && !errMessage && <p>{getAdviceForWHR(gender, whr)}</p>}
     </div>
   );
