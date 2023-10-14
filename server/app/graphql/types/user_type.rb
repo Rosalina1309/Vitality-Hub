@@ -32,4 +32,4 @@ module Types
     recipes = Recipe.where(id: favorite_recipes)
     recipes
   end
-end
+
