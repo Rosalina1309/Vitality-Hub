@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { User, RegistrationData } from '@/interfaces/User';
+import { UserAuth, RegistrationData } from '@/interfaces/User';
 
-export const loginAsync = createAsyncThunk<User, { usernameOrEmail: string; password: string }>(
+export const loginAsync = createAsyncThunk<UserAuth, { usernameOrEmail: string; password: string }>(
   'auth/login',
-  async ({ usernameOrEmail, password }): Promise<User> => {
+  async ({ usernameOrEmail, password }): Promise<UserAuth> => {
     try {
       const response = await fetch('http://localhost:3001/graphql', {
         method: 'POST',

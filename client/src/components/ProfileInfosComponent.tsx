@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { fetchUserInfos } from '../apiServices/fetchUserInfos';
-import { User } from '../interfaces/User';
+import { setUser } from '@/slices/profileSlice';
 import styles from '../styles/userProfile.module.css';
 import Link from 'next/link';
+import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 
 const ProfileInfosComponent: React.FC = () => {
-  const [user, setUser] = useState<User>();
+  const user = useAppSelector((state) => state.profile.user);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -13,7 +15,7 @@ const ProfileInfosComponent: React.FC = () => {
         const token = localStorage.getItem('token');
         if (token) {
           const userData = await fetchUserInfos(token);
-          setUser(userData);
+          dispatch(setUser(userData)); 
         } else {
           console.error('Token not found');
         }

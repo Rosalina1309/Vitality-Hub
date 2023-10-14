@@ -1,7 +1,7 @@
 import { Exercise } from "./Exercise";
 import { Recipe } from "./Recipe";
 
-export interface User {
+export interface UserAuth {
   user_id: string;
   username: string;
 }

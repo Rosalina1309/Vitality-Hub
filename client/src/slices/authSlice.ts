@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { User } from '@/interfaces/User';
+import { UserAuth } from '@/interfaces/User';
 import { registerAsync, loginAsync } from '@/apiServices/authApi';
 
 interface AuthState {
-  user: User | '';
+  user: UserAuth | '';
   isRegistered: boolean;
   isAuthenticated: boolean;
   loginError: string | null;
