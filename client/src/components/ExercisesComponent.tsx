@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { fetchExercises } from "@/apiServices/fetchExercises";
+import { fetchExercisesByMuscle } from '@/apiServices/fetchExercisesByMuscle';
 import { Exercise } from '@/interfaces/Exercise';
 import styles from '../styles/exercisesComponent.module.css';
 
@@ -13,7 +14,6 @@ const ExercisesComponent: React.FC = () => {
   const [favoriteExercises, setFavoriteExercises] = useState<string[]>([]);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
     const savedFavorites = localStorage.getItem('favoriteExercises');
     if (savedFavorites) {
       setFavoriteExercises(JSON.parse(savedFavorites));
@@ -36,10 +36,12 @@ const ExercisesComponent: React.FC = () => {
     setSelectedExercise(exerciseName === selectedExercise ? null : exerciseName);
   };
 
+  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+
   const handleToggleFavorite = async (exerciseId: string) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:3001/graphql', {
+      const response = await fetch(`${rootUrl}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -66,17 +68,29 @@ const ExercisesComponent: React.FC = () => {
       console.error("Error toggling favorite:", error);
     }
   };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); 
+    try {
+      const data = await fetchExercisesByMuscle(muscle); 
+      setExercises(data);
+    } catch (error) {
+      console.error("Error fetching exercises:", error);
+    }
+  };
 
   return (
     <div className={styles.container}>
-    <h2>Enter Muscle:</h2>
-    <div className={styles.inputwrapper}>
-      <input
-        type="text"
-        value={muscle}
-        onChange={(e) => setMuscle(e.target.value)}
-      />
-    </div>
+     <form onSubmit={handleSubmit}>
+        <h2>Enter Muscle:</h2>
+        <div className={styles.inputwrapper}>
+          <input
+            type="text"
+            value={muscle}
+            onChange={(e) => setMuscle(e.target.value)}
+          />
+          <button type="submit">Search</button>
+        </div>
+      </form>
     <div>
       {exercises !== undefined && exercises.length > 0 ? (
         exercises.map((exercise) => (

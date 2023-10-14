@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+
 export async function fetchUserInfos(token: string) {
   try {
-    const graphqlEndpoint = 'http://localhost:3001/graphql';
+    const graphqlEndpoint = `${rootUrl}`;
     const query = `
     {user {id username email birthdate gender favoriteExercises{ exercise {id name type muscle equipment difficulty instructions}}favoriteRecipes{recipe{id title image calories protein fat carbs}}}}
     `;

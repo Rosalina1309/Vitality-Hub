@@ -10,9 +10,12 @@ const LoginComponent = () => {
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
+  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+
+
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:3001/graphql', {
+      const response = await fetch(`${rootUrl}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

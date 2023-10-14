@@ -9,10 +9,12 @@ const RegistrationComponent = () => {
   const [email, setEmail] = useState('');
   const [gender, setGender] = useState('');
   const [isRegistered, setIsRegistered] = useState(false); 
+  
+  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
 
   const handleRegistration = async () => {
     try {
-      const response = await fetch('http://localhost:3001/graphql', {
+      const response = await fetch(`${rootUrl}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

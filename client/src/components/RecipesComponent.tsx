@@ -23,10 +23,10 @@ const RecipesComponent: React.FC = () => {
 
     fetchData();
   }, []);
-
+  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
   const toggleFavorite = async (recipeId: string) => {
     try {
-      const response = await fetch('http://localhost:3001/graphql', {
+      const response = await fetch(`${rootUrl}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

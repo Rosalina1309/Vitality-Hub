@@ -6,12 +6,13 @@ const ExercisesPage = () => {
   return (
     <>
       <div>
+      <div>
+          <BurnedCaloriesComponent />
+        </div>
          <div>
           <ExercisesComponent />
         </div>
-        <div>
-          <BurnedCaloriesComponent />
-        </div>
+       
       </div>
     </>
   );
