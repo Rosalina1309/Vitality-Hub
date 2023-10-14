@@ -1,5 +1,3 @@
-'use client';
-
 import styles from '../styles/burnedCaloriesComponent.module.css';
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import {

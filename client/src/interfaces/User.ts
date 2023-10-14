@@ -11,3 +11,9 @@ export interface User {
   favoriteRecipes: Recipe[];
 }
 
+export interface RegistrationData {
+  username: string;
+  password: string;
+  email: string;
+  gender: string;
+}
