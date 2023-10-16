@@ -2,27 +2,21 @@
 export async function addBMIToProfile(height: string, weight: string, bmi: number | null, token: string): Promise<any> {
   const query = {
     query: `
-      mutation ($input: CreateRecordMutationInput!) {
-        createRecord(input: $input) {
-          user {
-            id
-          }
-        }
-      }
+    mutation CreateRecord($input: CreateRecordMutationInput!) { createRecord(input: $input) { record { ... on BmiMeasurement { id height weight bmi createdAt } } } }
     `,
     variables: {
       input: {
-        fieldName: "measurements",
+        recordType : "BmiMeasurement",
         height: parseFloat(height),
         weight: parseFloat(weight),
-        bmi: bmi ? parseFloat(bmi.toFixed(2)) : null,
-        measurementUnit: "metric"
+        bmi : bmi ? parseFloat(bmi.toFixed(2)) : null
       }
     }
   };
 
+  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL
   try {
-    const response = await fetch("http://localhost:3001/graphql", {
+    const response = await fetch(`${rootUrl}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,7 +1,8 @@
 import { Exercise } from "./Exercise";
-import { Measurements } from "./Measurements";
+import { BMIMeasurements } from "./BMIMeasurements";
 
 import { Recipe } from "./Recipe";
+import { WHRMeasurement } from "./WHRMeasurements";
 
 export interface User {
   id: string;
@@ -11,6 +12,7 @@ export interface User {
   gender: string;
   favoriteExercises: Exercise[];
   favoriteRecipes: Recipe[];
-  userMeasurements: Measurements[];
+  bmiMeasurements: BMIMeasurements[];
+  whrMeasurements: WHRMeasurement[];
 }
 
