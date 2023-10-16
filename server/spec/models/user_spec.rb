@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'validates that the birthdate can\'t be after today' do
-    user = User.new(username: 'patri test', email: 'patri@test.com', password: '123', birthdate: '2023/10/15')
+    user = User.new(username: 'patri test', email: 'patri@test.com', password: '123456', birthdate: '2023/10/15')
     expect(user).not_to be_valid
   end
 
@@ -29,5 +29,10 @@ RSpec.describe User, type: :model do
     expect(userA).to be_valid
     userB = User.new(username: 'patro b test', email: 'patrob@test.com', password: '123456', gender: 'male')
     expect(userB).to be_valid
+  end
+
+  it 'creates a valid user when all fields are valid' do
+    user = User.new(username: 'patri test', email: 'patri@test.com', password: '123456', birthdate: '2000/10/15')
+    expect(user).to be_valid
   end
 end

@@ -12,8 +12,10 @@ class User < ApplicationRecord
 
   validates_comparison_of :birthdate, less_than: ->(date) { Date.today }, allow_blank: true
 
-  has_many :user_measurements
+  has_many :bmi_measurements
+  has_many :whr_measurements
   has_many :user_goals
+  has_many :health_logs
 
   has_many :user_favorite_recipes
   has_many :favorite_recipes, through: :user_favorite_recipes, source: :recipe
