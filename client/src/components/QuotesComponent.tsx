@@ -26,8 +26,7 @@ const QuotesComponent: React.FC = () => {
           <p className={styles.author}>- {quote.author} -</p>
         </div>
       )}
-    </div>
-   
+    </div> 
   );
 };
 
