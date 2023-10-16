@@ -5,6 +5,7 @@ export const loginAsync = createAsyncThunk<User, { usernameOrEmail: string; pass
   'auth/login',
   async ({ usernameOrEmail, password }): Promise<User> => {
     try {
+      console.log(process.env.NEXT_PUBLIC_ROOT_URL)
       const response = await fetch(`${process.env.NEXT_PUBLIC_ROOT_URL}`, {
         method: 'POST',
         headers: {
