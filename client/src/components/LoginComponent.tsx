@@ -22,6 +22,9 @@ const LoginComponent = () => {
     };
   }, []);
 
+  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+
+
   const handleLogin = async () => {
     try {
       const result = await dispatch(

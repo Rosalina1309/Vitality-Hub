@@ -5,12 +5,10 @@ import styles from '@/styles/exercisePage.module.css';
 
 const ExercisesPage = () => {
   return (
-    <>
-      <main className={styles.main}>
-        <BurnedCaloriesComponent />
-        <ExercisesComponent />
-      </main>
-    </>
+    <main className={styles.main}>
+      <BurnedCaloriesComponent />
+      <ExercisesComponent />
+    </main>
   );
 };
 

@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from 'react';
+
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { fetchExercises } from "@/apiServices/fetchExercises";
+import { fetchExercisesByMuscle } from '@/apiServices/fetchExercisesByMuscle';
+import { Exercise } from '@/interfaces/Exercise';
 import styles from '../styles/exercisesComponent.module.css';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import {
   fetchExercisesAsync,
+  fetchExercisesByMuscleAsync,
   setMuscle,
   setSelectedExercise,
 } from '@/slices/exercisesSlice';
@@ -24,7 +31,7 @@ const ExercisesComponent: React.FC = () => {
 
     const fetchData = async () => {
       try {
-        await dispatch(fetchExercisesAsync(''));
+        await dispatch(fetchExercisesAsync());
       } catch (err) {
         console.error('Error fetching exercises:', err);
       }
@@ -45,30 +52,40 @@ const ExercisesComponent: React.FC = () => {
 
     dispatch(setMuscle(value));
     try {
-      await dispatch(fetchExercisesAsync(value));
+      await dispatch(fetchExercisesByMuscleAsync(value));
     } catch (error) {
       console.error(error);
     }
     dispatch(setMuscle(''));
   };
 
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   try {
+  //     const data = await fetchExercisesByMuscle(muscle);
+  //     setExercises(data);
+  //   } catch (error) {
+  //     console.error('Error fetching exercises:', error);
+  //   }
+  // };
+
   const handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
     dispatch(setMuscle(e.currentTarget.value));
   };
 
+  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+
   const handleToggleFavorite = async (exerciseId: string) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_BACKEND_API_URL as string,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            query: `mutation ToggleFavoriteExercise {
+      const response = await fetch(`${rootUrl}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          query: `mutation ToggleFavoriteExercise {
             toggleFavorite(type: "exercise", itemId: "${exerciseId}") {
               user {
                 favoriteExercises {
@@ -99,6 +116,7 @@ const ExercisesComponent: React.FC = () => {
     }
   };
 
+
   return (
     <div className={styles.container}>
       <h2>Enter Muscle:</h2>
@@ -113,7 +131,7 @@ const ExercisesComponent: React.FC = () => {
       <div className={styles.exercises}>
         {exercises !== null && exercises.length > 0 ? (
           exercises.map(exercise => (
-            <div key={exercise.name} className={styles['exercise-card']}>
+            <div key={exercise.id} className={styles['exercise-card']}>
               <h3>
                 {exercise.name}{' '}
                 <button

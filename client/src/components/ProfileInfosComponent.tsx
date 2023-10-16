@@ -14,6 +14,7 @@ const ProfileInfosComponent: React.FC = () => {
         if (token) {
           const userData = await fetchUserInfos(token);
           setUser(userData);
+          console.log(userData)
         } else {
           console.error('Token not found');
         }

@@ -9,9 +9,9 @@ const RecipesComponent: React.FC = () => {
   const recipes = useAppSelector(state => state.recipes.recipes);
   const loadingMessage = useAppSelector(state => state.recipes.loadingMessage);
   const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
-  const [token, setToken] = useState<string | null>(null);
+  const [favorites, setFavorites] = useState<string[]>(typeof window !== 'undefined' ? (localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')!) : []) : []);
+  const [token, setToken] = useState<string | null>(typeof window !== 'undefined' ? localStorage.getItem('token') || null : null);
 
-  const [favorites, setFavorites] = useState<string[]>([]);
   useEffect(() => {
     if (isAuthenticated) {
       setToken(localStorage.getItem('token'));
@@ -36,24 +36,21 @@ const RecipesComponent: React.FC = () => {
     };
     fetchData();
   }, []);
-
+  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
   const toggleFavorite = async (recipeId: string) => {
     try {
-      const response = await fetch(
-        process.env.NEXT_PUBLIC_BACKEND_API_URL as string,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            query: `mutation ToggleFavoriteRecipe {
-              toggleFavorite(type: "recipe", itemId: "${recipeId}") {
-                user {
-                  favoriteRecipes {
-                    recipeId
-                  }
+      const response = await fetch(`${rootUrl}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          query: `mutation ToggleFavoriteRecipe {
+            toggleFavorite(type: "recipe", itemId: "${recipeId}") {
+              user {
+                favoriteRecipes {
+                  recipeId
                 }
               }
             }`,

@@ -5,13 +5,14 @@ export const loginAsync = createAsyncThunk<User, { usernameOrEmail: string; pass
   'auth/login',
   async ({ usernameOrEmail, password }): Promise<User> => {
     try {
-      const response = await fetch('http://localhost:3001/graphql', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_ROOT_URL}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          query: 'mutation ($input: LoginMutationInput!) { login(input: $input) { token } }',
+          query:
+            'mutation ($input: LoginMutationInput!) { login(input: $input) { token } }',
           variables: {
             input: {
               usernameOrEmail: usernameOrEmail,
@@ -40,7 +41,7 @@ export const registerAsync = createAsyncThunk<boolean, RegistrationData>(
   'auth/register',
   async (registrationData): Promise<boolean> => {
     try {
-      const response = await fetch('http://localhost:3001/graphql', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_ROOT_URL}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

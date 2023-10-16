@@ -19,9 +19,23 @@ const initialState: ExercisesState = {
 
 export const fetchExercisesAsync = createAsyncThunk(
   'exercises/fetchExercises',
-  async (muscle: string): Promise<Exercise[]> => {
+  async (): Promise<Exercise[]> => {
     try {
       const response = await fetchExercises();
+      console.log(response);
+
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const fetchExercisesByMuscleAsync = createAsyncThunk(
+  'exercises/fetchExercisesByMuscle',
+  async (muscle: string): Promise<Exercise[]> => {
+    try {
+      const response = await fetchExercisesByMuscle(muscle);
       console.log(response);
 
       return response;
