@@ -42,26 +42,26 @@ const LoginComponent = () => {
 
   return (
     <div className={styles.loginComponent}>  
-       {isLoggedIn ? (
-         <p>Logged In</p>
-       ) : (
-         <>
-           <label htmlFor='username'>Username</label>
-           <input type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
-           <label htmlFor='password'>Password</label>
-           <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+      {isLoggedIn ? (
+        <p>Logged In</p>
+      ) : (
+        <>
+        <label htmlFor='username'>Username</label>
+            <input type='text' value={username} onChange={(e) => setUsername(e.target.value)}></input>
+            <label htmlFor='password'>Password</label>
+            <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
 
-           <button onClick={handleLogin}>Login</button>
-         </>
-       )}
-       {isLoggedIn && (
-         <div>
-           <Link href='/user-profile'legacyBehavior>
-             <a>Go to User Profile</a>
-           </Link>
-         </div>
-       )}
-     </div>
+            <button onClick={handleLogin}>Login</button>
+        </>
+      )}
+      {isLoggedIn && (
+        <div>
+          <Link href='/user-profile'legacyBehavior>
+            <a>Go to User Profile</a>
+          </Link>
+        </div>
+      )}
+    </div>
   );
 };
 
