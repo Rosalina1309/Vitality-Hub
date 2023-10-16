@@ -4,7 +4,7 @@
   right: 10px;
   height: 49%;
   max-height: 70vh;
-  background: var(--bodyBg);
+  background: var(--secondaryColor);
   transition: 0.25s ease-out;
   transform: translateY(100%);
   box-shadow: var(--shadow);

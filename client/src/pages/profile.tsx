@@ -1,10 +1,13 @@
-import ExercisesComponent from '@/components/ExercisesComponent';
+import CaloriesChartComponent from '@/components/CaloriesChartComponent';
+import ProfileInfosComponent from '@/components/ProfileInfosComponent';
+import styles from '@/styles/profilePage.module.css'
+
 const UserProfilePage = () => {
   return (
-    <>
-      <ExercisesComponent />
-      Hi this is the User's Profile
-    </>
+    <main className={styles.main}>
+      <ProfileInfosComponent />
+      <CaloriesChartComponent />
+    </main>
   );
 };
 

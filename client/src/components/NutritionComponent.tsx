@@ -49,8 +49,7 @@ const NutritionComponent: React.FC = () => {
             onChange={handleFoodQueryChange}
             placeholder='Enter food name'
           />
-          <button className={styles.button} type='submit'>
-            Search
+          <button className={styles['icon-search']} type='submit'>
           </button>
         </form>
       </div>

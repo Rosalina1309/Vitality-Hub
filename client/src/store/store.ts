@@ -9,6 +9,8 @@ import caloriesChartSlice from '@/slices/caloriesChartSlice';
 import exercisesSlice from '@/slices/exercisesSlice';
 import nutritionSlice from '@/slices/nutritionSlice';
 import whrSlice from '@/slices/whrSlice';
+import authSlice from '@/slices/authSlice';
+import burnedCaloriesSlice from '@/slices/burnedCaloriesSlice';
 
 const store = configureStore({
   reducer: {
@@ -22,6 +24,8 @@ const store = configureStore({
     exercises: exercisesSlice,
     nutrition: nutritionSlice,
     whr: whrSlice,
+    auth: authSlice,
+    burnedCalories: burnedCaloriesSlice,
   },
 });
 

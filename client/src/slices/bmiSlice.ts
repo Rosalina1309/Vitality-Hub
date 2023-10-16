@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "@/store/store";
-import calculateAdvice from "@/helpers/calculateAdivces";
+import calculateAdvice from "@/helpers/calculateAdvices";
 
 export interface BmiCalcState {
   height: string;
