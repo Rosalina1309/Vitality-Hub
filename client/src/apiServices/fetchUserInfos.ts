@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
 export async function fetchUserInfos(token: string) {
   try {
@@ -21,7 +21,7 @@ export async function fetchUserInfos(token: string) {
         },
       }
     );
-    console.log(response.data.data.user);
+
     return response.data.data.user;
   } catch (error) {
     throw error;

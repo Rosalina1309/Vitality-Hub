@@ -73,7 +73,7 @@ const ExercisesComponent: React.FC = () => {
     dispatch(setMuscle(e.currentTarget.value));
   };
 
-  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+  const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API;
 
   const handleToggleFavorite = async (exerciseId: string) => {
     try {

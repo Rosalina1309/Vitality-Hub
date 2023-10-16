@@ -22,7 +22,7 @@ const LoginComponent = () => {
     };
   }, []);
 
-  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+  const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API;
 
 
   const handleLogin = async () => {

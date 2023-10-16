@@ -1,4 +1,6 @@
 import { Exercise } from "./Exercise";
+import { Measurements } from "./Measurements";
+
 import { Recipe } from "./Recipe";
 
 export interface User {
@@ -9,6 +11,7 @@ export interface User {
   gender: string;
   favoriteExercises: Exercise[];
   favoriteRecipes: Recipe[];
+  userMeasurements: Measurements[];
 }
 
 export interface RegistrationData {

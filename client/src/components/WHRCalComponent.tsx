@@ -4,6 +4,7 @@ import styles from '../styles/whrCalComponent.module.css';
 import getAdviceForWHR from '@/helpers/getAdviceForWHR';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { calculateWhr, setGender, setHip, setWaist } from '@/slices/whrSlice';
+import { addWHRToProfile } from "../apiServices/setWHRMeasurements";
 
 const MeasurementsCalComponent: React.FC = () => {
   const gender = useAppSelector(state => state.whr.gender);
@@ -20,6 +21,22 @@ const MeasurementsCalComponent: React.FC = () => {
 
   function handleGenderChange(e: React.ChangeEvent<HTMLSelectElement>) {
     dispatch(setGender(e.currentTarget.value));
+  }
+
+  async function addToProfileHandler() {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("Token not found.");
+        return;
+      }
+
+      const response = await addWHRToProfile(waist, hip, whr, token);
+      console.log("Record added successfully!", response);
+    } catch (error) {
+      console.error("Error adding record:", error);
+    }
   }
 
   return (
@@ -53,8 +70,10 @@ const MeasurementsCalComponent: React.FC = () => {
       <button id='calculateWHR' onClick={whrCalculator}>Calculate WHR</button>
       {errMessage && <p id='error' className={styles.error}>{errMessage}</p>}
       {whr !== null && !errMessage && <p>{getAdviceForWHR(gender, whr)}</p>}
+      <button onClick={addToProfileHandler}>Add to Profile</button>
     </div>
   );
 };
 
 export default MeasurementsCalComponent;
+

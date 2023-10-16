@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { fetchUserInfos } from '../apiServices/fetchUserInfos';
 import { User } from '../interfaces/User';
+import { Measurements } from '@/interfaces/Measurements';
 import styles from '../styles/userProfile.module.css';
 import Link from 'next/link';
 
 const ProfileInfosComponent: React.FC = () => {
   const [user, setUser] = useState<User>();
+  const [latestMeasurements, setLatestMeasurements] = useState<Measurements | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +16,60 @@ const ProfileInfosComponent: React.FC = () => {
         if (token) {
           const userData = await fetchUserInfos(token);
           setUser(userData);
-          console.log(userData)
+
+          const measurementsData = userData.userMeasurements;
+          console.log(measurementsData)
+
+          let latestMeasurement: Measurements = {
+            waist: '',
+            hips: '',
+            bmi: '',
+            height: '',
+            weight: '',
+            whr: '',
+          };
+
+          for (let i = measurementsData.length - 1; i >= 0; i--) {
+            const measurement = measurementsData[i];
+
+            if (measurement.waist !== null && measurement.waist !== undefined) {
+              latestMeasurement.waist = measurement.waist.toString();
+            }
+
+            if (measurement.hips !== null && measurement.hips !== undefined) {
+              latestMeasurement.hips = measurement.hips.toString();
+            }
+
+            if (measurement.bmi !== null && measurement.bmi !== undefined) {
+              latestMeasurement.bmi = measurement.bmi.toString();
+            }
+
+            if (measurement.height !== null && measurement.height !== undefined) {
+              latestMeasurement.height = measurement.height.toString();
+            }
+
+            if (measurement.weight !== null && measurement.weight !== undefined) {
+              latestMeasurement.weight = measurement.weight.toString();
+            }
+
+            if (measurement.whr !== null && measurement.whr !== undefined) {
+              latestMeasurement.whr = measurement.whr.toString();
+            }
+
+            // Break the loop if all properties are set in latestMeasurement
+            if (
+              latestMeasurement.waist !== '' &&
+              latestMeasurement.hips !== '' &&
+              latestMeasurement.bmi !== '' &&
+              latestMeasurement.height !== '' &&
+              latestMeasurement.weight !== '' &&
+              latestMeasurement.whr !== ''
+            ) {
+              break;
+            }
+          }
+
+          setLatestMeasurements(latestMeasurement);
         } else {
           console.error('Token not found');
         }
@@ -35,6 +90,19 @@ const ProfileInfosComponent: React.FC = () => {
               <h2>Your data:</h2>
               <p>Email: {user.email}</p>
               <p>Gender: {user.gender}</p>
+              {latestMeasurements ? (
+              <div>
+                <p>Waist: {latestMeasurements.waist} cm</p>
+                <p>Hips: {latestMeasurements.hips} cm</p>
+                <p>WHR: {latestMeasurements.whr}</p>
+                <p>Height: {latestMeasurements.height} cm</p>
+                <p>Weight: {latestMeasurements.weight} kg</p>
+                <p>BMI: {latestMeasurements.bmi}</p>
+
+              </div>
+            ) : (
+              <p>No valid measurements found.</p>
+            )}
             </div>
             <div className={styles.favoriteExercises}>
               <h3>Favorite Exercises</h3>
@@ -82,6 +150,7 @@ const ProfileInfosComponent: React.FC = () => {
               )}
             </div>
           </div>
+
         </>
       ) : (
         <p>Loading user data...</p>

@@ -5,22 +5,25 @@ export const loginAsync = createAsyncThunk<User, { usernameOrEmail: string; pass
   'auth/login',
   async ({ usernameOrEmail, password }): Promise<User> => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_ROOT_URL}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          query:
-            'mutation ($input: LoginMutationInput!) { login(input: $input) { token } }',
-          variables: {
-            input: {
-              usernameOrEmail: usernameOrEmail,
-              password: password,
-            },
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
           },
-        }),
-      });
+          body: JSON.stringify({
+            query:
+              'mutation ($input: LoginMutationInput!) { login(input: $input) { token } }',
+            variables: {
+              input: {
+                usernameOrEmail: usernameOrEmail,
+                password: password,
+              },
+            },
+          }),
+        }
+      );
 
       const responseBody = await response.json();
 
@@ -42,29 +45,32 @@ export const registerAsync = createAsyncThunk<boolean, RegistrationData>(
   'auth/register',
   async (registrationData): Promise<boolean> => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_ROOT_URL}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          query: `
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            query: `
             mutation ($input: RegisterUserMutationInput!) {
               registerUser(input: $input) {
                 token
               }
             }
           `,
-          variables: {
-            input: {
-              username: registrationData.username,
-              email: registrationData.email,
-              password: registrationData.password,
-              gender: registrationData.gender,
+            variables: {
+              input: {
+                username: registrationData.username,
+                email: registrationData.email,
+                password: registrationData.password,
+                gender: registrationData.gender,
+              },
             },
-          },
-        }),
-      });
+          }),
+        }
+      );
 
       const responseBody = await response.json();
       console.log(responseBody);

@@ -15,7 +15,10 @@ export default function Navbar() {
 
   return (
     <div>
-      <button id='hamburger' className={styles.hamburger} onClick={toggleMenu}></button>
+      <button
+        id='hamburger'
+        className={styles.hamburger}
+        onClick={toggleMenu}></button>
       <div className={`${styles.menu} ${isOpen ? styles.open : ''}`}>
         <button className={styles.close} onClick={toggleMenu}></button>
         <ul>
@@ -30,8 +33,10 @@ export default function Navbar() {
                 href='/'
                 onClick={() => {
                   dispatch(logout());
+                  localStorage.clear();
                   toggleMenu();
-                }} className={styles.logout}>
+                }}
+                className={styles.logout}>
                 Logout
               </Link>
             </li>
@@ -43,12 +48,14 @@ export default function Navbar() {
             </li>
           )}
           <li>
-            <Link
-              href='/profile'
-              onClick={toggleMenu}
-              className={styles.profile}>
-              Profile
-            </Link>
+            {isAuthenticated && (
+              <Link
+                href='/profile'
+                onClick={toggleMenu}
+                className={styles.profile}>
+                Profile
+              </Link>
+            )}
           </li>
           <li>
             <Link
