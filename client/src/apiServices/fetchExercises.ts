@@ -20,7 +20,7 @@ export async function fetchExercises(): Promise<Exercise[]> {
 
 export async function fetchExercisesByMuscle(muscle:string): Promise<Exercise[]> {
   try {
-    const graphqlEndpoint = process.env.NEXT_PUBLIC_BACKEND_API_URL as string;
+    const graphqlEndpoint = `${rootUrl}`;
     const query =
       `'{ exercisesByMuscle(muscle: "${muscle}") { id name type muscle equipment difficulty instructions }}'`
     const response = await axios.post<{
