@@ -26,6 +26,7 @@ export const loginAsync = createAsyncThunk<User, { usernameOrEmail: string; pass
 
       if (responseBody.data && responseBody.data.login && responseBody.data.login.token) {
         const token = responseBody.data.login.token;
+        localStorage.setItem('token', token);
         const userInfo = JSON.parse(atob(token.split('.')[1]));
         return userInfo;
       } else {

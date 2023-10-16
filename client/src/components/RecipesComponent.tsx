@@ -1,39 +1,33 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { fetchRecipes } from '@/apiServices/fetchRecipes';
+import { Recipe } from '@/interfaces/Recipe';
 import styles from '../styles/recipesComponent.module.css';
-import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
-import { fetchRecipesAsync } from '@/slices/recipeSlice';
 
 const RecipesComponent: React.FC = () => {
-  const recipes = useAppSelector(state => state.recipes.recipes);
-  const loadingMessage = useAppSelector(state => state.recipes.loadingMessage);
-  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
-  const [favorites, setFavorites] = useState<string[]>(typeof window !== 'undefined' ? (localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')!) : []) : []);
-  const [token, setToken] = useState<string | null>(typeof window !== 'undefined' ? localStorage.getItem('token') || null : null);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      setToken(localStorage.getItem('token'));
-      setFavorites(
-        localStorage.getItem('favorites')
-          ? JSON.parse(localStorage.getItem('favorites')!)
-          : []
-      );
-      console.log(isAuthenticated);
-    }
-  }, [])
-
-  const dispatch = useAppDispatch();
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [favorites, setFavorites] = useState<string[]>(
+    typeof window !== 'undefined'
+      ? localStorage.getItem('favorites')
+        ? JSON.parse(localStorage.getItem('favorites')!)
+        : []
+      : []
+  );
+  const [token, setToken] = useState<string | null>(
+    typeof window !== 'undefined' ? localStorage.getItem('token') || null : null
+  );
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await dispatch(fetchRecipesAsync());
+        const data = await fetchRecipes();
+        setRecipes(data);
       } catch (error) {
         console.error('Error fetching recipes:', error);
       }
     };
+
     fetchData();
   }, []);
   const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
@@ -43,7 +37,7 @@ const RecipesComponent: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           query: `mutation ToggleFavoriteRecipe {
@@ -53,10 +47,10 @@ const RecipesComponent: React.FC = () => {
                   recipeId
                 }
               }
-            }`,
-          }),
-        }
-      );
+            }
+          }`,
+        }),
+      });
 
       const responseData = await response.json();
       const updatedFavorites =
@@ -71,35 +65,21 @@ const RecipesComponent: React.FC = () => {
   };
 
   return (
-    <section className={styles.recipesContainer}>
+    <div className={styles.recipesContainer}>
       <h1>Recipes</h1>
       {recipes &&
         recipes.map(recipe => (
           <div className={styles.recipeBox} key={recipe.id}>
+            <h2>{recipe.title}</h2>
             <img
               src={recipe.image}
               alt={recipe.title}
               className={styles.recipeImage}
             />
-            <h2>{recipe.title}</h2>
-            <ul>
-              <li>
-                <span>Calories: </span>
-                {recipe.calories}
-              </li>
-              <li>
-                <span>Protein: </span>
-                {recipe.protein}
-              </li>
-              <li>
-                <span>Fat: </span>
-                {recipe.fat}
-              </li>
-              <li>
-                <span>Carbs: </span>
-                {recipe.carbs}
-              </li>
-            </ul>
+            <p>Calories: {recipe.calories}</p>
+            <p>Protein: {recipe.protein}</p>
+            <p>Fat: {recipe.fat}</p>
+            <p>Carbs: {recipe.carbs}</p>
             <button onClick={() => toggleFavorite(recipe.id)}>
               {favorites.includes(recipe.id)
                 ? 'Remove from Favorites'
@@ -107,8 +87,7 @@ const RecipesComponent: React.FC = () => {
             </button>
           </div>
         ))}
-      {loadingMessage && <p className={styles.loading}>{loadingMessage}</p>}
-    </section>
+    </div>
   );
 };
 
