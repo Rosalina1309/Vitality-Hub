@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../styles/whrCalComponent.module.css';
 import getAdviceForWHR from '@/helpers/getAdviceForWHR';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { calculateWhr, setGender, setHip, setWaist } from '@/slices/whrSlice';
-import { addWHRToProfile } from "../apiServices/setWHRMeasurements";
+import { addWHRToProfile } from '../apiServices/setWHRMeasurements';
+import Link from 'next/link';
 
 const MeasurementsCalComponent: React.FC = () => {
   const gender = useAppSelector(state => state.whr.gender);
@@ -12,7 +13,16 @@ const MeasurementsCalComponent: React.FC = () => {
   const whr = useAppSelector(state => state.whr.whr);
   const errMessage = useAppSelector(state => state.whr.errMessage);
 
+  const [token, setToken] = useState<string | null>(null);
+
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      setToken(storedToken);
+    }
+  }, []);
 
   function whrCalculator() {
     dispatch(calculateWhr());
@@ -24,24 +34,24 @@ const MeasurementsCalComponent: React.FC = () => {
 
   async function addToProfileHandler() {
     try {
-      const token = localStorage.getItem("token");
+      // const token = localStorage.getItem('token');
 
       if (!token) {
-        console.error("Token not found.");
+        console.error('Token not found.');
         return;
       }
 
       const response = await addWHRToProfile(waist, hip, whr, token);
-      console.log("Record added successfully!", response);
+      console.log('Record added successfully!', response);
     } catch (error) {
-      console.error("Error adding record:", error);
+      console.error('Error adding record:', error);
     }
   }
 
   return (
     <div className={styles.WHRCalculator}>
       <h2>Waist-Hip Ratio Calculator</h2>
-        <label htmlFor='gender'>Gender:</label>
+      <label htmlFor='gender'>Gender:</label>
       <div className={styles['item-select']}>
         <select id='gender' value={gender} onChange={handleGenderChange}>
           <option value='male'>Male</option>
@@ -66,17 +76,29 @@ const MeasurementsCalComponent: React.FC = () => {
           onChange={e => dispatch(setHip(e.target.value))}
         />
       </div>
-      <button id='calculateWHR' onClick={whrCalculator}>Calculate</button>
-      {errMessage && <p id='error' className={styles.error}>{errMessage}</p>}
-      {whr !== null && !errMessage &&
+      <button id='calculateWHR' onClick={whrCalculator}>
+        Calculate
+      </button>
+      {errMessage && (
+        <p id='error' className={styles.error}>
+          {errMessage}
+        </p>
+      )}
+      {whr !== null && !errMessage && (
         <div className={styles.result}>
           <p>{getAdviceForWHR(gender, whr)}</p>
-          <button onClick={addToProfileHandler}>Add to Profile</button>
+          {token ? (
+            <button onClick={addToProfileHandler}>Add to Profile</button>
+          ) : (
+            <div className={styles.goToLogin}>
+              <p>Log in to add your WHR to your profile</p>
+              <Link href='/login'>Login</Link>
+            </div>
+          )}
         </div>
-      }
+      )}
     </div>
   );
 };
 
 export default MeasurementsCalComponent;
-

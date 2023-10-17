@@ -3,6 +3,7 @@ import styles from '../styles/bmiCalComponent.module.css';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { setHeight, setWeight, calculateBmi } from '@/slices/bmiSlice';
 import { addBMIToProfile } from '../apiServices/setBMIMeasurements';
+import Link from 'next/link';
 
 const MeasurementsCalComponent: React.FC = () => {
   const height = useAppSelector(state => state.bmi.height);
@@ -70,7 +71,14 @@ const MeasurementsCalComponent: React.FC = () => {
           <p>
             Your BMI: {bmi.toFixed(2)} - {advice && <span>{advice}</span>}
           </p>
-          <button onClick={addToProfileHandler}>Add to Profile</button>
+          {token ? (
+            <button onClick={addToProfileHandler}>Add to Profile</button>
+          ) : (
+            <div className={styles.goToLogin}>
+              <p>Log in to add your BMI to your profile</p>
+              <Link href='/login'>Login</Link>
+            </div>
+          )}
         </div>
       )}
     </div>
