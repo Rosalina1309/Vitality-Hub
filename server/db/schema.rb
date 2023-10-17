@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_12_090529) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_16_142033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "bmi_measurements", force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.float "height"
+    t.float "weight"
+    t.float "bmi"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bmi_measurements_on_user_id"
+  end
 
   create_table "exercises", force: :cascade do |t|
     t.string "name"
@@ -22,6 +32,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_12_090529) do
     t.string "equipment"
     t.string "difficulty"
     t.text "instructions"
+  end
+
+  create_table "health_logs", force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.datetime "date", default: -> { "CURRENT_TIMESTAMP" }
+    t.string "loggable_type", null: false
+    t.bigint "loggable_id", null: false
+    t.index ["loggable_type", "loggable_id"], name: "index_health_logs_on_loggable"
+    t.index ["user_id"], name: "index_health_logs_on_user_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -62,21 +81,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_12_090529) do
     t.index ["user_id"], name: "index_user_goals_on_user_id"
   end
 
-  create_table "user_measurements", force: :cascade do |t|
-    t.uuid "user_id", null: false
-    t.float "height"
-    t.float "weight"
-    t.float "bmi"
-    t.float "hips"
-    t.float "waist"
-    t.float "whr"
-    t.string "measurement_unit"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id", "created_at"], name: "index_user_measurements_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_user_measurements_on_user_id"
-  end
-
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "username", null: false
     t.string "email", null: false
@@ -90,10 +94,22 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_12_090529) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  create_table "whr_measurements", force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.float "waist"
+    t.float "hips"
+    t.float "whr"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_whr_measurements_on_user_id"
+  end
+
+  add_foreign_key "bmi_measurements", "users"
+  add_foreign_key "health_logs", "users"
   add_foreign_key "user_favorite_exercises", "exercises"
   add_foreign_key "user_favorite_exercises", "users"
   add_foreign_key "user_favorite_recipes", "recipes"
   add_foreign_key "user_favorite_recipes", "users"
   add_foreign_key "user_goals", "users"
-  add_foreign_key "user_measurements", "users"
+  add_foreign_key "whr_measurements", "users"
 end

@@ -2,27 +2,20 @@
 export async function addWHRToProfile(waist: string, hip: string, whr: number | null, token: string): Promise<any> {
   const query = {
     query: `
-      mutation ($input: CreateRecordMutationInput!) {
-        createRecord(input: $input) {
-          user {
-            id
-          }
-        }
-      }
+    mutation CreateRecord($input: CreateRecordMutationInput!) { createRecord(input: $input) { record { ... on WhrMeasurement { id waist hips whr createdAt } } } }
     `,
     variables: {
       input: {
-        fieldName: "measurements",
+        recordType: "WhrMeasurement",
         waist: parseFloat(waist),
         hips: parseFloat(hip),
         whr: whr ? parseFloat(whr.toFixed(2)) : null,
-        measurementUnit: "metric"
       }
     }
   };
-
+  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL
   try {
-    const response = await fetch("http://localhost:3001/graphql", {
+    const response = await fetch(`${rootUrl}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
