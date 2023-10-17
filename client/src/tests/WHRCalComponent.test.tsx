@@ -39,7 +39,7 @@ describe('WHRCalComponent', () => {
 
     const waistInput = screen.getByLabelText('Waist Circumference (in cm):');
     const hipInput = screen.getByLabelText('Hip Circumference (in cm):');
-    const calculateButton = screen.getByText('Calculate WHR');
+    const calculateButton = screen.getByText('Calculate');
 
     fireEvent.change(waistInput, { target: { value: '75' } });
     fireEvent.change(hipInput, { target: { value: '90' } });
@@ -61,7 +61,7 @@ describe('WHRCalComponent', () => {
 
     const waistInput = screen.getByLabelText('Waist Circumference (in cm):');
     const hipInput = screen.getByLabelText('Hip Circumference (in cm):');
-    const calculateButton = screen.getByText('Calculate WHR');
+    const calculateButton = screen.getByText('Calculate');
 
     fireEvent.change(waistInput, { target: { value: '' } });
     fireEvent.change(hipInput, { target: { value: '' } });
