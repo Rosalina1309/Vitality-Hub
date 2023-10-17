@@ -1,10 +1,5 @@
 
-'use client';
-
 import React, { useState, useEffect } from 'react';
-import { fetchExercises } from "@/apiServices/fetchExercises";
-import { fetchExercisesByMuscle } from '@/apiServices/fetchExercisesByMuscle';
-import { Exercise } from '@/interfaces/Exercise';
 import styles from '../styles/exercisesComponent.module.css';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import {
@@ -13,6 +8,7 @@ import {
   setMuscle,
   setSelectedExercise,
 } from '@/slices/exercisesSlice';
+import { toggleFavoriteExercise } from '@/apiServices/toggleFavoriteExercise';
 
 const ExercisesComponent: React.FC = () => {
   const muscle = useAppSelector(state => state.exercises.muscle);
@@ -59,58 +55,14 @@ const ExercisesComponent: React.FC = () => {
     dispatch(setMuscle(''));
   };
 
-  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   try {
-  //     const data = await fetchExercisesByMuscle(muscle);
-  //     setExercises(data);
-  //   } catch (error) {
-  //     console.error('Error fetching exercises:', error);
-  //   }
-  // };
-
   const handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
     dispatch(setMuscle(e.currentTarget.value));
   };
 
-  const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API;
-
   const handleToggleFavorite = async (exerciseId: string) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${rootUrl}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          query: `mutation ToggleFavoriteExercise {
-            toggleFavorite(type: "exercise", itemId: "${exerciseId}") {
-              user {
-                favoriteExercises {
-                  exerciseId
-                }
-              }
-            }
-          }`,
-          }),
-        }
-      );
-
-      const responseData = await response.json();
-      const updatedFavorites =
-        responseData.data.toggleFavorite.user.favoriteExercises.map(
-          (fav: { exerciseId: string }) => fav.exerciseId
-        );
+      const updatedFavorites = await toggleFavoriteExercise(exerciseId);
       setFavoriteExercises(updatedFavorites);
-      localStorage.setItem(
-        'favoriteExercises',
-        JSON.stringify(updatedFavorites)
-      );
-      console.log(localStorage);
-
-
     } catch (error) {
       console.error('Error toggling favorite:', error);
     }

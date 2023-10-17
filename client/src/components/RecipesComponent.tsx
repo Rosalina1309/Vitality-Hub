@@ -1,9 +1,8 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
 import { fetchRecipes } from '@/apiServices/fetchRecipes';
 import { Recipe } from '@/interfaces/Recipe';
 import styles from '../styles/recipesComponent.module.css';
+import { toggleFavoriteRecipe } from '@/apiServices/toggleFavoriteRecipe';
 
 const RecipesComponent: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -12,10 +11,8 @@ const RecipesComponent: React.FC = () => {
       ? localStorage.getItem('favorites')
         ? JSON.parse(localStorage.getItem('favorites')!)
         : []
-      : []
-  );
-  const [token, setToken] = useState<string | null>(
-    typeof window !== 'undefined' ? localStorage.getItem('token') || null : null
+      :
+      []
   );
 
   useEffect(() => {
@@ -30,35 +27,11 @@ const RecipesComponent: React.FC = () => {
 
     fetchData();
   }, []);
-  const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API;
+
   const toggleFavorite = async (recipeId: string) => {
     try {
-      const response = await fetch(`${rootUrl}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          query: `mutation ToggleFavoriteRecipe {
-            toggleFavorite(type: "recipe", itemId: "${recipeId}") {
-              user {
-                favoriteRecipes {
-                  recipeId
-                }
-              }
-            }
-          }`,
-        }),
-      });
-
-      const responseData = await response.json();
-      const updatedFavorites =
-        responseData.data.toggleFavorite.user.favoriteRecipes.map(
-          (fav: { recipeId: string }) => fav.recipeId
-        );
+      const updatedFavorites = await toggleFavoriteRecipe(recipeId);
       setFavorites(updatedFavorites);
-      localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
     } catch (error) {
       console.error('Error toggling favorite:', error);
     }

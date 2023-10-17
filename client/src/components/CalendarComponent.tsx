@@ -1,8 +1,5 @@
-
-'use client'
-
 import React, { useState } from 'react';
-import styles from '../styles/calenderComponent.module.css';
+import styles from '../styles/calendarComponent.module.css';
 
 const CalendarComponent: React.FC = () => {
   const currentDate = new Date();
@@ -12,7 +9,7 @@ const CalendarComponent: React.FC = () => {
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [selectedDate, setSelectedDate] = useState<number | null>(null);
-  const [notification, setNotification] = useState<string>(''); 
+  const [notification, setNotification] = useState<string>('');
 
   const handleDateClick = (day: number) => {
     setSelectedDate(day);

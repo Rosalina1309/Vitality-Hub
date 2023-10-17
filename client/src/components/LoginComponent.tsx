@@ -1,4 +1,3 @@
-'use client';
 import React, { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { loginAsync } from '@/apiServices/authApi';
@@ -21,9 +20,6 @@ const LoginComponent = () => {
       dispatch(clearError());
     };
   }, []);
-
-  const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API;
-
 
   const handleLogin = async () => {
     try {

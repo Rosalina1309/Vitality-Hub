@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import styles from '../styles/whrCalComponent.module.css';
 import getAdviceForWHR from '@/helpers/getAdviceForWHR';

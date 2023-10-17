@@ -2,7 +2,8 @@ import Link from 'next/link';
 import styles from '@/styles/navbar.module.css';
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import { toggle } from '@/slices/menuSlice';
-import { logout } from '@/slices/authSlice';
+import { logout, setIsAuthenticated } from '@/slices/authSlice';
+import { useEffect } from 'react';
 
 export default function Navbar() {
   const isOpen = useAppSelector(state => state.menu.isOpen);
@@ -13,6 +14,10 @@ export default function Navbar() {
     dispatch(toggle());
   }
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    dispatch(setIsAuthenticated());
+  }, [])
   return (
     <div>
       <button
