@@ -38,21 +38,21 @@ const PersonalLogComponent: React.FC = () => {
   }, [user?.healthLogs]);
 
   return (
-    <div className={styles.personalLog}>
+    <section className={styles.personalLog}>
       <h2>Personal Log:</h2>
-      <div>
-        <h2>Exercises:</h2>
+      <div className={styles.exercises}>
+        <h3>Exercises:</h3>
         {exercises.map((log) => (
           <div key={log.loggable.id}>{log.loggable.name}</div>
         ))}
       </div>
-      <div>
-        <h2>Recipes:</h2>
+      <div className={styles.recipes}>
+        <h3>Recipes:</h3>
         {recipes.map((log) => (
           <div key={log.loggable.id}>{log.loggable.title}</div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
