@@ -1,33 +1,6 @@
-.logscontainer {
-  border: 1px solid black;
-  max-height: 450px;
-  overflow-y: scroll;
-}
-
-.singlelogcontainer {
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-  height: 180px;
-}
-
-.personallog {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  width: 100%;
-  border: 1px solid black;
-}
-
-.logdatecontainer {
-  margin-right: 20px;
-}
-
-.logdate {
-  padding: 5px;
-  border: 1px solid black;
-}
-
-.food {
-  margin-bottom: 15px;
+.personalLog {
+  h2 {
+    font-size: 24px;
+    color: var(--accentColor);
+  }
 }

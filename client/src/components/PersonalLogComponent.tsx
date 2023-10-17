@@ -1,10 +1,8 @@
-
-'use client'
-
 import React, { useEffect, useState } from 'react';
 import { fetchUserInfos } from '../apiServices/fetchUserInfos';
 import { User } from '../interfaces/User';
 import { HealthLog } from '@/interfaces/Loggable';
+import styles from '@/styles/personallog.module.css';
 
 const PersonalLogComponent: React.FC = () => {
   const [user, setUser] = useState<User | undefined>();
@@ -40,8 +38,8 @@ const PersonalLogComponent: React.FC = () => {
   }, [user?.healthLogs]);
 
   return (
-    <div>
-      <h2>Personal Logs:</h2>
+    <div className={styles.personalLog}>
+      <h2>Personal Log:</h2>
       <div>
         <h2>Exercises:</h2>
         {exercises.map((log) => (
