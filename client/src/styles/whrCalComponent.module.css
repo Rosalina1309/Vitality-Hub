@@ -51,16 +51,24 @@
   }
   button {
     margin: 40px auto;
-    padding: 10px 20px;
+    padding: 15px 20px;
     background: var(--accentColor);
     font-size: 18px;
     font-weight: 600;
     color: var(--secondaryColor);
     border-radius: 8px;
+    width: 100%;
+    max-width: 200px;
+    text-transform: uppercase;
   }
   p {
     font-size: 18px;
     line-height: 1.5;
+  }
+  .result {
+    button {
+      margin-bottom: 0;
+    }
   }
 }
 .errMessage {

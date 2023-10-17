@@ -66,10 +66,14 @@ const MeasurementsCalComponent: React.FC = () => {
           onChange={e => dispatch(setHip(e.target.value))}
         />
       </div>
-      <button id='calculateWHR' onClick={whrCalculator}>Calculate WHR</button>
+      <button id='calculateWHR' onClick={whrCalculator}>Calculate</button>
       {errMessage && <p id='error' className={styles.error}>{errMessage}</p>}
-      {whr !== null && !errMessage && <p>{getAdviceForWHR(gender, whr)}</p>}
-      <button onClick={addToProfileHandler}>Add to Profile</button>
+      {whr !== null && !errMessage &&
+        <div className={styles.result}>
+          <p>{getAdviceForWHR(gender, whr)}</p>
+          <button onClick={addToProfileHandler}>Add to Profile</button>
+        </div>
+      }
     </div>
   );
 };

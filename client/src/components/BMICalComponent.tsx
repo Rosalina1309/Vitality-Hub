@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import styles from '../styles/bmiCalComponent.module.css'
-import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import React, { useEffect, useState } from 'react';
+import styles from '../styles/bmiCalComponent.module.css';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { setHeight, setWeight, calculateBmi } from '@/slices/bmiSlice';
 import { addBMIToProfile } from '../apiServices/setBMIMeasurements';
 
@@ -13,12 +13,10 @@ const MeasurementsCalComponent: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem('token');
     if (storedToken) {
       setToken(storedToken);
     }
@@ -32,13 +30,13 @@ const MeasurementsCalComponent: React.FC = () => {
     if (token) {
       addBMIToProfile(height, weight, bmi, token)
         .then(data => {
-          console.log("Record added successfully!", data);
+          console.log('Record added successfully!', data);
         })
         .catch(error => {
-          console.error("Error adding record:", error);
+          console.error('Error adding record:', error);
         });
     } else {
-      console.error("Token is not available.");
+      console.error('Token is not available.');
     }
   }
 
@@ -63,14 +61,18 @@ const MeasurementsCalComponent: React.FC = () => {
           onChange={e => dispatch(setWeight(e.target.value))}
         />
       </div>
-      <button id='calculateBMI' onClick={bmiCalculator}>Calculate BMI</button>
+      <button id='calculateBMI' onClick={bmiCalculator}>
+        Calculate
+      </button>
       {errMessage && <p className={styles.errMessage}>{errMessage}</p>}
       {bmi !== null && !errMessage && (
-        <p>
-          Your BMI: {bmi.toFixed(2)} - {advice && <span>{advice}</span>}
-        </p>
+        <div className={styles.result}>
+          <p>
+            Your BMI: {bmi.toFixed(2)} - {advice && <span>{advice}</span>}
+          </p>
+          <button onClick={addToProfileHandler}>Add to Profile</button>
+        </div>
       )}
-      <button onClick={addToProfileHandler}>Add to Profile</button>
     </div>
   );
 };
