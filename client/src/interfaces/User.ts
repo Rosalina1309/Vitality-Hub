@@ -3,6 +3,8 @@ import { BMIMeasurements } from "./BMIMeasurements";
 
 import { Recipe } from "./Recipe";
 import { WHRMeasurement } from "./WHRMeasurements";
+import { HealthLog, Loggable } from "./Loggable";
+
 
 export interface User {
   id: string;
@@ -14,6 +16,7 @@ export interface User {
   favoriteRecipes: Recipe[];
   bmiMeasurements: BMIMeasurements[];
   whrMeasurements: WHRMeasurement[];
+  healthLogs: HealthLog[];
 }
 
 export interface RegistrationData {
