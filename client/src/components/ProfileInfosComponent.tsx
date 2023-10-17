@@ -36,8 +36,8 @@ const ProfileInfosComponent: React.FC = () => {
     <section className={styles.userProfile}>
       {user ? (
         <>
-          <h1>Welcome, {user.username}!</h1>
           <div className={styles.userData}>
+          <h1>Welcome, {user.username}!</h1>
             <div className={styles.userInfo}>
               <div className={styles.data}>
                 <h2>Your data:</h2>
