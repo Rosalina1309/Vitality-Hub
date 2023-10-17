@@ -3,6 +3,7 @@ import { fetchRecipes } from '@/apiServices/fetchRecipes';
 import { Recipe } from '@/interfaces/Recipe';
 import styles from '../styles/recipesComponent.module.css';
 import { toggleFavoriteRecipe } from '@/apiServices/toggleFavoriteRecipe';
+import { useAppSelector } from '@/hooks/hooks';
 
 const RecipesComponent: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -14,6 +15,8 @@ const RecipesComponent: React.FC = () => {
       :
       []
   );
+
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,11 +32,13 @@ const RecipesComponent: React.FC = () => {
   }, []);
 
   const toggleFavorite = async (recipeId: string) => {
-    try {
-      const updatedFavorites = await toggleFavoriteRecipe(recipeId);
-      setFavorites(updatedFavorites);
-    } catch (error) {
-      console.error('Error toggling favorite:', error);
+    if (isAuthenticated) {
+      try {
+        const updatedFavorites = await toggleFavoriteRecipe(recipeId);
+        setFavorites(updatedFavorites);
+      } catch (error) {
+        console.error('Error toggling favorite:', error);
+      }
     }
   };
 
