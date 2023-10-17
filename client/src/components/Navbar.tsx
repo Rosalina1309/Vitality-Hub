@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from '@/styles/navbar.module.css';
+import styles from '../styles/navbar.module.css';
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import { toggle } from '@/slices/menuSlice';
 import { logout, setIsAuthenticated } from '@/slices/authSlice';
