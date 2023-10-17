@@ -8,7 +8,7 @@
 .userData {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 30px;
+  gap: 20px;
   background: var(--secondaryColor);
   padding: 20px;
   border-radius: 8px;
@@ -144,6 +144,7 @@
     grid-template-columns: repeat(2, 1fr);
     grid-column: 1/-1;
     gap: 30px;
+    padding: 30px;
   }
   .userInfo {
     grid-template-columns: repeat(3, 1fr);
