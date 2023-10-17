@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom/';
 import { render, screen, fireEvent } from '@testing-library/react';
 import LoginComponent from '@/components/LoginComponent';
 import { Provider } from 'react-redux';
@@ -39,7 +40,6 @@ describe('LoginComponent', () => {
   });
 
   it('displays error message when login fails', async () => {
-
     store.dispatch(
       loginAsync({
         usernameOrEmail: 'invaliduser',

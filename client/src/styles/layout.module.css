@@ -9,6 +9,7 @@
   padding: 20px 10px;
   background: var(--accentColor);
   z-index: 20;
+  box-shadow: var(--shadow);
   .logo {
     font-size: 27px;
     color: var(--secondaryColor);

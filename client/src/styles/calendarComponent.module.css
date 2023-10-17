@@ -1,56 +1,146 @@
 /* calenderComponent.module.css */
 
 .calendarContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px;
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  width: calc(100% - 20px);
+  height: 100%;
+  max-height: 75vh;
+  background: var(--secondaryColor);
+  transition: 0.25s ease-out;
+  transform: translateY(100%);
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+  padding: 20px;
+  z-index: 10;
+  &.open {
+    transform: translateY(0) translateY(-10px);
+    .icon-calendar {
+      &::after {
+        content: '\e5c9';
+      }
+    }
+  }
+}
+.icon-calendar {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  padding: 5px 10px;
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+  background: var(--accentColor);
+  &::after {
+    content: '\ebcc';
+    font-family: 'Material Symbols Rounded';
+    font-size: 35px;
+    color: var(--secondaryColor);
+  }
 }
 
-.calendarContainer .dropdowns {
-  display: flex;
+.dropdowns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
   gap: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
-.calendarContainer select {
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.selectItem {
+  position: relative;
+  background: var(--secondaryColor);
+  z-index: 2;
+  border-radius: 5px;
+  border: 1px solid var(--border);
+  select {
+    width: 100%;
+    height: 45px;
+    background: transparent;
+  }
+  &::after {
+    content: '\e5cf';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    color: var(--mainColor);
+    font-family: 'Material Symbols Rounded';
+    font-size: 25px;
+    z-index: -1;
+  }
 }
 
 .calendar {
-  background-color: #f9f9f9;
-  padding: 20px;
+  background: var(--secondaryColor);
+  width: 100%;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 300px; /* Adjust the width as needed */
-  margin: 10px; /* Add margin */
+  h2 {
+    margin-bottom: 20px;
+    background: var(--secondaryBg);
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: var(--secondaryColor);
+  }
 }
-
 .daysheader {
-  display: flex;
-  gap: 10px; /* Adjust this value to control the space between days */
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
+.daysheader,
 .calendarDays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  place-items: center;
   gap: 20px;
+  text-align: center;
 }
 
+.calendarDays {
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+}
 .selectedDate {
-  background-color: #ee1d1d;
-  color: #fff;
+  background: var(--accentColor);
+  color: var(--secondaryColor);
   border-radius: 50%;
-  cursor: pointer;
 }
 
 .notification {
-  margin-top: 20px;
+  margin-top: 30px;
   font-size: 14px;
-  color: #fa1616;
+  color: var(--accentColor);
+  text-align: left;
+}
+
+@media screen and (min-width: 768px) {
+  .calendarContainer {
+    max-width: 400px;
+    max-height: 60vh;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .calendarContainer {
+    right: 30px;
+    &.open {
+      transform: translateY(0) translateY(-30px);
+    }
+  }
+  .dropdowns {
+    margin-bottom: 0;
+  }
+  .calendar {
+    padding: 20px;
+  }
+  .icon-calendar {
+    bottom: calc(100% + 30px);
+  }
 }

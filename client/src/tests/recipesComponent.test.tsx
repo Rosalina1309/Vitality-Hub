@@ -25,6 +25,4 @@ describe('Recipes Component', () => {
     expect(headerElement).toBeInTheDocument();
   });
 
-
-
 });

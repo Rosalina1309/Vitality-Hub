@@ -17,7 +17,6 @@ const ProfileInfosComponent: React.FC = () => {
           console.log(userData);
           const measurementsData = userData.bmiMeasurements;
           console.log('Measurements Data: ', measurementsData);
-
         } else {
           console.error('Token not found');
         }
@@ -28,36 +27,39 @@ const ProfileInfosComponent: React.FC = () => {
     fetchData();
   }, []);
 
-
-  const latestBMI = user?.bmiMeasurements[user?.bmiMeasurements.length - 1] || null;
-  const latestWHR = user?.whrMeasurements[user?.whrMeasurements.length - 1] || null;
+  const latestBMI =
+    user?.bmiMeasurements[user?.bmiMeasurements.length - 1] || null;
+  const latestWHR =
+    user?.whrMeasurements[user?.whrMeasurements.length - 1] || null;
 
   return (
     <section className={styles.userProfile}>
       {user ? (
         <>
-          <h1>Welcome, {user.username}!</h1>
           <div className={styles.userData}>
+          <h1>Welcome, {user.username}!</h1>
             <div className={styles.userInfo}>
-              <h2>Your data:</h2>
-              <p>Email: {user.email}</p>
-              <p>Gender: {user.gender}</p>
-            {latestBMI && (
-              <div>
-                <h3>Latest BMI Measurement</h3>
-                <p>Height: {latestBMI.height} cm</p>
-                <p>Weight: {latestBMI.weight} kg</p>
-                <p>BMI: {latestBMI.bmi}</p>
+              <div className={styles.data}>
+                <h2>Your data:</h2>
+                <p>Email: {user.email}</p>
+                <p>Gender: {user.gender}</p>
               </div>
-            )}
-            {latestWHR && (
-              <div>
-                <h3>Latest WHR Measurement</h3>
-                <p>Waist: {latestWHR.waist} cm</p>
-                <p>Hips: {latestWHR.hips} cm</p>
-                <p>WHR: {latestWHR.whr}</p>
-              </div>
-            )}
+              {latestBMI && (
+                <div className={styles.bmi}>
+                  <h2>Your BMI:</h2>
+                  <p>Height: {latestBMI.height} cm</p>
+                  <p>Weight: {latestBMI.weight} kg</p>
+                  <p>BMI: {latestBMI.bmi}</p>
+                </div>
+              )}
+              {latestWHR && (
+                <div className={styles.whr}>
+                  <h2>Your WHR:</h2>
+                  <p>Waist: {latestWHR.waist} cm</p>
+                  <p>Hips: {latestWHR.hips} cm</p>
+                  <p>WHR: {latestWHR.whr}</p>
+                </div>
+              )}
             </div>
             <div className={styles.favoriteExercises}>
               <h3>Favorite Exercises</h3>
@@ -114,4 +116,3 @@ const ProfileInfosComponent: React.FC = () => {
 };
 
 export default ProfileInfosComponent;
-

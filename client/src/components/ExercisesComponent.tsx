@@ -17,6 +17,8 @@ const ExercisesComponent: React.FC = () => {
     state => state.exercises.selectedExercise
   );
   const [favoriteExercises, setFavoriteExercises] = useState<string[]>([]);
+
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -60,11 +62,13 @@ const ExercisesComponent: React.FC = () => {
   };
 
   const handleToggleFavorite = async (exerciseId: string) => {
-    try {
-      const updatedFavorites = await toggleFavoriteExercise(exerciseId);
-      setFavoriteExercises(updatedFavorites);
-    } catch (error) {
-      console.error('Error toggling favorite:', error);
+    if (isAuthenticated) {
+      try {
+        const updatedFavorites = await toggleFavoriteExercise(exerciseId);
+        setFavoriteExercises(updatedFavorites);
+      } catch (error) {
+        console.error('Error toggling favorite:', error);
+      }
     }
   };
 

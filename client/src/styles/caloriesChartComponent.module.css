@@ -1,5 +1,7 @@
 .calories-chart-container {
-  margin-bottom: 30px;
+  background: var(--secondaryBg);
+  padding: 20px;
+  border-radius: 8px;
 }
 .chartContainer {
   width: 100%;
@@ -7,6 +9,7 @@
   margin: 0 auto;
   height: 300px;
   margin-bottom: 30px;
+  color: var(--secondaryColor);
 }
 .item-form {
   margin-bottom: 15px;
@@ -15,7 +18,7 @@
     margin-bottom: 10px;
     font-size: 18px;
     font-weight: 600;
-    color: var(--accentColor);
+    color: var(--secondaryColor);
   }
   input {
     display: block;
@@ -27,13 +30,12 @@
   p {
     font-size: 18px;
     font-weight: 600;
-    color: var(--accentColor);
+    color: var(--secondaryColor);
     &:not(:last-child) {
       margin-bottom: 10px;
     }
     span {
       font-weight: 400;
-      color: var(--mainColor);
     }
   }
 }

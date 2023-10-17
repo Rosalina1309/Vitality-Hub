@@ -3,10 +3,7 @@
   h1 {
     font-size: 50px;
     font-weight: 900;
-    background: var(--gradientText);
-    background-size: 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--accentColor);
     margin-bottom: 30px;
   }
   p {

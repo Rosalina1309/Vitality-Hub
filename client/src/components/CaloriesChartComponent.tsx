@@ -22,6 +22,7 @@ const CaloriesChartComponent: React.FC = () => {
     if (chartRef.current) {
       const ctx = chartRef.current.getContext('2d');
       if (ctx) {
+        Chart.defaults.color = '#000';
         const data = {
           labels: ['Consumed Calories', 'Remaining Calories'],
           datasets: [
@@ -30,7 +31,7 @@ const CaloriesChartComponent: React.FC = () => {
                 numericConsumedCalories,
                 totalCalories - numericConsumedCalories,
               ],
-              backgroundColor: ['#90EE90', '#77DD77'],
+              backgroundColor: ['#8DE425', '#02684a'],
             },
           ],
         };

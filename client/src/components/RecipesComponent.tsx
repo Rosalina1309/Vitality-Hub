@@ -3,6 +3,7 @@ import { fetchRecipes } from '@/apiServices/fetchRecipes';
 import { Recipe } from '@/interfaces/Recipe';
 import styles from '../styles/recipesComponent.module.css';
 import { toggleFavoriteRecipe } from '@/apiServices/toggleFavoriteRecipe';
+import { useAppSelector } from '@/hooks/hooks';
 
 const RecipesComponent: React.FC = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
@@ -14,6 +15,8 @@ const RecipesComponent: React.FC = () => {
       :
       []
   );
+
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,11 +32,13 @@ const RecipesComponent: React.FC = () => {
   }, []);
 
   const toggleFavorite = async (recipeId: string) => {
-    try {
-      const updatedFavorites = await toggleFavoriteRecipe(recipeId);
-      setFavorites(updatedFavorites);
-    } catch (error) {
-      console.error('Error toggling favorite:', error);
+    if (isAuthenticated) {
+      try {
+        const updatedFavorites = await toggleFavoriteRecipe(recipeId);
+        setFavorites(updatedFavorites);
+      } catch (error) {
+        console.error('Error toggling favorite:', error);
+      }
     }
   };
 
@@ -43,16 +48,33 @@ const RecipesComponent: React.FC = () => {
       {recipes &&
         recipes.map(recipe => (
           <div className={styles.recipeBox} key={recipe.id}>
+            <div className={styles.imgContainer}>
+              <img
+                src={recipe.image}
+                alt={recipe.title}
+                className={styles.recipeImage}
+              />
+              <span>Calories: {recipe.calories}</span>
+            </div>
             <h2>{recipe.title}</h2>
-            <img
-              src={recipe.image}
-              alt={recipe.title}
-              className={styles.recipeImage}
-            />
-            <p>Calories: {recipe.calories}</p>
-            <p>Protein: {recipe.protein}</p>
-            <p>Fat: {recipe.fat}</p>
-            <p>Carbs: {recipe.carbs}</p>
+            <ul>
+              <li>
+                <span>Calories: </span>
+                {recipe.calories}
+              </li>
+              <li>
+                <span>Protein: </span>
+                {recipe.protein}
+              </li>
+              <li>
+                <span>Fat: </span>
+                {recipe.fat}
+              </li>
+              <li>
+                <span>Carbs: </span>
+                {recipe.carbs}
+              </li>
+            </ul>
             <button onClick={() => toggleFavorite(recipe.id)}>
               {favorites.includes(recipe.id)
                 ? 'Remove from Favorites'
