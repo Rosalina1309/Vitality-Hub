@@ -14,7 +14,10 @@ const ProfileInfosComponent: React.FC = () => {
         if (token) {
           const userData = await fetchUserInfos(token);
           setUser(userData);
-          console.log(userData)
+          console.log(userData);
+          const measurementsData = userData.bmiMeasurements;
+          console.log('Measurements Data: ', measurementsData);
+
         } else {
           console.error('Token not found');
         }
@@ -24,6 +27,10 @@ const ProfileInfosComponent: React.FC = () => {
     };
     fetchData();
   }, []);
+
+
+  const latestBMI = user?.bmiMeasurements[user?.bmiMeasurements.length - 1] || null;
+  const latestWHR = user?.whrMeasurements[user?.whrMeasurements.length - 1] || null;
 
   return (
     <section className={styles.userProfile}>
@@ -35,6 +42,22 @@ const ProfileInfosComponent: React.FC = () => {
               <h2>Your data:</h2>
               <p>Email: {user.email}</p>
               <p>Gender: {user.gender}</p>
+            {latestBMI && (
+              <div>
+                <h3>Latest BMI Measurement</h3>
+                <p>Height: {latestBMI.height} cm</p>
+                <p>Weight: {latestBMI.weight} kg</p>
+                <p>BMI: {latestBMI.bmi}</p>
+              </div>
+            )}
+            {latestWHR && (
+              <div>
+                <h3>Latest WHR Measurement</h3>
+                <p>Waist: {latestWHR.waist} cm</p>
+                <p>Hips: {latestWHR.hips} cm</p>
+                <p>WHR: {latestWHR.whr}</p>
+              </div>
+            )}
             </div>
             <div className={styles.favoriteExercises}>
               <h3>Favorite Exercises</h3>
@@ -91,3 +114,4 @@ const ProfileInfosComponent: React.FC = () => {
 };
 
 export default ProfileInfosComponent;
+

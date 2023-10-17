@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import WHRCalculator from './WHRCalComponent';
 import BMICalculator from './BMICalComponent';

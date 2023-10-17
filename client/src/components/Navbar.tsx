@@ -2,7 +2,8 @@ import Link from 'next/link';
 import styles from '@/styles/navbar.module.css';
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import { toggle } from '@/slices/menuSlice';
-import { logout } from '@/slices/authSlice';
+import { logout, setIsAuthenticated } from '@/slices/authSlice';
+import { useEffect } from 'react';
 
 export default function Navbar() {
   const isOpen = useAppSelector(state => state.menu.isOpen);
@@ -13,9 +14,16 @@ export default function Navbar() {
     dispatch(toggle());
   }
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    dispatch(setIsAuthenticated());
+  }, [])
   return (
     <div>
-      <button id='hamburger' className={styles.hamburger} onClick={toggleMenu}></button>
+      <button
+        id='hamburger'
+        className={styles.hamburger}
+        onClick={toggleMenu}></button>
       <div className={`${styles.menu} ${isOpen ? styles.open : ''}`}>
         <button className={styles.close} onClick={toggleMenu}></button>
         <ul>
@@ -30,8 +38,10 @@ export default function Navbar() {
                 href='/'
                 onClick={() => {
                   dispatch(logout());
+                  localStorage.clear();
                   toggleMenu();
-                }} className={styles.logout}>
+                }}
+                className={styles.logout}>
                 Logout
               </Link>
             </li>
@@ -43,12 +53,14 @@ export default function Navbar() {
             </li>
           )}
           <li>
-            <Link
-              href='/profile'
-              onClick={toggleMenu}
-              className={styles.profile}>
-              Profile
-            </Link>
+            {isAuthenticated && (
+              <Link
+                href='/profile'
+                onClick={toggleMenu}
+                className={styles.profile}>
+                Profile
+              </Link>
+            )}
           </li>
           <li>
             <Link

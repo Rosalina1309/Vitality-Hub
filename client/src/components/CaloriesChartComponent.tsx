@@ -1,4 +1,3 @@
-'use client';
 import React, { useEffect, useRef } from 'react';
 import Chart, { ChartType } from 'chart.js/auto';
 import styles from '../styles/caloriesChartComponent.module.css';

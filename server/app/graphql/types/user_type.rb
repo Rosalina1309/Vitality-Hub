@@ -5,14 +5,20 @@ module Types
     field :email, String, null: false
     field :birthdate, GraphQL::Types::ISO8601Date, null: true
     field :gender, String, null: true
-    field :user_measurements, [UserMeasurementType], null: true
+    field :bmi_measurements, [BmiMeasurementType], null: true
+    field :whr_measurements, [WhrMeasurementType], null: true
     field :user_goals, [UserGoalType], null: true
     field :favorite_recipes, [UserFavoriteRecipeType], null: true
     field :favorite_exercises, [UserFavoriteExerciseType], null: true
+    field :health_logs, [HealthLogType], null: true
   end
 
-  def user_measurements
-    object.user_measurements
+  def bmi_measurements
+    object.bmi_measurements
+  end
+
+  def whr_measurement
+    object.whr_measurements
   end
 
   def user_goals
@@ -31,5 +37,9 @@ module Types
     favorite_recipes = FavoriteRecipe.where(user_id: user_id).pluck(:recipe_id)
     recipes = Recipe.where(id: favorite_recipes)
     recipes
+  end
+
+  def health_logs
+    object.health_logs
   end
 end

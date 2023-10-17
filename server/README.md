@@ -1,24 +1,44 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the back end of Vitality Hub.
 
-Things you may want to cover:
+- Ruby version
 
-* Ruby version
+  3.2.2
 
-* System dependencies
+- Rails version
 
-* Configuration
+  7.1
 
-* Database creation
+- Configuration
 
-* Database initialization
+  Remember to run bundle install on start
 
-* How to run the test suite
+- Database creation
 
-* Services (job queues, cache servers, search engines, etc.)
+  Make sure to create a .env file with the necessary db, user, etc. and then run 'rails db:create'.
 
-* Deployment instructions
+- Database initialization
 
-* ...
+  rails db:migrate
+
+- Get data for recipes and exercises tables
+
+  - Go to app/models/exercise.rb
+  - Comment out the id
+  - Run 'rake scrape_exercises scrape_recipes' on terminal
+  - Uncomment the id on exercise.rb
+
+- How to run the test suite
+
+  - Make sure you have a test configuration in your database.yml
+  - Run bin/rails db:migrate RAILS_ENV=test
+  - bundle exec rspec
+  - If you want to see the tests formatted run bundle exec rspec --format documentation
+  - If you only want to run the tests of a specific file run bundle exec rspec "spec/models/user_spec.rb" //Specific route to the test you want to run
+
+- Services (job queues, cache servers, search engines, etc.)
+
+- Deployment instructions
+
+- ...
