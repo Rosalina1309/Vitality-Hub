@@ -14,7 +14,7 @@ export async function addBMIToProfile(height: string, weight: string, bmi: numbe
     }
   };
 
-  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL
+  const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL
   try {
     const response = await fetch(`${rootUrl}`, {
       method: "POST",

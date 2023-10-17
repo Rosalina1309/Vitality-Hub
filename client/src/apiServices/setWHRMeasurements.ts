@@ -13,7 +13,7 @@ export async function addWHRToProfile(waist: string, hip: string, whr: number | 
       }
     }
   };
-  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL
+  const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL
   try {
     const response = await fetch(`${rootUrl}`, {
       method: "POST",

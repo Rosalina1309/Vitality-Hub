@@ -10,7 +10,7 @@ const LoginComponent = () => {
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
-  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+  const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
 
   const handleLogin = async () => {

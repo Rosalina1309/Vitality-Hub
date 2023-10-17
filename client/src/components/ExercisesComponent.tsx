@@ -36,7 +36,7 @@ const ExercisesComponent: React.FC = () => {
     setSelectedExercise(exerciseName === selectedExercise ? null : exerciseName);
   };
 
-  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+  const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
   const handleToggleFavorite = async (exerciseId: string) => {
     try {

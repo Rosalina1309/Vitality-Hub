@@ -23,7 +23,7 @@ const RecipesComponent: React.FC = () => {
 
     fetchData();
   }, []);
-  const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+  const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL;
   const toggleFavorite = async (recipeId: string) => {
     try {
       const response = await fetch(`${rootUrl}`, {

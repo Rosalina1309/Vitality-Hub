@@ -2,7 +2,7 @@
 import { Exercise } from "@/interfaces/Exercise";
 import axios from "axios";
 
-const rootUrl = process.env.NEXT_PUBLIC_ROOT_URL;
+const rootUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
 export async function fetchExercises(): Promise<Exercise[]> {
   try {

@@ -1,5 +1,6 @@
 import CalculatorsComponent from "@/components/CalculatorsComponent"
 import CaloriesChartComponent from "@/components/CaloriesChartComponent"
+import PersonalLogComponent from "@/components/PersonalLogComponent"
 import ProfileInfosComponent from "@/components/ProfileInfosComponent"
 
 
@@ -9,6 +10,7 @@ const UserProfilePage = () => {
     <CaloriesChartComponent />
     <CalculatorsComponent />
     <ProfileInfosComponent />
+    <PersonalLogComponent />
     </div>
   )   
 }
