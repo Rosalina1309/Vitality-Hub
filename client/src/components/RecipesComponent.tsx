@@ -43,16 +43,33 @@ const RecipesComponent: React.FC = () => {
       {recipes &&
         recipes.map(recipe => (
           <div className={styles.recipeBox} key={recipe.id}>
+            <div className={styles.imgContainer}>
+              <img
+                src={recipe.image}
+                alt={recipe.title}
+                className={styles.recipeImage}
+              />
+              <span>Calories: {recipe.calories}</span>
+            </div>
             <h2>{recipe.title}</h2>
-            <img
-              src={recipe.image}
-              alt={recipe.title}
-              className={styles.recipeImage}
-            />
-            <p>Calories: {recipe.calories}</p>
-            <p>Protein: {recipe.protein}</p>
-            <p>Fat: {recipe.fat}</p>
-            <p>Carbs: {recipe.carbs}</p>
+            <ul>
+              <li>
+                <span>Calories: </span>
+                {recipe.calories}
+              </li>
+              <li>
+                <span>Protein: </span>
+                {recipe.protein}
+              </li>
+              <li>
+                <span>Fat: </span>
+                {recipe.fat}
+              </li>
+              <li>
+                <span>Carbs: </span>
+                {recipe.carbs}
+              </li>
+            </ul>
             <button onClick={() => toggleFavorite(recipe.id)}>
               {favorites.includes(recipe.id)
                 ? 'Remove from Favorites'
