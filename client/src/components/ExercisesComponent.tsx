@@ -46,7 +46,6 @@ const ExercisesComponent: React.FC = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const value = formData.get('muscle-input') as string;
-    console.log(value);
 
     dispatch(setMuscle(value));
     try {

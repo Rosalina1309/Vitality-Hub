@@ -14,9 +14,6 @@ const ProfileInfosComponent: React.FC = () => {
         if (token) {
           const userData = await fetchUserInfos(token);
           setUser(userData);
-          console.log(userData);
-          const measurementsData = userData.bmiMeasurements;
-          console.log('Measurements Data: ', measurementsData);
         } else {
           console.error('Token not found');
         }

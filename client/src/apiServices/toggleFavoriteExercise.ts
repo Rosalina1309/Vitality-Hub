@@ -29,8 +29,6 @@ export const toggleFavoriteExercise = async (exerciseId: string) => {
       );
     localStorage.setItem('favoriteExercises', JSON.stringify(updatedFavorites));
     return updatedFavorites;
-
-    console.log(localStorage);
   } catch (error) {
     console.error('Error toggling favorite:', error);
   }

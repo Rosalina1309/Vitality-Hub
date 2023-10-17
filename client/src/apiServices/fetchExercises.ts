@@ -29,7 +29,6 @@ export async function fetchExercisesByMuscle(muscle:string): Promise<Exercise[]>
       query: query,
     });
     const exercisesData = response.data.data.exercisesByMuscle;
-    console.log(exercisesData);
     return exercisesData;
   } catch (error) {
     throw error;

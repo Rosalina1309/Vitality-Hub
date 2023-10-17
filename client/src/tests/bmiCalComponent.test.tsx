@@ -41,7 +41,7 @@ describe('BMICalComponent', () => {
   
     const heightInput = screen.getByLabelText('Height (in cm):');
     const weightInput = screen.getByLabelText('Weight (in kg):');
-    const calculateButton = screen.getByText('Calculate BMI');
+    const calculateButton = screen.getByText('Calculate');
   
     fireEvent.change(heightInput, { target: { value: '180' } });
     fireEvent.change(weightInput, { target: { value: '75' } });
@@ -68,7 +68,7 @@ describe('BMICalComponent', () => {
   
     const heightInput = screen.getByLabelText('Height (in cm):');
     const weightInput = screen.getByLabelText('Weight (in kg):');
-    const calculateButton = screen.getByText('Calculate BMI');
+    const calculateButton = screen.getByText('Calculate');
   
     fireEvent.change(heightInput, { target: { value: 'abc' } });
     fireEvent.change(weightInput, { target: { value: '' } }); // Empty string

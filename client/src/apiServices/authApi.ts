@@ -73,7 +73,6 @@ export const registerAsync = createAsyncThunk<boolean, RegistrationData>(
       );
 
       const responseBody = await response.json();
-      console.log(responseBody);
 
       if (
         responseBody.data && responseBody.data.registerUser && responseBody.data.registerUser.token
