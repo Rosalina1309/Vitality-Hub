@@ -11,11 +11,11 @@ export default function MainPage() {
           Welcome to <span>Vitality Hub</span>
         </h1>
         <p>
-          Unlock Your Vitality, Transform Your Life: Where Numbers Meet
-          Wellness.
+          Unlock your vitality, transform your life: where numbers meet
+          wellness.
         </p>
-        <p>Your BMI, Your Rhythm, Your Journey</p>
-        <p>Nourishing Body and Soul</p>
+        <p>Your BMI, your rhythm, your journey</p>
+        <p>Nourishing body and soul</p>
       </section>
       <section className={styles.content}>
         <QuotesComponent />
