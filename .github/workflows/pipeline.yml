@@ -14,3 +14,30 @@ jobs:
           node-version: '20'
       - run: npm ci
       - run: npm run test
+  run-defined-backend-tests:
+    runs-on: ubuntu-latest
+    defaults: 
+      run:
+        working-directory: ./server
+    steps: 
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+      - name: Install Bundler
+        run: gem install bundler -v 2.4.20
+
+      - name: Install Dependencies
+        run: bundle install
+
+      - name: Configure test database
+        run: cp config/database.yml
+
+      - name: Create and migrate test database
+        run: |
+          RAILS_ENV=test bin/rails db:create
+          RAILS_ENV=test bin/rails db:migrate
+      
+      - name: Run RSpec tests
+        run: bundle exec rspec
