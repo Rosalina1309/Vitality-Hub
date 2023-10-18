@@ -21,13 +21,12 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v4
-      - name: Change to 'server' directory
-        run: cd server
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.2.2
       - name: Build and run test
+        working-directory: server
         env:
           DATABASE_URL: postgres://postgres:admin@localhost:5432/'Vitality Hub'
           RAILS_ENV: test
