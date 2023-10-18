@@ -1,0 +1,11 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "vitality-hub-server",
+      "image": "rosalina1309/vitality-hub-server:0.0.1  ",
+      "essential": true,
+      "memory": 128
+    }
+  ]
+}
