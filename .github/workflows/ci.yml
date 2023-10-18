@@ -21,6 +21,8 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v4
+      - name: Change to 'server' directory
+        run: cd server
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
