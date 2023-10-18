@@ -111,6 +111,11 @@ GEM
     email_validator (2.2.4)
       activemodel
     erubi (1.12.0)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     ffi (1.16.3)
     ffi (1.16.3-x64-mingw-ucrt)
     globalid (1.2.1)
@@ -129,7 +134,7 @@ GEM
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.6.0)
-    irb (1.8.2)
+    irb (1.8.3)
       rdoc
       reline (>= 0.3.8)
     jbuilder (2.11.5)
@@ -171,7 +176,7 @@ GEM
       racc (~> 1.4)
     pg (1.5.4)
     pg (1.5.4-x64-mingw-ucrt)
-    psych (5.1.1)
+    psych (5.1.1.1)
       stringio
     public_suffix (5.0.3)
     puma (6.4.0)
@@ -299,6 +304,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   email_validator (~> 2.2, >= 2.2.4)
+  factory_bot_rails
   ffi
   graphiql-rails
   graphql
