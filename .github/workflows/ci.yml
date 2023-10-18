@@ -28,7 +28,7 @@ jobs:
       - name: Build and run test
         working-directory: server
         env:
-          DATABASE_URL: postgres://postgres:admin@localhost:5432/Vitality%20Hub
+          DATABASE_URL: postgres://postgres:admin@localhost:5432/VH_Test
           RAILS_ENV: test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: admin
