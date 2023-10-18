@@ -2,7 +2,7 @@
 require 'active_storage/engine'
 require 'action_mailer/railtie'
 require 'bundler/setup'
-
+require 'action_cable/engine'
 
 module Server
   class Application < Rails::Application
