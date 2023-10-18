@@ -7,6 +7,7 @@ export interface BmiCalcState {
   weight: string;
   bmi: number | null;
   errMessage: string;
+  success: boolean;
   advice: string;
 }
 
@@ -15,6 +16,7 @@ const initialState: BmiCalcState = {
   weight: '',
   bmi: null,
   errMessage: '',
+  success: false,
   advice: '',
 }
 
@@ -43,11 +45,14 @@ export const bmiSlice = createSlice({
         state.advice = '';
         state.errMessage = "Please enter valid height and weight values.";
       }
+    },
+    setSuccess: (state, action) => {
+      state.success = action.payload;
     }
   }
 })
 
 export const selectBmi = (state: RootState) => state.bmi.bmi;
-export const { setHeight, setWeight, calculateBmi } = bmiSlice.actions;
+export const { setHeight, setWeight, calculateBmi, setSuccess } = bmiSlice.actions;
 
 export default bmiSlice.reducer;

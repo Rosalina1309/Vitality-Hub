@@ -6,6 +6,7 @@ export interface WhrState {
   hip: string;
   whr: number | null;
   errMessage: string;
+  success: boolean;
 }
 
 const initialState: WhrState = {
@@ -14,6 +15,7 @@ const initialState: WhrState = {
   hip: '',
   whr: null,
   errMessage: '',
+  success: false,
 };
 
 export const whrSlice = createSlice({
@@ -29,7 +31,7 @@ export const whrSlice = createSlice({
     setGender: (state, action) => {
       state.gender = action.payload;
     },
-    calculateWhr: (state) => {
+    calculateWhr: state => {
       const waistValue = parseFloat(state.waist);
       const hipValue = parseFloat(state.hip);
 
@@ -46,10 +48,13 @@ export const whrSlice = createSlice({
         state.whr = null;
         state.errMessage = 'Please enter valid waist and hip values.';
       }
-    }
+    },
+    setSuccess: (state, action) => {
+      state.success = action.payload;
+    },
   },
 });
 
-export const { setHip, setWaist, setGender, calculateWhr } = whrSlice.actions;
+export const { setHip, setWaist, setGender, calculateWhr, setSuccess } = whrSlice.actions;
 
 export default whrSlice.reducer;
