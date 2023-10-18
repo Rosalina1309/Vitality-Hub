@@ -1,9 +1,8 @@
 require_relative '../../rails_helper'
-require './app/lib/helpers/jwt_helper'
 
 RSpec.describe 'Mutations::CreateRecordMutation', type: :request do
   let(:user) { FactoryBot.create(:user) }
-  let(:valid_jwt_token) { JwtHelper.generate_token(user) }
+  let(:valid_jwt_token) { Helpers::JwtHelper.generate_token(user) }
 
   it 'creates a UserGoal record' do
     graphql_query = <<~GRAPHQL
