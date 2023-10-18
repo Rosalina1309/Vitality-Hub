@@ -39,7 +39,3 @@ jobs:
           bundle exec rails db:create
           bundle exec rails db:migrate
           bundle exec rspec --format documentation
-      - name: Run exercises:scrape
-        run: bundle exec rake exercises:scrape
-      - name: Run recipes:scrape
-        run: bundle exec rake recipes:scrape
