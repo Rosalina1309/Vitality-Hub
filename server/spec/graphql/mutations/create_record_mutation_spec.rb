@@ -1,5 +1,5 @@
 require_relative '../../rails_helper'
-require_relative '../helpers/jwt_helper'
+require_relative './jwt_helper'
 
 RSpec.describe 'Mutations::CreateRecordMutation', type: :request do
   let(:user) { FactoryBot.create(:user) }
