@@ -43,6 +43,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_16_142033) do
     t.index ["user_id"], name: "index_health_logs_on_user_id"
   end
 
+  create_table "messages", id: :serial, force: :cascade do |t|
+    t.text "content"
+    t.integer "author_id"
+    t.datetime "timestamp", precision: nil
+  end
+
   create_table "recipes", force: :cascade do |t|
     t.string "title"
     t.string "image"
@@ -92,6 +98,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_16_142033) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["id"], name: "index_users_on_id", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "weddingmessages", id: :serial, force: :cascade do |t|
+    t.string "name", limit: 255
+    t.text "message"
+    t.datetime "created_at", precision: nil, default: -> { "now()" }
   end
 
   create_table "whr_measurements", force: :cascade do |t|
