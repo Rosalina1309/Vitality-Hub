@@ -1,3 +1,4 @@
+require_relative '../../lib/helpers/jwt_helper'
 module Mutations
   class CreateHealthLogMutation < GraphQL::Schema::Mutation
     argument :input, Types::Inputs::CreateHealthLogMutationInputType, required: true
@@ -6,7 +7,7 @@ module Mutations
     field :errors, [String], null: true
 
     def resolve(input:)
-      user_id = Helpers::JwtHelper.verify_jwt_token("#{context[:jwt_token]}")
+      user_id = JwtHelper.verify_jwt_token("#{context[:jwt_token]}")
 
       user = User.find_by(id: user_id)
       return GraphQL::ExecutionError.new("User not found") if user.nil?

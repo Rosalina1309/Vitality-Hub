@@ -1,3 +1,5 @@
+require_relative '../../lib/helpers/jwt_helper'
+
 module Mutations
   class ToggleFavoriteMutation < GraphQL::Schema::Mutation
     argument :type, String, required: true
@@ -7,7 +9,7 @@ module Mutations
     field :favorited_item, Types::Unions::ExerciseOrRecipeUnionType, null: true
 
     def resolve(type:, item_id:)
-      user_id = Helpers::JwtHelper.verify_jwt_token(context[:jwt_token])
+      user_id = JwtHelper.verify_jwt_token(context[:jwt_token])
       user = User.find(user_id)
 
       if user

@@ -1,3 +1,5 @@
+require_relative '../../lib/helpers/jwt_helper'
+
 module Mutations
   class CreateRecordMutation < GraphQL::Schema::Mutation
     argument :input, Types::Inputs::CreateRecordMutationInputType, required: true
@@ -5,7 +7,7 @@ module Mutations
     field :record, Types::Unions::CreateRecordUnionType, null: true
 
     def resolve(input:)
-      user_id = Helpers::JwtHelper.verify_jwt_token("#{context[:jwt_token]}")
+      user_id = JwtHelper.verify_jwt_token("#{context[:jwt_token]}")
 
       user = User.find_by(id: user_id)
       return GraphQL::ExecutionError.new("User not found") if user.nil?
@@ -14,6 +16,7 @@ module Mutations
 
       record_class = record_type.camelize.constantize
       attributes = input.to_h.except(:record_type)
+
       record = user.public_send(record_class.table_name).build(attributes)
 
       if record.save

@@ -1,10 +1,11 @@
 require_relative '../../rails_helper'
+require './app/lib/helpers/jwt_helper'
 
 RSpec.describe 'Mutations::ToggleFavoriteMutation', type: :request do
   it 'toggles and untoggles favorite recipe' do
     user = FactoryBot.create(:user)
     recipe = FactoryBot.create(:recipe)
-    valid_jwt_token = Helpers::JwtHelper.generate_token(user)
+    valid_jwt_token = JwtHelper.generate_token(user)
 
     graphql_query = <<~GRAPHQL
     mutation ToggleFavoriteRecipe { toggleFavorite(type: "recipe", itemId: "149241") { user { favoriteRecipes { recipeId  } } favoritedItem { ... on Recipe { id title } } } }
