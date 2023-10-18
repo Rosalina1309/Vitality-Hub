@@ -17,3 +17,13 @@ test:
   password: <%= ENV['DB_PASSWORD'] %>
   host: <%= ENV['DB_HOST'] %>
   port: 5432
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= ENV['DATABASE'] %>
+  pool: 5
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
+  port: 5432

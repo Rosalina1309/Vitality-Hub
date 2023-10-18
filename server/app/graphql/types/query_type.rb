@@ -5,7 +5,7 @@ module Types
     field :user, Types::UserType, null: true, description: "Get a user by ID"
 
     def user
-      user_id = JwtHelper.verify_jwt_token(context[:jwt_token])
+      user_id = Helpers::JwtHelper.verify_jwt_token(context[:jwt_token])
       user = User.find_by(id: user_id)
       user
     end
