@@ -15,7 +15,7 @@ jobs:
       - run: npm ci
       - run: npm run test
 
-  docker:
+  docker-image-build:
     needs: run-defined-frontend-tests
     runs-on: ubuntu-latest
     steps:
@@ -34,14 +34,14 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      # -
-      #   name: Build and push server image
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     push: true
-      #     tags: rosalina1309/vitality-hub-server:latest, rosalina1309/vitality-hub-server:${{ github.sha }}
-      #     platforms: linux/amd64,linux/arm64
-      #     context: server
+      -
+        name: Build and push server image
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: rosalina1309/vitality-hub-server:latest, rosalina1309/vitality-hub-server:${{ github.sha }}
+          platforms: linux/amd64,linux/arm64
+          context: server
 
       -
         name: Build and push client image
@@ -53,7 +53,7 @@ jobs:
           context: client
 
   k8s:
-    needs: [run-defined-frontend-tests,docker]
+    needs: [run-defined-frontend-tests,docker-image-build]
     runs-on: ubuntu-latest
     steps:
       -
