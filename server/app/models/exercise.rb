@@ -1,7 +1,6 @@
 class Exercise < ApplicationRecord
   self.inheritance_column = :_type_disabled
 
-  validates :id, presence: true, uniqueness: true
   validates :name, presence: true
   validates :type, presence: true
   validates :muscle, presence: true

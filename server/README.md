@@ -24,10 +24,7 @@ This is the back end of Vitality Hub.
 
 - Get data for recipes and exercises tables
 
-  - Go to app/models/exercise.rb
-  - Comment out the id
-  - Run 'rake scrape_exercises scrape_recipes' on terminal
-  - Uncomment the id on exercise.rb
+  - Run 'rake exercises:scrape' 'rake recipes:scrape' on terminal
 
 - How to run the test suite
 
