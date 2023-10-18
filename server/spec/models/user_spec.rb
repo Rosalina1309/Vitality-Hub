@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'validates that the birthdate can\'t be after today' do
-    user = User.new(username: 'patri test', email: 'patri@test.com', password: '123456', birthdate: '2023/10/15')
+    user = User.new(username: 'patri test', email: 'patri@test.com', password: '123456', birthdate: '2100/10/15')
     expect(user).not_to be_valid
   end
 

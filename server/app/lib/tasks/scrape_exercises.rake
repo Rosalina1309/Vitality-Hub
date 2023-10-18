@@ -11,7 +11,7 @@ namespace :exercises do
       'neck', 'quadriceps', 'traps', 'triceps'
     ]
 
-    api_key = 'u1MqE9OcSe2ROpt0Tl+7HQ==domWx22TnqrwssW3'
+    api_key = ENV['EXERCISES_API_KEY']
 
     muscle_groups.each do |muscle|
       puts "#{muscle}"
@@ -21,23 +21,18 @@ namespace :exercises do
 
         if response.nil?
           puts "Response is nil. Something went wrong."
-          # Handle the error or exit gracefully
         else
           data = JSON.parse(response)
-          # Handle the API response data
         end
       rescue RestClient::BadRequest => e
         puts "Full Response: #{response}"
         puts "Bad Request Error: #{e.response}"
-        # Handle the error or exit gracefully
       rescue RestClient::Exception => e
         puts "RestClient Error: #{e}"
-        # Handle other RestClient errors or log them
       end
       exercises_count = 0
 
       data.each do |exercise_data|
-        # You can customize this part based on your Exercise model's attributes
         name = exercise_data['name']
         type = exercise_data['type']
         muscle_group = muscle
