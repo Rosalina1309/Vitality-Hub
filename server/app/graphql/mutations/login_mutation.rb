@@ -9,7 +9,7 @@ module Mutations
       user = User.find_by(username: input[:usernameOrEmail]) || User.find_by(email: input[:usernameOrEmail])
 
       if user&.authenticate(input[:password])
-        jwt = JwtHelper.generate_token(user)
+        jwt = Helpers::JwtHelper.generate_token(user)
         { token: jwt }
       else
         raise GraphQL::ExecutionError, "Invalid credentials"
