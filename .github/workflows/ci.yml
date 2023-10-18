@@ -1,9 +1,9 @@
 name: Continuous integration
 on:
   push:
-    branches: [master]
+    branches: [patricia]
   pull_request:
-    branches: [master]
+    branches: [patricia]
 jobs:
   test:
     runs-on: ubuntu-latest
