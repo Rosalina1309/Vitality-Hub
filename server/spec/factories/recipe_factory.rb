@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :recipe do
-    sequence(:id) { |n| "1400#{n}" }
+    id { '149241' }
     title { 'Stevia-Sweetened Currant Banana Bread' }
     image { 'https://spoonacular.com/recipeImages/149241-312x231.jpg' }
     calories { 186.0 }

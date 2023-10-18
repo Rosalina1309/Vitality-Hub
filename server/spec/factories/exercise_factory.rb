@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :exercise do
-    sequence(:id) { |n| "#{n}" }
+    id { '18' }
     name { 'Monster Walk' }
     type { 'strength' }
     muscle { 'abductors' }
