@@ -59,8 +59,9 @@ const BurnedCaloriesComponent: React.FC = () => {
 
   return (
     <div className={styles.burnedCals}>
-      <h3>Duration of physical activity in minute:</h3>
+      <h3>Duration of physical activity in minutes:</h3>
       <input
+        id='activetime'
         type='number'
         value={duration}
         onChange={e => dispatch(setDuration(e.target.value))}
@@ -68,6 +69,7 @@ const BurnedCaloriesComponent: React.FC = () => {
       <h3>Choose an activity: </h3>
       <div className={styles['select-item']}>
         <select
+          id='activity'
           value={selectedActivity}
           onChange={e => dispatch(setSelectedActivity(e.target.value))}>
           <option value=''>Select an activity</option>
@@ -80,11 +82,12 @@ const BurnedCaloriesComponent: React.FC = () => {
       </div>
       <h3>Enter your weight in kg:</h3>
       <input
+        id='weight'
         type='number'
         value={weight}
         onChange={e => dispatch(setWeight(e.target.value))}
       />
-      <button onClick={handleCalculateClick}>Calculate</button>
+      <button id='calccalories' onClick={handleCalculateClick}>Calculate</button>
       {totalCalories !== null && (
         <div className={styles.details}>
           <h3>Total calories burned:</h3>

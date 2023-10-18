@@ -4,10 +4,10 @@ group :development, :test do
   gem 'dotenv-rails'
 end
 
-ruby "3.0.2"
+ruby "3.2.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.0"
+gem "rails", "~> 7.1.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -54,6 +54,8 @@ gem 'email_validator', '~> 2.2', '>= 2.2.4'
 gem 'jwt', '~> 2.7', '>= 2.7.1'
 
 gem 'rack-cors', require: 'rack/cors'
+
+gem 'activesupport', '~> 7.1.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
