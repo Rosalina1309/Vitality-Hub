@@ -33,6 +33,7 @@ RSpec.describe 'Mutations::CreateRecordMutation', type: :request do
     expect(response.status).to eq(200)
     result = JSON.parse(response.body)
     user_goal_data = result['data']['createRecord']['record']
+    puts user_goal_data.inspect
 
     expect(user_goal_data['personalGoal']).to eq('Get fit')
     expect(user_goal_data['startDate']).to eq('2023-01-01')
