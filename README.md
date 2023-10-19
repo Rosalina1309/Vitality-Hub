@@ -1,3 +1,3 @@
 Hello guys,
 
-Let's make our project to be real. hi
+Let's make our project to be real.

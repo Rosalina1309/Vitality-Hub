@@ -12,8 +12,8 @@ jobs:
       postgres:
         image: postgres:15.4
         env:
-          POSTGRES_USER: hongnhungpham
-          POSTGRES_PASSWORD: janilo01
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: admin
         ports: ['5432:5432']
         options: --health-cmd pg_isready
           --health-interval 10s
@@ -28,10 +28,10 @@ jobs:
       - name: Build and run test
         working-directory: ./server
         env:
-          DATABASE_URL: postgres://hongnhungpham:janilo01@localhost:5432/VH_Test
+          DATABASE_URL: postgres://postgres:admin@localhost:5432/VH_Test
           RAILS_ENV: test
-          POSTGRES_USER: hongnhungpham
-          POSTGRES_PASSWORD: janilo01
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: admin
         run: |
           sudo apt-get -yqq install libpq-dev
           gem install bundler:2.4.10
