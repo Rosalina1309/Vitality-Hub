@@ -32,6 +32,7 @@ RSpec.describe 'Mutations::CreateRecordMutation', type: :request do
 
     expect(response.status).to eq(200)
     result = JSON.parse(response.body)
+    puts user
     puts result.inspect
     user_goal_data = result['data']['createRecord']['record']
     puts user_goal_data.inspect
@@ -103,6 +104,7 @@ RSpec.describe 'Mutations::CreateRecordMutation', type: :request do
 
     expect(response.status).to eq(200)
     result = JSON.parse(response.body)
+    puts user
     puts result.inspect
     whr_measurement_data = result['data']['createRecord']['record']
 
