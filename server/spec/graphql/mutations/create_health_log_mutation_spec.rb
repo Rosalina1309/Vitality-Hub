@@ -1,5 +1,5 @@
 require_relative '../../rails_helper'
-require_relative './jwt_helper'
+require './app/lib/helpers/jwt_helper'
 
 RSpec.describe 'Mutations::CreateHealthLogMutation', type: :request do
   it 'adds a recipe to the health log' do

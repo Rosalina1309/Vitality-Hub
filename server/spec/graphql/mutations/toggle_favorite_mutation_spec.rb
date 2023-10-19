@@ -1,5 +1,5 @@
 require_relative '../../rails_helper'
-require_relative './jwt_helper'
+require './app/lib/helpers/jwt_helper'
 
 RSpec.describe 'Mutations::ToggleFavoriteMutation', type: :request do
   it 'toggles and untoggles favorite recipe' do
