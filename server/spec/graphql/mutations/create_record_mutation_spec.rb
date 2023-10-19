@@ -32,6 +32,7 @@ RSpec.describe 'Mutations::CreateRecordMutation', type: :request do
 
     expect(response.status).to eq(200)
     result = JSON.parse(response.body)
+    puts result.inspect
     user_goal_data = result['data']['createRecord']['record']
     puts user_goal_data.inspect
 
@@ -67,6 +68,7 @@ RSpec.describe 'Mutations::CreateRecordMutation', type: :request do
 
     expect(response.status).to eq(200)
     result = JSON.parse(response.body)
+    puts result.inspect
     bmi_measurement_data = result['data']['createRecord']['record']
 
     expect(bmi_measurement_data['height']).to eq(180.0)
@@ -101,6 +103,7 @@ RSpec.describe 'Mutations::CreateRecordMutation', type: :request do
 
     expect(response.status).to eq(200)
     result = JSON.parse(response.body)
+    puts result.inspect
     whr_measurement_data = result['data']['createRecord']['record']
 
     expect(whr_measurement_data['waist']).to eq(80.0)
