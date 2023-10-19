@@ -7,7 +7,7 @@ module Mutations
     field :record, Types::Unions::CreateRecordUnionType, null: true
 
     def resolve(input:)
-      user_id = JwtHelper.verify_jwt_token("#{context[:jwt_token]}")
+      user_id = Helpers::JwtHelper.verify_jwt_token("#{context[:jwt_token]}")
 
       user = User.find_by(id: user_id)
       return GraphQL::ExecutionError.new("User not found") if user.nil?

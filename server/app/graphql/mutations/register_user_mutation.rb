@@ -21,7 +21,7 @@ module Mutations
 
 
         if user.save
-          token = JwtHelper.generate_token(user)
+          token = Helpers::JwtHelper.generate_token(user)
           { token: token }
         else
           raise GraphQL::ExecutionError, user.errors.full_messages.join(", ")
